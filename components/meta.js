@@ -26,6 +26,7 @@ export default function Meta() {
         href="/favicon/safari-pinned-tab.svg"
         color="#000000"
       />
+      <title>GL Demo Nov 2021</title>
 
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <meta name="msapplication-TileColor" content="#000000" />
@@ -37,6 +38,7 @@ export default function Meta() {
         content={`next js demo`}
       />
       <meta property="og:image" content="#" />
+
     </Head>
   )
 }
