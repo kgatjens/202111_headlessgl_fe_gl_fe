@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { isEmpty } from 'lodash';
+
 
 
 export default function Header(headerData) {
@@ -14,7 +14,7 @@ export default function Header(headerData) {
         <div>
         <h1>{headerData.header.pageTitle}</h1>
         <nav>
-            { ! isEmpty( headerData.header.menuItems.nodes ) && headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
+            { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
                 
                 <Link key={ menuItem.url } href={ menuItem.url ?? '/' }>
                     <a 
