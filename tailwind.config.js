@@ -20,11 +20,6 @@ module.exports = {
         gray: '#4A4A4A',
         gray2: '#979797',
       },
-      gradientColorStops: theme => ({
-        'primary': '#FF8C00',
-        'secondary': '#FFA500',
-        'danger': '#FFD700',
-      }),
     },
     
     fontFamily: {
