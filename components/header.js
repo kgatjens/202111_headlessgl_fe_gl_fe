@@ -28,7 +28,7 @@ export default function Header(headerData) {
                 <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
                 { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
                         
-                        <li className="hover:text-darkblue px-4"><Link key={ menuItem.id } href={ menuItem.url ?? '/' }>
+                        <li className="hover:text-darkblue px-4" key={ menuItem.id }><Link  href={ menuItem.url ?? '/' }>
                             <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                         </Link></li>
                     ) ) : null }
@@ -48,7 +48,7 @@ export default function Header(headerData) {
 		    <div className='lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto'>
             { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
                         
-                <Link key={ menuItem.id } href={ menuItem.url ?? '/' }>
+                <Link key={ menuItem.id }  href={ menuItem.url ?? '/' }>
                     <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ' dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                 </Link>
             ) ) : null }
