@@ -37,14 +37,14 @@ export default function Header(headerData) {
             </div>
             </div>
         
-            <a className="navbar-burger self-center mr-12 xl:hidden" onClick={handleClick} href="#">
+            <a className="navbar-burger self-center mr-12 md:hidden" onClick={handleClick} href="#">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg> 
             </a> 
         </nav>
         {/* //Hamburguer menu */}
-        <div className={`${active ? '' : 'hidden'} w-full lg:inline-flex lg:flex-grow lg:w-auto bg-lightblue`}>
+        <div className={`${active ? '' : 'hidden'} md:hidden lg:hidden w-full lg:inline-flex lg:flex-grow lg:w-auto bg-lightblue`}>
 		    <div className='lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto'>
             { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
                         
