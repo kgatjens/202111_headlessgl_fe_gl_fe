@@ -5,7 +5,7 @@ export default function Layout({ children }) {
     return (
       <>
         <Meta />
-          <main class="font-sans leading-normal tracking-normal">{children}</main>
+          <main className="font-sans leading-normal tracking-normal">{children}</main>
         <Footer />
       </>
     )
