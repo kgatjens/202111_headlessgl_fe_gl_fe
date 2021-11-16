@@ -8,7 +8,7 @@ import { getMainMenu } from '../lib/wp/api'
 
 export default function Home({ menuItems: { menuItems } }) {
   
-  const pageTitle = "GL - dEmO";
+  const pageTitle = "GL - Search";
   const headerData = {pageTitle, menuItems}
 
   return (
