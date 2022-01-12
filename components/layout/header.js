@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import NavSearch from '../search/search-nav';
+
 export default function Header(headerData) {
    // const { headerData } = menuItems || {};
     //const { pageTitle, menuItems } = headerData || {};
@@ -12,8 +14,9 @@ export default function Header(headerData) {
         setActive(!active);
     };
 
-    console.log(headerData);
-    console.log("ˆˆˆ");
+    // console.log("@@@");
+    // console.log(headerData.header.menuItems);
+    // console.log("@@@");
     
     return (
         <header>
@@ -54,9 +57,10 @@ export default function Header(headerData) {
             ) ) : null }
           </div>
         </div>
+        <NavSearch/>
 
 
-        <h1>{headerData.header.pageTitle}</h1>
+        <h1>{headerData.pageTitle}</h1>
 
         </header>
     )

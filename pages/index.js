@@ -1,20 +1,26 @@
 import Image from 'next/image'
 
 
-import Container from '../components/container'
-import Layout from '../components/layout'
-import Header from '../components/header'
-import { getMainMenu } from '../lib/wp/api'
+import Container from '../components/layout/container'
+import Layout from '../components/layout/layout'
+import Header from '../components/layout/header'
+import Footer from '../components/layout/footer'
 
-export default function Home({ menuItems: { menuItems } }) {
+import { getMenus } from '../lib/wp/api'
+
+export default function Home({ data }) {
   
   const pageTitle = "GL - dEmO";
-  const headerData = {pageTitle, menuItems}
+  
+  const { mainNav, mainFooter } = data || {};
+  console.log(mainNav.menuItems.nodes);
+
+  //const headerData = {pageTitle, menuItems}
 
   return (
     <>
       <Layout>
-      <Header header={headerData} />
+      <Header header={mainNav} />
       <Container>
         
         <p>
@@ -25,6 +31,7 @@ export default function Home({ menuItems: { menuItems } }) {
    
 
       </Container>
+      <Footer footer={mainFooter}/>
     </Layout>
     </>
   )
@@ -34,8 +41,8 @@ export default function Home({ menuItems: { menuItems } }) {
 
 export async function getStaticProps() {
 
-  const menuItems = await getMainMenu()
+   const data = await getMenus()
   return {
-    props: { menuItems },
+    props: { data },
   }
 }
