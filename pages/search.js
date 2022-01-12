@@ -43,17 +43,17 @@ export default function Search({ menus }) {
       <Container>
       <div className="container mb-2 flex mx-auto w-full items-center justify-center">
 
-      <ul class="flex flex-col p-4">
+      <ul className="flex flex-col p-4">
         {data &&
           data.map((item) => (
-            <li class="border-gray-400 flex flex-row mb-2" key={item.id} >
-              <div class="select-none flex flex-1 items-center p-4 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 hover:shadow-2xl border-green">
-                <div class="flex-1 pl-1 mr-16">
-                    <div class="font-medium">
-                      <h3 class="text-darkblue">{`${item.title}`}</h3>
+            <li className="border-gray-400 flex flex-row mb-2" key={item.id} >
+              <div className="select-none flex flex-1 items-center p-4 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 hover:shadow-2xl border-green">
+                <div className="flex-1 pl-1 mr-16">
+                    <div className="font-medium">
+                      <h3 className="text-darkblue">{`${item.title}`}</h3>
                     </div>
                 </div>
-                <div class="w-1/4 text-wrap text-center flex text-white text-bold flex-col rounded-md bg-darkorange justify-center items-center mr-10 p-2">
+                <div className="w-1/4 text-wrap text-center flex text-white text-bold flex-col rounded-md bg-darkorange justify-center items-center mr-10 p-2">
 												<a href="">View</a>
 											</div>
               </div>
