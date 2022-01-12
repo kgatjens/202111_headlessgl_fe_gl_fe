@@ -14,8 +14,9 @@ export default function Header(headerData) {
         setActive(!active);
     };
 
-    console.log(headerData);
-    console.log("ˆˆˆ");
+    // console.log("@@@");
+    // console.log(headerData.header.menuItems);
+    // console.log("@@@");
     
     return (
         <header>
@@ -59,7 +60,7 @@ export default function Header(headerData) {
         <NavSearch/>
 
 
-        <h1>{headerData.header.pageTitle}</h1>
+        <h1>{headerData.pageTitle}</h1>
 
         </header>
     )
