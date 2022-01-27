@@ -20,9 +20,7 @@ export default function Search({ menus }) {
   const pageTitle = "GL - Search";
   const { mainNav, mainFooter } = menus || {};
   
-  const searchQueryString = process.browser ? ( Router?.query?.s ?? '' ) : '';
-
-  console.log(searchQueryString);
+  const searchQueryString = process.browser ? ( Router?.query?.s ?? '' ) : '';//query string
 
   const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=`+searchQueryString;
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
@@ -30,9 +28,6 @@ export default function Search({ menus }) {
 
   if (error) <p>Loading failed...</p>;
   if (!data) <h1>Loading...</h1>;
-
-  console.log(data);
-
 
   return (
     <>
@@ -72,8 +67,6 @@ export default function Search({ menus }) {
 
 export async function getStaticProps() {
   
-  //const searchQueryString = process.browser ? ( Router?.query?.s ?? '' ) : '';
-
   const menus = await getMenus()
   return {
     props: { menus },
