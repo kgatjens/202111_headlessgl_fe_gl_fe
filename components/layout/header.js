@@ -25,7 +25,8 @@ export default function Header(headerData) {
             <a className="text-3xl font-heading w-1/4" href="#">
             Logo
             </a>
-            
+            <NavSearch/>
+
             {/* //Desktop menu */}
             <div className="hidden md:flex w-3/4 pt-2 content-center justify-between md:justify-end ">
                 <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
@@ -57,7 +58,7 @@ export default function Header(headerData) {
             ) ) : null }
           </div>
         </div>
-        <NavSearch/>
+        
 
 
         <h1>{headerData.pageTitle}</h1>
