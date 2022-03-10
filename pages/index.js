@@ -6,12 +6,16 @@ import Layout from '../components/layout/layout'
 import Header from '../components/layout/header'
 import Footer from '../components/layout/footer'
 
-import { getMenus } from '../lib/wp/api'
+import Homepage from '../components/pages/homepage'
 
-export default function Home({ data }) {
+import { getMenus } from '../lib/wp/api'
+import { getHomepage } from '../lib/wp/api'
+
+export default function Home({ data , homepage }) {
   
   const pageTitle = "GL - dEmO";
-  
+  const { allHomepage } = homepage || {};
+
   const { mainNav, mainFooter } = data || {};
   console.log(mainNav.menuItems.nodes);
 
@@ -22,13 +26,9 @@ export default function Home({ data }) {
       <Layout>
       <Header header={mainNav} />
       <Container>
-        
-        <p>
-          Get started by editing{' '}
-        </p>
+        <Homepage homepage={allHomepage}>
 
-   
-
+        </Homepage>
       </Container>
       <Footer footer={mainFooter}/>
     </Layout>
@@ -39,9 +39,9 @@ export default function Home({ data }) {
 
 
 export async function getStaticProps() {
-
+   const homepage = await getHomepage()
    const data = await getMenus()
   return {
-    props: { data },
+    props: { data,homepage },
   }
 }

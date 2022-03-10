@@ -3,10 +3,9 @@ import Link from 'next/link';
 
 
 export default function Footer(headerData) {
-  console.log("###");
-    console.log(headerData.footer.menuItems.nodes);
-
-    console.log("###");
+    // console.log("##Footer##");
+    // console.log(headerData.footer.menuItems.nodes);
+    // console.log("###");
   return (
     <footer className="bg-accent-1 border-t border-accent-2">
 
