@@ -17,7 +17,7 @@ export default function Home({ data , homepage }) {
   const { allHomepage } = homepage || {};
 
   const { mainNav, mainFooter } = data || {};
-  console.log(mainNav.menuItems.nodes);
+  console.log(allHomepage.edges[0]?.node.homepageFields);
 
   //const headerData = {pageTitle, menuItems}
 
@@ -26,9 +26,21 @@ export default function Home({ data , homepage }) {
       <Layout>
       <Header header={mainNav} />
       <Container>
-        <Homepage homepage={allHomepage}>
+      {allHomepage && (
 
-        </Homepage>
+        <Homepage 
+          //homepage={allHomepage}
+          title={allHomepage.edges[0]?.node.homepageFields.homepageTitle}
+          descriptionText={allHomepage.edges[0]?.node.homepageFields.initialDescriptionText}
+          headerImageURL={allHomepage.edges[0]?.node.homepageFields.headerImage.mediaItemUrl}
+          headerImageAltText={allHomepage.edges[0]?.node.homepageFields.headerImage.altText}
+          sectionBackgrounURL={allHomepage.edges[0]?.node.homepageFields.sectionBackgroundImage.mediaItemUrl}
+          sectionBackgrounAltText={allHomepage.edges[0]?.node.homepageFields.sectionBackgroundImage.altText}
+          sectionColor={allHomepage.edges[0]?.node.homepageFields.sectionColor}
+
+        />
+
+      )}
       </Container>
       <Footer footer={mainFooter}/>
     </Layout>
