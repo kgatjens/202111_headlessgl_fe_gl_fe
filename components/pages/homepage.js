@@ -26,9 +26,13 @@ export default function Homepage({
           <div>
             <div
               className="text-lg leading-relaxed mb-4"
-            //   dangerouslySetInnerHTML={{ __html: excerpt }}
+               dangerouslySetInnerHTML={{ __html: descriptionText }}
             />
           </div>
+        </div>
+        {/* <div className={`top-[117px] flex justify-between   bg-[#${sectionColor}]`} > */}
+        <div className="w-[300px] bg-[#1da1f1]" >
+            <p>{ descriptionText }</p>
         </div>
       </div>
         
