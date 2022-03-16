@@ -34,6 +34,10 @@ export default function Homepage({
         <div className="w-[300px] bg-[#1da1f1]" >
             <p>{ descriptionText }</p>
         </div>
+        <div class={`bg-[url('${sectionBackgrounURL}')]`}>
+        <p>{ descriptionText }</p>
+        </div>
+
       </div>
         
     )
