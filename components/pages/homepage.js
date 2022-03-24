@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import CoverImage from '../layout/cover-image'
+const color1="#475399";
 
 export default function Homepage({
     title,
@@ -9,6 +10,7 @@ export default function Homepage({
     sectionBackgrounURL,
     sectionBackgrounAltText,
     sectionColor,
+
   }) {
     return(
         <div>
@@ -31,10 +33,17 @@ export default function Homepage({
           </div>
         </div>
         {/* <div className={`top-[117px] flex justify-between   bg-[#${sectionColor}]`} > */}
-        <div className="w-[300px] bg-[#1da1f1]" >
+        
+        {/* <div className={`w-[200px] bg-[${color1}]`} >
+          <div class={`bg-[url('${sectionBackgrounURL}')]`}>
+        */}
+        <div style={{ backgroundColor:sectionColor}} >
             <p>{ descriptionText }</p>
         </div>
-        <div class={`bg-[url('${sectionBackgrounURL}')]`}>
+        <div style={{backgroundImage: "url(" + sectionBackgrounURL + ")"}}>
+        <p>{ descriptionText }</p>
+        <p>{ descriptionText }</p>
+        <p>{ descriptionText }</p>
         <p>{ descriptionText }</p>
         </div>
 
