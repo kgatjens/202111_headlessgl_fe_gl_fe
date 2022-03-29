@@ -11,6 +11,7 @@ import Container from '../components/layout/container'
 import Layout from '../components/layout/layout'
 import Header from '../components/layout/header'
 import NavSearch from '../components/search/search-nav';
+import Footer from '../components/layout/footer'
 
 
 import { getMenus } from '../lib/wp/api'
@@ -62,6 +63,7 @@ export default function Search({ menus }) {
       </div>
 
       </Container>
+      <Footer footer={mainFooter}/>
     </Layout>
     </>
   )
