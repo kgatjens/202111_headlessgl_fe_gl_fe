@@ -7,7 +7,7 @@ export const GTM_ID = process.env.GTM
 
 function MyApp({ Component, pageProps }) {
   return <>
-   <Script
+   <Script id='gtm-head-code'
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
