@@ -8,7 +8,7 @@ export default function HeadTracking() {
     return (
       <div>
         
-        <Script id="google-analytics" strategy="afterInteractive" 
+        {/* <Script id="google-analytics" strategy="afterInteractive" 
         dangerouslySetInnerHTML={{
             __html: 
         `
@@ -21,7 +21,7 @@ export default function HeadTracking() {
       <Script
         src="https://www.google-analytics.com/analytics.js"
         strategy="afterInteractive"
-      />
+      /> */}
             
       </div>
     )
