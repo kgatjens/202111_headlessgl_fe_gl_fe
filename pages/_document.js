@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
+import TopTracking from '../components/tracking/top-body-tracking'
 
 export default class MyDocument extends Document {
   render() {
@@ -7,14 +8,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head />
         <body>
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=GTM-TZRZS4T`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
+          <TopTracking />
           <Main />
           <NextScript />
         </body>
