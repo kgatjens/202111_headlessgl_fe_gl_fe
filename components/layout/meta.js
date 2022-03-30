@@ -3,6 +3,7 @@ import Head from 'next/head'
 export default function Meta() {
   return (
     <Head>
+      
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -26,8 +27,9 @@ export default function Meta() {
         href="/favicon/safari-pinned-tab.svg"
         color="#000000"
       />
-      <title>GL Demo Nov 2021</title>
-
+      
+      <title>GL Demo March 2022</title>
+      
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <meta name="msapplication-TileColor" content="#000000" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
@@ -37,8 +39,9 @@ export default function Meta() {
         name="description description description" 
         content={`next js demo`}
       />
+      
       <meta property="og:image" content="#" />
-
+      
     </Head>
   )
 }
