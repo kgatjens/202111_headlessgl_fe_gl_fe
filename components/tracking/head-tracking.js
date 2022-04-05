@@ -1,15 +1,9 @@
-import GoogleAnalytics from './google/gtm-iframe'
-import Script from 'next/script'
-
-const GOOGLE_ANALYTICS = process.env.GOOGLE_ANALYTICS
-
+import GTMHead from "./google/gtm-head"
 
 export default function HeadTracking() {
     return (
       <>
-        
-       
-            
+        <GTMHead />       
       </>
     )
   }
