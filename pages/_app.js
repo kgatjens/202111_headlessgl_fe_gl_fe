@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import HeadTracking from '../components/tracking/head-tracking'
 
 function MyApp({ Component, pageProps }) {
+
   return <>
   <HeadTracking />
   <Component {...pageProps} />

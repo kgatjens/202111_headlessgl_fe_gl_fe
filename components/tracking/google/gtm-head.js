@@ -1,5 +1,5 @@
-import { GTM } from "../../../lib/tracking/gtm"
 import Script from 'next/script'
+import { GTM } from "../../../lib/tracking/gtm"
 
 export default function GTMHead() {
   return (
@@ -15,8 +15,7 @@ export default function GTMHead() {
             })(window,document,'script','dataLayer', '${GTM}');
           `,
         }}
-      />
-          
+      />   
     </>
   )
 }
