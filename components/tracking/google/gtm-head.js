@@ -4,6 +4,7 @@ import { GTM } from "../../../lib/tracking/gtm"
 export default function GTMHead() {
   return (
     <>
+   
       <Script id='gtm-head-code'
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
