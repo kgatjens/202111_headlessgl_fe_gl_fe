@@ -21,17 +21,13 @@ export default function ContactUs({ menus }) {
     <>
       <Layout>
       <Header header={mainNav} />
-      
-
+    
       <Container>
-      <ContactUsForm />
         <h1>Contact Us</h1>
-        
-
-        <div className="container mb-2 flex mx-auto w-full items-center justify-center">
-        </div>
+        <ContactUsForm />
 
       </Container>
+
       <Footer footer={mainFooter}/>
     </Layout>
     </>
