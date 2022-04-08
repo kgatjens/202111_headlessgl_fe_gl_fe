@@ -6,6 +6,7 @@ export default function ContactUsForm() {
       <div className="sm:mx-0">
         <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="beforeInteractive" />
         <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="beforeInteractive" />
+        
         <div id='contact-us-form'></div>
       
         <Script id='hs-contact-us'  strategy="afterInteractive" 
