@@ -22,9 +22,9 @@ export default function Header(headerData) {
         <header>
         <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen">
             <div className="px-5 xl:px-12 py-6 flex w-full ">
-                <a className="text-3xl font-heading w-1/4" href="/">
-                Logo
-                </a>
+                <Link className="text-3xl font-heading w-1/4" href="/">
+                <a>Logo</a>
+                </Link>
                 <NavSearch/>
 
             {/* //Desktop menu */}
@@ -62,9 +62,11 @@ export default function Header(headerData) {
                     <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ' dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                 </Link>
             ) ) : null }
-                <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="}"><Link  href='/contact-us'>
-                    <a dangerouslySetInnerHTML={ { __html: "Contact Us" } }/>
-                </Link></li>
+                <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="}">
+                    <Link  href='/contact-us'>
+                        <a dangerouslySetInnerHTML={ { __html: "Contact Us" } }/>
+                    </Link> 
+                </li>
           </div>
         </div>
         
