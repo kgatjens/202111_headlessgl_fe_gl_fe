@@ -1,10 +1,7 @@
-import { useEffect } from 'react'
-
 import Script from 'next/script'
 
 export default function ContactUsForm() {
     
-  useEffect(() => {})
 
   return (
     <>
@@ -17,23 +14,8 @@ export default function ContactUsForm() {
             portalId: "2059590",
             formId: "9a3b6713-d4c3-44c8-a450-2ba09b052e8b",
             target: '#contact-us-form'
-        })
-        
-        }/>   
-      
-        {/* <Script id='hs-contact-us'  strategy="afterInteractive"
-        
-            dangerouslySetInnerHTML={{
-              __html: `
-              hbspt.forms.create({
-                  region: "na1",
-                  portalId: "2059590",
-                  formId: "9a3b6713-d4c3-44c8-a450-2ba09b052e8b",
-                  target: '#contact-us-form'
-              });
-            `,
-            }} 
-        /> */}
+        })}
+        />   
 
       <div id='contact-us-form'></div>
       </div>
