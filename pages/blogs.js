@@ -7,15 +7,17 @@ import Header from '../components/layout/header'
 import Footer from '../components/layout/footer'
 
 
-
+import { getFirstBlogs } from '../lib/wp/api'
 import { getMenus } from '../lib/wp/api'
 
 
-export default function Blogs({ menus }) {
+export default function Blogs({ menus , firstBlogs }) {
   
   const pageTitle = "GL - Blogs";
   const { mainNav, mainFooter } = menus || {};
-  
+  const blogs = firstBlogs.edges
+
+  console.log(blogs);
   return (
     <>
       <Layout>
@@ -36,10 +38,11 @@ export default function Blogs({ menus }) {
 
 
 export async function getStaticProps() {
-  
+    
+  const firstBlogs = await getFirstBlogs()
   const menus = await getMenus()
   return {
-    props: { menus },
+    props: { menus , firstBlogs },
   }
 
 
