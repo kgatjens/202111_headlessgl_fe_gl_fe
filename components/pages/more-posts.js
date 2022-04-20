@@ -1,6 +1,4 @@
-
-   
-import PostPreview from '../components/post-preview'
+import BlogsPreview from './blogs-preview'
 
 export default function MoreBlogs({ posts }) {
   return (
@@ -10,7 +8,7 @@ export default function MoreBlogs({ posts }) {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
         {posts.map(({ node }) => (
-          <PostPreview
+          <BlogsPreview
             key={node.slug}
             title={node.title}
             coverImage={node.featuredImage}
