@@ -29,7 +29,7 @@ export default function Blogs({ menus , firstBlogs }) {
       <Header header={mainNav} />
     
       <Container>
-        <h1>Available Blogs</h1>
+        
         
         {morePosts.length > 0 && <MoreBlogs posts={morePosts} />}
 
