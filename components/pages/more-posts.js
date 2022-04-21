@@ -1,6 +1,7 @@
 import BlogsPreview from './blogs-preview'
 
 export default function MoreBlogs({ posts }) {
+    console.log(posts);
   return (
     <section>
       <h2 className="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
@@ -16,6 +17,7 @@ export default function MoreBlogs({ posts }) {
             author={node.author}
             slug={node.slug}
             excerpt={node.excerpt}
+    
           />
         ))}
       </div>

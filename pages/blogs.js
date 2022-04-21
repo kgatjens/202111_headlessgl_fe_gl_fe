@@ -21,8 +21,8 @@ export default function Blogs({ menus , firstBlogs }) {
   const morePosts = blogs.slice(1)
 
 
-  console.log(blogs);
-  console.log(morePosts);
+//   console.log(blogs);
+//   console.log(morePosts);
   return (
     <>
       <Layout>
