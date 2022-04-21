@@ -1,6 +1,6 @@
 import Avatar from '../layout/avatar'
 import Date from '../layout/date'
-import CoverImage from '../layout/cover-image'
+import FeaturedImage from '../layout/featured-image'
 import Link from 'next/link'
 
 export default function BlogsPreview({
@@ -10,12 +10,13 @@ export default function BlogsPreview({
   excerpt,
   author,
   slug,
+  
 }) {
   return (
     <div>
       <div className="mb-5">
         {coverImage && (
-          <CoverImage title={title} coverImage={coverImage} slug={slug} />
+          <FeaturedImage title={coverImage.node.title} source={coverImage.node.sourceUrl} sourceSet={coverImage.node.srcSet} slug={slug} />
         )}
       </div>
       <h3 className="text-3xl mb-3 leading-snug">
@@ -33,7 +34,7 @@ export default function BlogsPreview({
         className="text-lg leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
-      <Avatar author={author} />
+      {/* <Avatar author={author} /> */}
     </div>
   )
 }
