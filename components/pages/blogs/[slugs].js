@@ -16,8 +16,8 @@ import PostTitle from '../../components/post-title'
 import PostBody from '../../components/post-body'
 import MoreStories from '../../components/more-stories'
 import PostHeader from '../../components/post-header'
-
 import SectionSeparator from '../../components/section-separator'
+
 import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
 import { CMS_NAME } from '../../lib/constants'
 
@@ -89,7 +89,7 @@ export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug()
 
   return {
-    paths: allPosts.edges.map(({ node }) => `/posts/${node.slug}`) || [],
+    paths: allPosts.edges.map(({ node }) => `/blogs/${node.slug}`) || [],
     fallback: true,
   }
 }
