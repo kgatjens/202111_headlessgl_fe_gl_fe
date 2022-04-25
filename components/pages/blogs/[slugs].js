@@ -18,16 +18,20 @@ import MoreStories from '../../components/more-stories'
 import PostHeader from '../../components/post-header'
 import SectionSeparator from '../../components/section-separator'
 
-import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
+import {  getPostAndMorePosts, getAllPostsWithSlug } from '../../lib/api'
 import { CMS_NAME } from '../../lib/constants'
 
-export default function Post({ post, posts, preview }) {
+export default function Post({ post, posts }) {
   const router = useRouter()
-  const morePosts = posts?.edges
+  //const morePosts = posts?.edges
+  const {slug}  = router.query;
+  console.log(slug);
 
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
-  }
+  console.log(post);
+
+  // if (!router.isFallback && !post?.slug) {
+  //   return <ErrorPage statusCode={404} />
+  // }
 
   return (
     
@@ -41,14 +45,15 @@ export default function Post({ post, posts, preview }) {
             <article>
             <Head>
               <title>
-                {post.title} | Next.js Blog Example with {CMS_NAME}
+                {/* {post.title} | Next.js Blog Example with  */}
               </title>
-              <meta
+              {/* <meta
                 property="og:image"
                 content={post.featuredImage?.sourceUrl}
-              />
+              /> */}
             </Head>
-            <PostHeader
+            <h1>this is</h1>
+            {/* <PostHeader
               title={post.title}
               coverImage={post.featuredImage}
               date={post.date}
@@ -58,13 +63,11 @@ export default function Post({ post, posts, preview }) {
             <PostBody content={post.content} />
             
               {post.tags.edges.length > 0 && <Tags tags={post.tags} />}
-            
+             */}
           </article>
           </>
-        )}
+         )} 
       
-      
-
     </Container>
 
     <Footer footer={mainFooter}/>
@@ -73,23 +76,27 @@ export default function Post({ post, posts, preview }) {
   )
 }
 
-export async function getStaticProps({ params, preview = false, previewData }) {
-  const data = await getPostAndMorePosts(params.slug, preview, previewData)
-
+export async function getStaticProps({ params }) {
+  console.log(params);
+  const data = {};//await getPostAndMorePosts(params.slug)
+console.log(data);
   return {
     props: {
-      preview,
-      post: data.post,
-      posts: data.posts,
+      // preview,
+       post: data.post,
+       posts: data.posts,
     },
   }
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug()
+  // const allPosts = await getAllPostsWithSlug()
 
-  return {
-    paths: allPosts.edges.map(({ node }) => `/blogs/${node.slug}`) || [],
-    fallback: true,
-  }
+  // return {
+  //   paths: allPosts.edges.map(({ node }) => `/blogs/${node.slug}`) || [],
+  //   fallback: true,
+  // }
+  return { paths: [], fallback: 'blocking' };
+
 }
+
