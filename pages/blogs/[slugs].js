@@ -25,9 +25,9 @@ import {  getPostAndMorePosts, getAllPostsWithSlug, getMenus } from '../../lib/w
 export default function Blogs({ post, posts, menus }) {
   const router = useRouter()
   //const morePosts = posts?.edges
-  const {slug}  = router.query;
+  const slug  = router.query.slugs;
+  console.log("###");
   console.log(slug);
-
   console.log(post);
   const { mainNav, mainFooter } = menus || {};
 
@@ -41,7 +41,7 @@ export default function Blogs({ post, posts, menus }) {
       <Header header={mainNav} />
       <Container>
         {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
+          <p>Loading…</p>
         ) : (
           <>
             <article>
@@ -79,10 +79,12 @@ export default function Blogs({ post, posts, menus }) {
 }
 
 export async function getStaticProps({ params, preview = false, previewData }) {
+  console.log("##22#");
   console.log(params);
-  //const data = await getPostAndMorePosts(params.slug, preview, previewData)
+  const data = await getPostAndMorePosts(params.slug, preview, previewData)
   const menus = await getMenus()
-  const data={}
+  console.log(menus);
+  //const data={}
   return {
     props: {
        preview,
