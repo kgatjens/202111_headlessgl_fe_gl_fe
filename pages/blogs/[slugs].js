@@ -3,31 +3,33 @@ import ErrorPage from 'next/error'
 import Head from 'next/head'
 
 
-import Container from '../../layout/container'
-import Layout from '../../layout/layout'
-import Header from '../../layout/header'
-import Footer from '../../layout/footer'
+import Container from '../../components/layout/container'
+import Layout from '../../components/layout/layout'
+import Header from '../../components/layout/header'
+import Footer from '../../components/layout/footer'
 
-import Tags from '../../components/tags'
-import PostTitle from '../../components/post-title'
+//import Tags from '../../components/tags'
+//import PostTitle from '../../components/post-title'
 
 
 
-import PostBody from '../../components/post-body'
-import MoreStories from '../../components/more-stories'
-import PostHeader from '../../components/post-header'
-import SectionSeparator from '../../components/section-separator'
+//import PostBody from '../../components/post-body'
+// import MoreStories from '../../components/more-stories'
+// import PostHeader from '../../components/post-header'
+// import SectionSeparator from '../../components/section-separator'
 
-import {  getPostAndMorePosts, getAllPostsWithSlug } from '../../lib/api'
-import { CMS_NAME } from '../../lib/constants'
+import {  getPostAndMorePosts, getAllPostsWithSlug, getMenus } from '../../lib/wp/api'
 
-export default function Post({ post, posts }) {
+//import { CMS_NAME } from '../../lib/constants'
+
+export default function Blogs({ post, posts, menus }) {
   const router = useRouter()
   //const morePosts = posts?.edges
   const {slug}  = router.query;
   console.log(slug);
 
   console.log(post);
+  const { mainNav, mainFooter } = menus || {};
 
   // if (!router.isFallback && !post?.slug) {
   //   return <ErrorPage statusCode={404} />
@@ -76,26 +78,28 @@ export default function Post({ post, posts }) {
   )
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, preview = false, previewData }) {
   console.log(params);
-  const data = {};//await getPostAndMorePosts(params.slug)
-console.log(data);
+  //const data = await getPostAndMorePosts(params.slug, preview, previewData)
+  const menus = await getMenus()
+  const data={}
   return {
     props: {
-      // preview,
-       post: data.post,
-       posts: data.posts,
+       preview,
+       menus
+      //  post: data.post,
+      //  posts: data.posts,
     },
-  }
+  } 
 }
 
 export async function getStaticPaths() {
-  // const allPosts = await getAllPostsWithSlug()
+  const allPosts = await getAllPostsWithSlug()
 
-  // return {
-  //   paths: allPosts.edges.map(({ node }) => `/blogs/${node.slug}`) || [],
-  //   fallback: true,
-  // }
+  return {
+    paths: allPosts.edges.map(({ node }) => `/blogs/${node.slug}`) || [],
+    fallback: true,
+  }
   return { paths: [], fallback: 'blocking' };
 
 }
