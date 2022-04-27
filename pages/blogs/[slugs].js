@@ -22,13 +22,13 @@ import {  getPostAndMorePosts, getAllPostsWithSlug, getMenus } from '../../lib/w
 
 //import { CMS_NAME } from '../../lib/constants'
 
-export default function Blogs({ post, posts, menus }) {
+export default function Blogs({ data, menus }) {
   const router = useRouter()
   //const morePosts = posts?.edges
   const slug  = router.query.slugs;
   console.log("###");
   console.log(slug);
-  console.log(post);
+  console.log(data);
   const { mainNav, mainFooter } = menus || {};
 
   // if (!router.isFallback && !post?.slug) {
@@ -78,16 +78,17 @@ export default function Blogs({ post, posts, menus }) {
   )
 }
 
-export async function getStaticProps({ params, preview = false, previewData }) {
+export async function getStaticProps({ params}) {
   console.log("##22#");
   console.log(params);
-  const data = await getPostAndMorePosts(params.slug, preview, previewData)
+  //router.query.slugs
+  const data = await getPostAndMorePosts()
   const menus = await getMenus()
   console.log(menus);
   //const data={}
   return {
     props: {
-       preview,
+       data,
        menus
       //  post: data.post,
       //  posts: data.posts,
