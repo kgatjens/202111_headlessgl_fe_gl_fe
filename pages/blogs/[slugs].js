@@ -12,7 +12,6 @@ import Footer from '../../components/layout/footer'
 //import PostTitle from '../../components/post-title'
 
 
-
 //import PostBody from '../../components/post-body'
 // import MoreStories from '../../components/more-stories'
 // import PostHeader from '../../components/post-header'
@@ -22,18 +21,20 @@ import {  getPostAndMorePosts, getAllPostsWithSlug, getMenus } from '../../lib/w
 
 //import { CMS_NAME } from '../../lib/constants'
 
-export default function Blogs({ data, menus }) {
+export default function Blogs({ post, posts, menus }) {
   const router = useRouter()
-  //const morePosts = posts?.edges
+  const morePosts = posts?.edges
   const slug  = router.query.slugs;
-  console.log("###");
+  
+  console.log("Blogs info");
   console.log(slug);
-  console.log(data);
+  console.log(post);
+  console.log(posts);
   const { mainNav, mainFooter } = menus || {};
 
-  // if (!router.isFallback && !post?.slug) {
-  //   return <ErrorPage statusCode={404} />
-  // }
+  if (!post?.slug  ) {//&& !router.isFallback &
+    return <ErrorPage statusCode={404} />
+  }
 
   return (
     
@@ -47,25 +48,25 @@ export default function Blogs({ data, menus }) {
             <article>
             <Head>
               <title>
-                {/* {post.title} | Next.js Blog Example with  */}
+              {post.title}
               </title>
-              {/* <meta
+              { <meta
                 property="og:image"
                 content={post.featuredImage?.sourceUrl}
-              /> */}
+              /> }
             </Head>
-            <h1>this is</h1>
-            {/* <PostHeader
+            <h1>{post.title}</h1>
+            {/* { <PostHeader
               title={post.title}
               coverImage={post.featuredImage}
               date={post.date}
               author={post.author}
               categories={post.categories}
-            />
-            <PostBody content={post.content} />
+            /> */}
+            {/* <PostBody content={post.content} />
             
               {post.tags.edges.length > 0 && <Tags tags={post.tags} />}
-             */}
+             } */}
           </article>
           </>
          )} 
@@ -78,20 +79,16 @@ export default function Blogs({ data, menus }) {
   )
 }
 
-export async function getStaticProps({ params}) {
-  console.log("##22#");
-  console.log(params);
-  //router.query.slugs
-  const data = await getPostAndMorePosts()
+export async function getStaticProps({ params }) {
+  
+  const data = await getPostAndMorePosts(params.slugs)
   const menus = await getMenus()
-  console.log(menus);
-  //const data={}
+  
   return {
     props: {
-       data,
+      post: data.post,
+      posts: data.posts,
        menus
-      //  post: data.post,
-      //  posts: data.posts,
     },
   } 
 }
