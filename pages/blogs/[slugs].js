@@ -7,12 +7,12 @@ import Layout from '../../components/layout/layout'
 import Header from '../../components/layout/header'
 import Footer from '../../components/layout/footer'
 import Tags from '../../components/layout/tags'
+import SectionSeparator from '../../components/layout/section-separator'
 
 //import PostBody from '../../components/post-body'
-// import MoreStories from '../../components/more-stories'
+import MoreStories from '../../components/blogs/more-stories'
 import BlogHeader from '../../components/blogs/blog-header'
 import BlogBody from '../../components/blogs/blog-body'
-// import SectionSeparator from '../../components/section-separator'
 
 import {  getPostAndMorePosts, getAllPostsWithSlug, getMenus } from '../../lib/wp/api'
 
@@ -64,7 +64,8 @@ export default function Blogs({ post, posts, menus }) {
           </article>
           </>
          )} 
-      
+            <SectionSeparator />
+            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
     </Container>
 
     <Footer footer={mainFooter}/>
