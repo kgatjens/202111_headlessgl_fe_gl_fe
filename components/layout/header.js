@@ -36,7 +36,9 @@ export default function Header(headerData) {
                                 <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                             </Link></li>
                         ) ) : null }
-                            
+                        <li className="hover:text-darkblue px-4" key="Blogs"><Link  href="/blogs">
+                                <a dangerouslySetInnerHTML={ { __html: "Blogs" } }/>
+                            </Link></li>
                     </ul>
                 </div>
                    
@@ -62,6 +64,11 @@ export default function Header(headerData) {
                     <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ' dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                 </Link>
             ) ) : null }
+            <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="}">
+                    <Link  href='/Blogs'>
+                        <a dangerouslySetInnerHTML={ { __html: "Blogs" } }/>
+                    </Link> 
+                </li>
                 <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="}">
                     <Link  href='/contact-us'>
                         <a dangerouslySetInnerHTML={ { __html: "Contact Us" } }/>
