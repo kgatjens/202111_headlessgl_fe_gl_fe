@@ -14,7 +14,7 @@ import Footer from '../../components/layout/footer'
 
 //import PostBody from '../../components/post-body'
 // import MoreStories from '../../components/more-stories'
-// import PostHeader from '../../components/post-header'
+import BlogHeader from '../../components/blogs/blog-header'
 // import SectionSeparator from '../../components/section-separator'
 
 import {  getPostAndMorePosts, getAllPostsWithSlug, getMenus } from '../../lib/wp/api'
@@ -55,14 +55,14 @@ export default function Blogs({ post, posts, menus }) {
                 content={post.featuredImage?.sourceUrl}
               /> }
             </Head>
-            <h1>{post.title}</h1>
-            {/* { <PostHeader
+            
+            <BlogHeader
               title={post.title}
               coverImage={post.featuredImage}
               date={post.date}
               author={post.author}
               categories={post.categories}
-            /> */}
+            />
             {/* <PostBody content={post.content} />
             
               {post.tags.edges.length > 0 && <Tags tags={post.tags} />}
