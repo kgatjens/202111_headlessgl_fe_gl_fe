@@ -2,24 +2,19 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Head from 'next/head'
 
-
 import Container from '../../components/layout/container'
 import Layout from '../../components/layout/layout'
 import Header from '../../components/layout/header'
 import Footer from '../../components/layout/footer'
-
-//import Tags from '../../components/tags'
-//import PostTitle from '../../components/post-title'
-
+import Tags from '../../components/layout/tags'
 
 //import PostBody from '../../components/post-body'
 // import MoreStories from '../../components/more-stories'
 import BlogHeader from '../../components/blogs/blog-header'
+import BlogBody from '../../components/blogs/blog-body'
 // import SectionSeparator from '../../components/section-separator'
 
 import {  getPostAndMorePosts, getAllPostsWithSlug, getMenus } from '../../lib/wp/api'
-
-//import { CMS_NAME } from '../../lib/constants'
 
 export default function Blogs({ post, posts, menus }) {
   const router = useRouter()
@@ -63,10 +58,9 @@ export default function Blogs({ post, posts, menus }) {
               author={post.author}
               categories={post.categories}
             />
-            {/* <PostBody content={post.content} />
-            
-              {post.tags.edges.length > 0 && <Tags tags={post.tags} />}
-             } */}
+            <BlogBody content={post.content} />
+            {post.tags.edges.length > 0 && 
+            <Tags tags={post.tags} />}
           </article>
           </>
          )} 
