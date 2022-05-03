@@ -5,7 +5,7 @@ import { useState } from 'react';
 import NavSearch from '../search/search-nav';
 
 export default function Header(headerData) {
-   // const { headerData } = menuItems || {};
+    // const { headerData } = menuItems || {};
     //const { pageTitle, menuItems } = headerData || {};
 
     const [active, setActive] = useState(false);
@@ -15,14 +15,24 @@ export default function Header(headerData) {
     };
 
     // console.log("@@@");
-    // console.log(headerData.header.menuItems);
+    // console.log(headerData);
     // console.log("@@@");
     
     return (
+       
         <header>
+             <Head>
+              <title>
+              {headerData.metaData.title}
+              </title>
+              <meta
+                property="og:image"
+                content={headerData.metaData.featuredImage}
+              /> 
+        </Head>
         <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen">
             <div className="px-5 xl:px-12 py-6 flex w-full ">
-                <Link className="text-3xl font-heading w-1/4" href="/">
+                <Link key="Main Logo" className="text-3xl font-heading w-1/4" href="/">
                 <a>Logo</a>
                 </Link>
                 <NavSearch/>
@@ -44,7 +54,7 @@ export default function Header(headerData) {
                    
             </div>
             <div className="bg-gradient-to-t from-orange to-darkorange hover:text-darkblue px-4" >
-                <Link  href='/contact-us'>
+                <Link key="Contact-us"  href='/contact-us'>
                         <a dangerouslySetInnerHTML={ { __html: "Contact Us" } }/>
                 </Link>
             </div>
@@ -65,12 +75,12 @@ export default function Header(headerData) {
                 </Link>
             ) ) : null }
             <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="}">
-                    <Link  href='/Blogs'>
+                    <Link key="Blogs-mobile"  href='/Blogs'>
                         <a dangerouslySetInnerHTML={ { __html: "Blogs" } }/>
                     </Link> 
                 </li>
                 <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="}">
-                    <Link  href='/contact-us'>
+                    <Link key="Contact-us-mobile" href='/contact-us'>
                         <a dangerouslySetInnerHTML={ { __html: "Contact Us" } }/>
                     </Link> 
                 </li>
