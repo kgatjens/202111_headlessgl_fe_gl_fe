@@ -34,6 +34,7 @@ export default function Home({ data , homepage }) {
       <Header header={mainNav}
               metaData={metaData} />
       <Container>
+        
       {allHomepage && (
 
         <Homepage 
