@@ -21,7 +21,7 @@ export default function Header(headerData) {
     return (
        
         <header>
-             <Head>
+            <Head>
               <title>
               {headerData.metaData.title}
               </title>
@@ -29,7 +29,7 @@ export default function Header(headerData) {
                 property="og:image"
                 content={headerData.metaData.featuredImage}
               /> 
-        </Head>
+            </Head>
         <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen">
             <div className="px-5 xl:px-12 py-6 flex w-full ">
                 <Link key="Main Logo" className="text-3xl font-heading w-1/4" href="/">
