@@ -13,18 +13,26 @@ import { getHomepage } from '../lib/wp/api'
 
 export default function Home({ data , homepage }) {
   
-  const pageTitle = "GL - dEmO";
+  //Metas
+  
+
   const { allHomepage } = homepage || {};
 
   const { mainNav, mainFooter } = data || {};
   console.log(allHomepage.edges[0]?.node.homepageFields);
 
+  const title = allHomepage.edges[0]?.node.homepageFields.homepageTitle;
+  const featuredImage = allHomepage.edges[0]?.node.homepageFields.headerImage.mediaItemUrl;
+
   //const headerData = {pageTitle, menuItems}
+  const metaData = {title,featuredImage}
 
   return (
     <>
       <Layout>
-      <Header header={mainNav} />
+        
+      <Header header={mainNav}
+              metaData={metaData} />
       <Container>
       {allHomepage && (
 

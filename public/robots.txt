@@ -1,5 +1,9 @@
 # *
 User-agent: *
+Disallow: /secret
+
+# *
+User-agent: *
 Allow: /
 
 # Host
