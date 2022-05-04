@@ -29,12 +29,12 @@ export default function Home({ data , homepage }) {
 
   return (
     <>
-      <Layout>
+      <Layout >
         
       <Header header={mainNav}
               metaData={metaData} />
       <Container>
-        
+
       {allHomepage && (
 
         <Homepage 

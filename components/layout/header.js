@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Meta from '../layout/meta'
+
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -15,21 +17,17 @@ export default function Header(headerData) {
     };
 
     // console.log("@@@");
-    // console.log(headerData);
+    // console.log(headerData.metaData);
     // console.log("@@@");
     
     return (
-       
+        <>
+        
+              
+        <Meta headerData={headerData.metaData}/>
+
         <header>
-            <Head>
-              <title>
-              {headerData.metaData.title}
-              </title>
-              <meta
-                property="og:image"
-                content={headerData.metaData.featuredImage}
-              /> 
-            </Head>
+            
         <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen">
             <div className="px-5 xl:px-12 py-6 flex w-full ">
                 <Link key="Main Logo" className="text-3xl font-heading w-1/4" href="/">
@@ -92,5 +90,6 @@ export default function Header(headerData) {
         <h1>{headerData.pageTitle}</h1>
 
         </header>
+        </>
     )
 }
