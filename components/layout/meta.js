@@ -1,9 +1,13 @@
 import Head from 'next/head'
 
-export default function Meta() {
+export default function Meta(metaData) {
+  // console.log(">>>>");
+  // console.log(metaData.headerData);
+
+
   return (
-    <Head>
-      
+    <>
+      <Head>
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -28,21 +32,31 @@ export default function Meta() {
         color="#000000"
       />
       
-      <title>GL Demo March 2022</title>
+      <title>{metaData.headerData.title}</title>
       
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <meta name="msapplication-TileColor" content="#000000" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-      <meta
-        name="description description description" 
-        content={`next js demo`}
-      />
       
-      <meta property="og:image" content="#" />
+      <link rel="icon" href="/favicon.ico" />
       
+      <meta property="og:url" content={metaData.headerData.featuredImage} /> 
+
+      {/* <link rel="canonical" href={headerData.metaData.title}></link>
+      <meta name="description" content={headerData.metaData.title}/>
+      <meta property="og:title" content={headerData.metaData.featuredImage} /> 
+      <meta property="og:description" content={headerData.metaData.featuredImage} /> 
+      <meta property="og:image" content={headerData.metaData.featuredImage} /> 
+      <meta property="og:site_name" content={headerData.metaData.featuredImage} /> 
+      <meta property="og:type" content={headerData.metaData.featuredImage} /> 
+      <meta property="og:locale" content={headerData.metaData.featuredImage} /> 
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name="twitter:card" content="summary"></meta> */}
       
-    </Head>
+      </Head>
+      </> 
+    
   )
 }
