@@ -1,9 +1,10 @@
+import { AUTHOR,SITE_NAME,LOCALE,TYPE } from "../../lib/info";
+
 import Head from 'next/head'
 
 export default function Meta(metaData) {
-  // console.log(">>>>");
-  // console.log(metaData.headerData);
-
+  //  console.log(">>>>");
+  //  console.log(`${AUTHOR}`);
 
   return (
     <>
@@ -32,7 +33,7 @@ export default function Meta(metaData) {
         color="#000000"
       />
       
-      <title>{metaData.headerData.title}</title>
+      <title>{metaData.headerData.metaTitle}</title>
       
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <meta name="msapplication-TileColor" content="#000000" />
@@ -44,16 +45,19 @@ export default function Meta(metaData) {
       
       <meta property="og:url" content={metaData.headerData.featuredImage} /> 
 
-      {/* <link rel="canonical" href={headerData.metaData.title}></link>
-      <meta name="description" content={headerData.metaData.title}/>
-      <meta property="og:title" content={headerData.metaData.featuredImage} /> 
-      <meta property="og:description" content={headerData.metaData.featuredImage} /> 
-      <meta property="og:image" content={headerData.metaData.featuredImage} /> 
-      <meta property="og:site_name" content={headerData.metaData.featuredImage} /> 
-      <meta property="og:type" content={headerData.metaData.featuredImage} /> 
-      <meta property="og:locale" content={headerData.metaData.featuredImage} /> 
-      <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <meta name="twitter:card" content="summary"></meta> */}
+      <link rel="canonical" href={metaData.headerData.title}></link>
+      <meta name="description" content={metaData.headerData.metaDesc}/>
+      <meta name="keywords" content={metaData.headerData.metaKeywords}/>
+      
+      <meta property="og:title" content={metaData.headerData.metaTitle} /> 
+      <meta property="og:description" content={metaData.headerData.metaDesc} /> 
+      <meta property="og:image" content={metaData.headerData.featuredImage} /> 
+
+      <meta name="author" content={AUTHOR} />
+      <meta property="og:site_name" content={SITE_NAME} /> 
+      <meta property="og:type" content={metaData.headerData.featuredImage} /> 
+      <meta property="og:locale" content={LOCALE} /> 
+      <meta name="twitter:card" content="summary"></meta>
       
       </Head>
       </> 
