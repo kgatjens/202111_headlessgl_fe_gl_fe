@@ -13,19 +13,20 @@ import { getHomepage } from '../lib/wp/api'
 
 export default function Home({ data , homepage }) {
   
-  //Metas
-  
-
   const { allHomepage } = homepage || {};
-
   const { mainNav, mainFooter } = data || {};
   console.log(allHomepage.edges[0]?.node.homepageFields);
 
-  const title = allHomepage.edges[0]?.node.homepageFields.homepageTitle;
+  //Metas
+  const metaTitle     = allHomepage.edges[0]?.node.seo.title;
   const featuredImage = allHomepage.edges[0]?.node.homepageFields.headerImage.mediaItemUrl;
+  const metaKeywords  = allHomepage.edges[0]?.node.seo.metaKeywords;
+  const metaDesc      = allHomepage.edges[0]?.node.seo.metaDesc;
+  const canonical     = allHomepage.edges[0]?.node.seo.canonical;
+
 
   //const headerData = {pageTitle, menuItems}
-  const metaData = {title,featuredImage}
+  const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
 
   return (
     <>

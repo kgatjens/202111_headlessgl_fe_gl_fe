@@ -1,5 +1,5 @@
 import Script from 'next/script'
-import { GTM } from "../../../lib/tracking/gtm"
+import { GTM } from "../../../lib/info"
 
 export default function GTMHead() {
   return (

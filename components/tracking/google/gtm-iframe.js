@@ -1,4 +1,4 @@
-import { GTM } from "../../../lib/tracking/gtm"
+import { GTM } from "../../../lib/info"
 
 export default function GTMIframe() {
   return (
