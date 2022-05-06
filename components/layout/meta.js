@@ -3,8 +3,13 @@ import { AUTHOR,SITE_NAME,LOCALE,TYPE } from "../../lib/info";
 import Head from 'next/head'
 
 export default function Meta(metaData) {
-  //  console.log(">>>>");
-  //  console.log(`${AUTHOR}`);
+   console.log(">>>>");
+   console.log(metaData);
+  
+  const metaTitle      = typeof metaData.headerData !== 'undefined' ? metaData.headerData.metaTitle : SITE_NAME;
+  const featuredImage  = typeof metaData.headerData !== 'undefined' ? metaData.headerData.featuredImage : '';
+  const metaDesc       = typeof metaData.headerData !== 'undefined' ? metaData.headerData.metaDesc : SITE_NAME;
+  const metaKeywords   = typeof metaData.headerData !== 'undefined' ? metaData.headerData.metaKeywords : SITE_NAME;
 
   return (
     <>
@@ -33,7 +38,7 @@ export default function Meta(metaData) {
         color="#000000"
       />
       
-      <title>{metaData.headerData.metaTitle}</title>
+      <title>{ metaTitle }</title>
       
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <meta name="msapplication-TileColor" content="#000000" />
@@ -43,19 +48,19 @@ export default function Meta(metaData) {
       
       <link rel="icon" href="/favicon.ico" />
       
-      <meta property="og:url" content={metaData.headerData.featuredImage} /> 
+      <meta property="og:url" content={featuredImage} /> 
 
-      <link rel="canonical" href={metaData.headerData.title}></link>
-      <meta name="description" content={metaData.headerData.metaDesc}/>
-      <meta name="keywords" content={metaData.headerData.metaKeywords}/>
+      {/* <link rel="canonical" href={metaData.headerData.title}></link> */}
+      <meta name="description" content={metaDesc}/>
+      <meta name="keywords" content={metaKeywords}/>
       
-      <meta property="og:title" content={metaData.headerData.metaTitle} /> 
-      <meta property="og:description" content={metaData.headerData.metaDesc} /> 
-      <meta property="og:image" content={metaData.headerData.featuredImage} /> 
+      <meta property="og:title" content={metaTitle} /> 
+      <meta property="og:description" content={metaDesc} /> 
+      <meta property="og:image" content={featuredImage} /> 
 
       <meta name="author" content={AUTHOR} />
       <meta property="og:site_name" content={SITE_NAME} /> 
-      <meta property="og:type" content={metaData.headerData.featuredImage} /> 
+      <meta property="og:type" content={featuredImage} /> 
       <meta property="og:locale" content={LOCALE} /> 
       <meta name="twitter:card" content="summary"></meta>
       
