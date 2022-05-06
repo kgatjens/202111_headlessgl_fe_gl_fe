@@ -27,6 +27,16 @@ export default function Blogs({ post, posts, menus }) {
   console.log(posts);
   const { mainNav, mainFooter } = menus || {};
 
+  //Metas
+  const metaTitle     = post.seo.title;
+  const featuredImage = post.featuredImage.node.sourceUrl;
+  const metaKeywords  = post.seo.metaKeywords;
+  const metaDesc      = post.seo.metaDesc;
+  const canonical     = post.seo.canonical;
+
+  //const headerData = {pageTitle, menuItems}
+  const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
+
   if (!post?.slug  ) {//&& !router.isFallback &
     return <ErrorPage statusCode={404} />
   }
@@ -34,7 +44,7 @@ export default function Blogs({ post, posts, menus }) {
   return (
     
     <Layout>
-      <Header header={mainNav} />
+      <Header header={mainNav} metaData={metaData}  />
       <Container>
         {router.isFallback ? (
           <p>Loading…</p>
