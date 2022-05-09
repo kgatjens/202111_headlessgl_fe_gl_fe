@@ -8,10 +8,7 @@ import Footer from '../components/layout/footer'
 import MoreBlogs from '../components/pages/more-posts'
 
 
-
-import { getFirstBlogs } from '../lib/wp/api'
-import { getMenus } from '../lib/wp/api'
-
+import { getFirstBlogs, getMenus } from '../lib/wp/api'
 
 export default function Blogs({ menus , firstBlogs }) {
   
@@ -20,13 +17,18 @@ export default function Blogs({ menus , firstBlogs }) {
   const blogs = firstBlogs.edges
   const morePosts = blogs.slice(1)
 
+  const metaTitle     = 'Blog Landing - Gorilla Logic';
+  const featuredImage = '';
+  const metaKeywords  = '';
+  const metaDesc      = '';
+  const canonical     = '';
 
-//   console.log(blogs);
-//   console.log(morePosts);
+  //const headerData = {pageTitle, menuItems}
+  const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
     <>
       <Layout>
-      <Header header={mainNav} />
+      <Header header={mainNav} metaData={metaData} />
     
       <Container>
         
