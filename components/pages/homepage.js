@@ -14,6 +14,7 @@ export default function Homepage({
     carousel,
 
   }) {
+
     return(
         <div>
         <div className="mb-8 md:mb-16">
@@ -35,7 +36,7 @@ export default function Homepage({
           </div>
         </div>
         <Carousel carousel={carousel}/>
-        
+
         {/* <div className={`top-[117px] flex justify-between   bg-[#${sectionColor}]`} > */}
         
         {/* <div className={`w-[200px] bg-[${color1}]`} >
