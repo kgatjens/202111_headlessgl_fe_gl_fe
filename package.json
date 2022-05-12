@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild":"next-sitemap"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -16,8 +16,8 @@
     "next-sitemap": "^2.5.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-responsive-carousel": "^3.2.23",
     "swr": "^1.1.2"
-
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",

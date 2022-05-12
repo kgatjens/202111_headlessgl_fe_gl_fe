@@ -8,16 +8,16 @@ import Footer from '../components/layout/footer'
 
 import Homepage from '../components/pages/homepage'
 
-import { getMenus } from '../lib/wp/api'
-import { getHomepage } from '../lib/wp/api'
-import { getHomepageCarousel } from '../lib/wp/api'
+import { getMenus,getHomepage,getHomepageCarousel } from '../lib/wp/api'
+// import { getHomepage } from '../lib/wp/api'
+// import { getHomepageCarousel } from '../lib/wp/api'
 
 export default function Home({ data, homepage, carouselHomepage  }) {
   
   const { allHomepage } = homepage || {};
-  const { carousel } = carouselHomepage || {};
+  const  carousel  = carouselHomepage.carouselFields || {};
   const { mainNav, mainFooter } = data || {};
-  console.log(allHomepage.edges[0]?.node.homepageFields);
+  //console.log(allHomepage.edges[0]?.node.homepageFields);
 
   //Metas
   const metaTitle     = allHomepage.edges[0]?.node.seo.title;
@@ -49,7 +49,7 @@ export default function Home({ data, homepage, carouselHomepage  }) {
           sectionBackgrounURL={allHomepage.edges[0]?.node.homepageFields.sectionBackgroundImage.mediaItemUrl}
           sectionBackgrounAltText={allHomepage.edges[0]?.node.homepageFields.sectionBackgroundImage.altText}
           sectionColor={allHomepage.edges[0]?.node.homepageFields.sectionColor}
-          carousel={carousel}
+          carousel = {carousel}
 
         />
 
