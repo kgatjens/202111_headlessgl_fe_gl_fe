@@ -10,10 +10,12 @@ import Homepage from '../components/pages/homepage'
 
 import { getMenus } from '../lib/wp/api'
 import { getHomepage } from '../lib/wp/api'
+import { getHomepageCarousel } from '../lib/wp/api'
 
-export default function Home({ data , homepage }) {
+export default function Home({ data, homepage, carouselHomepage  }) {
   
   const { allHomepage } = homepage || {};
+  const { carousel } = carouselHomepage || {};
   const { mainNav, mainFooter } = data || {};
   console.log(allHomepage.edges[0]?.node.homepageFields);
 
@@ -47,6 +49,7 @@ export default function Home({ data , homepage }) {
           sectionBackgrounURL={allHomepage.edges[0]?.node.homepageFields.sectionBackgroundImage.mediaItemUrl}
           sectionBackgrounAltText={allHomepage.edges[0]?.node.homepageFields.sectionBackgroundImage.altText}
           sectionColor={allHomepage.edges[0]?.node.homepageFields.sectionColor}
+          carousel={carousel}
 
         />
 
@@ -63,7 +66,9 @@ export default function Home({ data , homepage }) {
 export async function getStaticProps() {
    const homepage = await getHomepage()
    const data = await getMenus()
+   const carouselHomepage = await getHomepageCarousel()
+
   return {
-    props: { data,homepage },
+    props: { data,homepage,carouselHomepage },
   }
 }
