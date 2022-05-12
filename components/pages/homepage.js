@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import CoverImage from '../layout/cover-image'
+import Carousel from '../lib/carousel'
 const color1="#475399";
 
 export default function Homepage({
@@ -10,6 +11,7 @@ export default function Homepage({
     sectionBackgrounURL,
     sectionBackgrounAltText,
     sectionColor,
+    carousel,
 
   }) {
     return(
@@ -32,6 +34,8 @@ export default function Homepage({
             />
           </div>
         </div>
+        <Carousel carousel={carousel}/>
+        
         {/* <div className={`top-[117px] flex justify-between   bg-[#${sectionColor}]`} > */}
         
         {/* <div className={`w-[200px] bg-[${color1}]`} >
