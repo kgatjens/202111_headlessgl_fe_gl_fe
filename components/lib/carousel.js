@@ -2,19 +2,28 @@ import React, { Component } from 'react';
 //import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { CarouselComponent } from 'react-responsive-carousel';
 
+
+//export default class NextJsCarousel extends Component {
+
 export default function Carousel({ carousel }) {
-    console.log(carousel)
-    console.log("***")
+     console.log(carousel)
+    // console.log("**#*")
+    // console.log(Array.isArray(carousel))
+    // console.log("***")
+
   return (
     <section>
       <h4>Carousel</h4>
-      <CarouselComponent>
-      {carousel.map((tag, index) => (
-            <span key={index} className="ml-4 font-normal">
-              {node.sourceUrl}
-            </span>
-          ))}
-         </CarouselComponent>
+     
+      {Object.keys(carousel.carouselFields).map((index)  => (
+          
+          <span key={index} className="ml-4 font-normal">
+            {carousel.carouselFields[index].title}
+            <img src={carousel.carouselFields[index].sourceUrl} />
+            
+          </span>
+        ))}
+         
     </section>
   )
 }
