@@ -15,9 +15,13 @@ import { getMenus,getHomepage,getHomepageCarousel } from '../lib/wp/api'
 export default function Home({ data, homepage, carouselHomepage  }) {
   
   const { allHomepage } = homepage || {};
-  const  carousel  = carouselHomepage.carouselFields || {};
+  const { carousel }  = carouselHomepage || {};
   const { mainNav, mainFooter } = data || {};
-  //console.log(allHomepage.edges[0]?.node.homepageFields);
+
+  // const cleanCarousel = Object.values(carousel);
+  // console.log(cleanCarousel);
+  // console.log(Array.isArray(cleanCarousel))
+  // console.log("🧐");
 
   //Metas
   const metaTitle     = allHomepage.edges[0]?.node.seo.title;
@@ -25,7 +29,6 @@ export default function Home({ data, homepage, carouselHomepage  }) {
   const metaKeywords  = allHomepage.edges[0]?.node.seo.metaKeywords;
   const metaDesc      = allHomepage.edges[0]?.node.seo.metaDesc;
   const canonical     = allHomepage.edges[0]?.node.seo.canonical;
-
 
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
@@ -49,12 +52,13 @@ export default function Home({ data, homepage, carouselHomepage  }) {
           sectionBackgrounURL={allHomepage.edges[0]?.node.homepageFields.sectionBackgroundImage.mediaItemUrl}
           sectionBackgrounAltText={allHomepage.edges[0]?.node.homepageFields.sectionBackgroundImage.altText}
           sectionColor={allHomepage.edges[0]?.node.homepageFields.sectionColor}
-          carousel = {carousel}
+          carouselComponent = {carousel}
 
         />
 
       )}
       </Container>
+    
       <Footer footer={mainFooter}/>
     </Layout>
     </>

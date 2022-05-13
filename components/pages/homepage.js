@@ -11,7 +11,7 @@ export default function Homepage({
     sectionBackgrounURL,
     sectionBackgrounAltText,
     sectionColor,
-    carousel,
+    carouselComponent,
 
   }) {
 
@@ -35,7 +35,7 @@ export default function Homepage({
             />
           </div>
         </div>
-        <Carousel carousel={carousel}/>
+        <Carousel carousel={carouselComponent}/>
 
         {/* <div className={`top-[117px] flex justify-between   bg-[#${sectionColor}]`} > */}
         
