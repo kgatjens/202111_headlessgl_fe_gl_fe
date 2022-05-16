@@ -15,7 +15,8 @@ export default class NextJsCarousel extends Component {
 
               <h2>Homepage Carousel</h2>
               {console.log(this.props.carouselSlider.carouselFields)}
-              <Carousel>
+              {/*those are some available properties */}
+              <Carousel axis={'vertical'} showArrows={true} _onChange={''} _onClickItem={''} _onClickThumb={''}>
               {slider.map((fields,index)  => (
                   <div key={index} >
                       {console.log(sliderFields[fields])}
