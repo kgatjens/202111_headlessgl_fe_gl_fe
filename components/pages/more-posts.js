@@ -1,4 +1,5 @@
 import BlogsPreview from './blogs-preview'
+import LoadMore from '../lib/load-more'
 
 export default function MoreBlogs({ posts }) {
     
@@ -21,6 +22,7 @@ export default function MoreBlogs({ posts }) {
           />
         ))}
       </div>
+      <LoadMore />
     </section>
   )
 }

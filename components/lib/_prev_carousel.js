@@ -5,6 +5,9 @@ import { CarouselComponent } from 'react-responsive-carousel';
 
 //export default class NextJsCarousel extends Component {
 
+
+//THIS IS JUST A NON FUNCTIONAL EXAMPLE
+
 export default function Carousel({ carousel })  {
      console.log(carousel)
     // console.log("**#*")
