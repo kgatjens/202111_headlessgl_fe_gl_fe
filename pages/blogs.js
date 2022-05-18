@@ -7,6 +7,8 @@ import Header from '../components/layout/header'
 import Footer from '../components/layout/footer'
 import MoreBlogs from '../components/pages/more-posts'
 
+import useSWR from "swr";
+import axios from "axios";
 
 import { getFirstBlogs, getMenus } from '../lib/wp/api'
 
@@ -23,6 +25,19 @@ export default function Blogs({ menus , firstBlogs }) {
   const metaDesc      = '';
   const canonical     = '';
 
+  const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=agile`;
+  const fetcher = async (url) => await axios.get(url).then((res) => res.data);
+  const { data, error } = useSWR(address, fetcher);
+
+  const handleClick = (event) => {
+      
+    event.preventDefault();
+    
+   
+    
+    
+  };
+
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
@@ -31,9 +46,16 @@ export default function Blogs({ menus , firstBlogs }) {
       <Header header={mainNav} metaData={metaData} />
     
       <Container>
+      <button
+            className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
+            onClick={handleClick}
+            type="button"
+            >
+            Load More
+        </button>
         
-        
-        {morePosts.length > 0 && <MoreBlogs posts={morePosts} />}
+        {morePosts.length > 0 && 
+        <MoreBlogs posts={morePosts} />}
 
       </Container>
 
