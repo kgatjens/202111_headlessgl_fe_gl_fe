@@ -5,10 +5,12 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getSecondBlogs } from '../../lib/wp/api'
 
+
+
 async function pushData() {
   try {
     console.log("Done1");
-    const newPosts = await getSecondBlogs();
+    //const newPosts = await getSecondBlogs();
     console.log(newPosts);
     console.log("Done");
     setPosts(newPosts);
@@ -23,9 +25,35 @@ async function pushData() {
 
 
 export default function MoreBlogs({ posts }) {
-    console.log(posts);
+    
+  
     const [blogs, setPosts] = useState(posts);
-    console.log(blogs);
+    //console.log(blogs);
+    console.log("going in");
+
+    const fetchData = async () => {
+      console.log("click");
+      const req = await getSecondBlogs();
+      console.log(req.edges);
+      
+      const newData = {}
+  
+     // setData(newData.results);
+    };
+
+   
+
+    const handleClick = (event) => {
+      
+      event.preventDefault();
+      
+      const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=agile`;
+      const fetcher = async (url) => await axios.get(url).then((res) => res.data);
+      const { data, error } = useSWR(address, fetcher);
+      
+      return null;
+    };
+
   return (
     <section>
       <h2 className="mb-8 text-3xl md:text-3xl font-bold tracking-tighter leading-tight">
@@ -48,7 +76,7 @@ export default function MoreBlogs({ posts }) {
       <div>
       <button
             className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
-            onClick={pushData}
+            onClick={handleClick}
             type="button"
             >
             Load More
