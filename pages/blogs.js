@@ -8,9 +8,39 @@ import Footer from '../components/layout/footer'
 import MoreBlogs from '../components/pages/more-posts'
 
 import useSWR from "swr";
+import { useEffect, useState } from 'react';
 import axios from "axios";
 
 import { getFirstBlogs, getMenus } from '../lib/wp/api'
+
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+const MoreLoader = ({ value, perPage }) => {
+  const url = `https://gorillalogic.com/wp-json/wp/v2/posts/?per_page=${perPage}&offset=${value}&orderby=date&order=desc`
+  //`https://gorillalogic.com/wp-json/wp/v2/search/?per_page=6&subtype=page&subtype=post&search=agile`,
+  const { data, error } = useSWR(
+    url,
+    fetcher
+  );
+  console.log("ˆˆˆ1ˆˆˆˆ"+url);
+  
+  
+  //console.log(value?.indexValue);
+  console.log(value);
+  console.log(perPage);
+  
+  console.log(data);
+  console.log(error);
+  console.log("ˆˆˆˆ2ˆˆˆ");
+
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+
+  if (!data[0]) return <div>not found</div>;
+  return <div>found {data[0].name}</div>;
+};
 
 export default function Blogs({ menus , firstBlogs }) {
   
@@ -25,18 +55,26 @@ export default function Blogs({ menus , firstBlogs }) {
   const metaDesc      = '';
   const canonical     = '';
 
-  const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=agile`;
-  const fetcher = async (url) => await axios.get(url).then((res) => res.data);
-  const { data, error } = useSWR(address, fetcher);
+  // const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=agile`;
+  // const fetcher = async (url) => await axios.get(url).then((res) => res.data);
+  // const { data, error } = useSWR(address, fetcher);
+  // console.log(data);
 
-  const handleClick = (event) => {
-      
-    event.preventDefault();
-    
-   
-    
-    
+  const loadPerPage = 6;
+
+  const [startFetching, setStartFetching] = useState(false);
+  //const [indexValue, setIndexValue] = useState(0);
+  const [indexValue, setIndexValue] = useState(0);
+
+
+  const handleClick = () => {
+    setStartFetching(true);
+    setIndexValue(indexValue+loadPerPage);
+    console.log('increment like count');
+    console.log(indexValue+" = "+loadPerPage);
+
   };
+
 
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
@@ -46,18 +84,22 @@ export default function Blogs({ menus , firstBlogs }) {
       <Header header={mainNav} metaData={metaData} />
     
       <Container>
-      <button
-            className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
-            onClick={handleClick}
-            type="button"
-            >
-            Load More
-        </button>
+      
         
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
 
       </Container>
+      <button
+            className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
+            onClick={handleClick}
+            type="button"
+            >
+            Load More 
+            ({indexValue})
+            {startFetching && <MoreLoader value={indexValue} perPage={loadPerPage} />}
+
+        </button>
 
       <Footer footer={mainFooter}/>
     </Layout>

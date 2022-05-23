@@ -27,32 +27,32 @@ async function pushData() {
 export default function MoreBlogs({ posts }) {
     
   
-    const [blogs, setPosts] = useState(posts);
-    //console.log(blogs);
-    console.log("going in");
+    // const [blogs, setPosts] = useState(posts);
+    // //console.log(blogs);
+    // console.log("going in");
 
-    const fetchData = async () => {
-      console.log("click");
-      const req = await getSecondBlogs();
-      console.log(req.edges);
+    // const fetchData = async () => {
+    //   console.log("click");
+    //   const req = await getSecondBlogs();
+    //   console.log(req.edges);
       
-      const newData = {}
+    //   const newData = {}
   
-     // setData(newData.results);
-    };
+    //  // setData(newData.results);
+    // };
 
    
 
-    const handleClick = (event) => {
+    // const handleClick = (event) => {
       
-      event.preventDefault();
+    //   event.preventDefault();
       
-      const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=agile`;
-      const fetcher = async (url) => await axios.get(url).then((res) => res.data);
-      const { data, error } = useSWR(address, fetcher);
+    //   const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=agile`;
+    //   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
+    //   const { data, error } = useSWR(address, fetcher);
       
-      return null;
-    };
+    //   return null;
+    // };
 
   return (
     <section>
@@ -74,13 +74,13 @@ export default function MoreBlogs({ posts }) {
         ))}
       </div>
       <div>
-      <button
+      {/* <button
             className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
             onClick={handleClick}
             type="button"
             >
             Load More
-        </button>
+        </button> */}
       </div>
     </section>
   )

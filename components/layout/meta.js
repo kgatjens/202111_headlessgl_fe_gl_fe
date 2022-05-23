@@ -3,8 +3,8 @@ import { AUTHOR,SITE_NAME,LOCALE,TYPE } from "../../lib/info";
 import Head from 'next/head'
 
 export default function Meta(metaData) {
-   console.log(">>>>");
-   console.log(metaData.headerData);
+  //  console.log(">>>>");
+  //  console.log(metaData.headerData);
 
    if (metaData.headerData.metaDesc === '') console.log(metaData.headerData.metaDesc);
   
