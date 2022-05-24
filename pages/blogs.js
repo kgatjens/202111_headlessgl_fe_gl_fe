@@ -82,7 +82,8 @@ export default function Blogs({ menus , firstBlogs }) {
       
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
-{console.log({loadedData})}
+        
+        {console.log({loadedData})}
         {/* {loadedMoreData.length > 0 && 
         <MoreBlogs posts={loadedPost} />} */}
             
