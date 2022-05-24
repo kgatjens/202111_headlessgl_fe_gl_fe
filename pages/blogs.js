@@ -17,7 +17,7 @@ import { getFirstBlogs, getMenus } from '../lib/wp/api'
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const MoreLoader = ({ value, perPage }) => {
-  const url = `https://gorillalogic.com/wp-json/wp/v2/posts/?per_page=${perPage}&offset=${value}&orderby=date&order=desc`
+  const url = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${perPage}&offset=${value}&orderby=date&order=desc`
   //`https://gorillalogic.com/wp-json/wp/v2/search/?per_page=6&subtype=page&subtype=post&search=agile`,
   const { data, error } = useSWR(
     url,
@@ -47,7 +47,7 @@ export default function Blogs({ menus , firstBlogs }) {
   const pageTitle = "GL - Blogs";
   const { mainNav, mainFooter } = menus || {};
   const blogs = firstBlogs.edges
-  const morePosts = blogs.slice(1)
+  const morePosts = blogs.slice(0)
 
   const metaTitle     = 'Blog Landing - Gorilla Logic';
   const featuredImage = '';
