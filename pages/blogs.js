@@ -16,30 +16,28 @@ import { getFirstBlogs, getMenus } from '../lib/wp/api'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
+const loadedMoreData = {};
+
 const MoreLoader = ({ value, perPage }) => {
-  const url = `https://gorillalogic.com/wp-json/wp/v2/posts/?per_page=${perPage}&offset=${value}&orderby=date&order=desc`
-  //`https://gorillalogic.com/wp-json/wp/v2/search/?per_page=6&subtype=page&subtype=post&search=agile`,
+  const url = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${perPage}&offset=${value}&orderby=date&order=desc`
   const { data, error } = useSWR(
     url,
     fetcher
   );
-  console.log("ˆˆˆ1ˆˆˆˆ"+url);
   
-  
-  //console.log(value?.indexValue);
-  console.log(value);
-  console.log(perPage);
-  
-  console.log(data);
-  console.log(error);
-  console.log("ˆˆˆˆ2ˆˆˆ");
+  // console.log("ˆˆˆ1ˆˆˆˆ");
+  // console.log(value);
+  // console.log(perPage);
+  // console.log(data);
+  // console.log(error);
+  // console.log("ˆˆˆˆ2ˆˆˆ");
 
-
+  loadedMoreData = data || {};
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
   if (!data[0]) return <div>not found</div>;
-  return <div>found {data[0].name}</div>;
+  return "";
 };
 
 export default function Blogs({ menus , firstBlogs }) {
@@ -47,7 +45,8 @@ export default function Blogs({ menus , firstBlogs }) {
   const pageTitle = "GL - Blogs";
   const { mainNav, mainFooter } = menus || {};
   const blogs = firstBlogs.edges
-  const morePosts = blogs.slice(1)
+  const morePosts = blogs.slice(0)
+  const loadedPost = {};
 
   const metaTitle     = 'Blog Landing - Gorilla Logic';
   const featuredImage = '';
@@ -55,28 +54,24 @@ export default function Blogs({ menus , firstBlogs }) {
   const metaDesc      = '';
   const canonical     = '';
 
-  // const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=agile`;
-  // const fetcher = async (url) => await axios.get(url).then((res) => res.data);
-  // const { data, error } = useSWR(address, fetcher);
-  // console.log(data);
-
   const loadPerPage = 6;
 
   const [startFetching, setStartFetching] = useState(false);
-  //const [indexValue, setIndexValue] = useState(0);
   const [indexValue, setIndexValue] = useState(0);
-
+  const [loadedData, setloadedData] = useState();
 
   const handleClick = () => {
     setStartFetching(true);
     setIndexValue(indexValue+loadPerPage);
-    console.log('increment like count');
-    console.log(indexValue+" = "+loadPerPage);
+    setloadedData(loadedMoreData);
 
+    // console.log('increment like count');
+    // console.log(indexValue+" = "+loadPerPage);
   };
 
-
-  //const headerData = {pageTitle, menuItems}
+  console.log("ˆˆˆ1ˆˆˆˆ");
+  //console.log(loadedMoreData);
+  
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
     <>
@@ -85,9 +80,12 @@ export default function Blogs({ menus , firstBlogs }) {
     
       <Container>
       
-        
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
+{console.log({loadedData})}
+        {/* {loadedMoreData.length > 0 && 
+        <MoreBlogs posts={loadedPost} />} */}
+            
 
       </Container>
       <button
@@ -107,8 +105,6 @@ export default function Blogs({ menus , firstBlogs }) {
   )
 }
 
-
-
 export async function getStaticProps() {
     
   const firstBlogs = await getFirstBlogs()
@@ -116,6 +112,4 @@ export async function getStaticProps() {
   return {
     props: { menus , firstBlogs },
   }
-
-
 }

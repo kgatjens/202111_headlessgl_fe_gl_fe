@@ -25,7 +25,7 @@ export default function Search({ menus }) {
   
   const searchQueryString = process.browser ? ( Router?.query?.s ?? '' ) : '';//query string
 
-  const address = `https://gorillalogic.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=`+searchQueryString;
+  const address = `https://headlessgl22.wpengine.com/wp-json/wp/v2/search/?per_page=20&subtype=page&subtype=post&search=`+searchQueryString;
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   const { data, error } = useSWR(address, fetcher);
 
