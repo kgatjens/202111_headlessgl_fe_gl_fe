@@ -21,9 +21,7 @@ export default function Header(headerData) {
     // console.log("@@@");
     
     return (
-        <>
-        
-              
+        <> 
         <Meta headerData={headerData.metaData}/>
 
         <header>
@@ -72,12 +70,12 @@ export default function Header(headerData) {
                     <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ' dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                 </Link>
             ) ) : null }
-            <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="}">
+            <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="mobile">
                     <Link key="Blogs-mobile"  href='/Blogs'>
                         <a dangerouslySetInnerHTML={ { __html: "Blogs" } }/>
                     </Link> 
                 </li>
-                <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="}">
+                <li className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white " key="contact-mobile">
                     <Link key="Contact-us-mobile" href='/contact-us'>
                         <a dangerouslySetInnerHTML={ { __html: "Contact Us" } }/>
                     </Link> 
