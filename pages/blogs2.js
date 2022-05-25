@@ -12,35 +12,8 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 
 import { getFirstBlogs, getMenus } from '../lib/wp/api'
+//GOAL HERE, TRY IT WITH MUTATIONS TO GET DATA ON THE SAME COMPONENT
 
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-const loadedMoreData = {};
-
-const MoreLoader = ({ value, perPage }) => {
-  const url = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${perPage}&offset=${value}&orderby=date&order=desc`
-  const { data, error } = useSWR(
-    url,
-    fetcher
-  );
-  
-  // console.log("ˆˆˆ1ˆˆˆˆ");
-  // console.log(value);
-  // console.log(perPage);
-  // console.log(data);
-  // console.log(error);
-  // console.log("ˆˆˆˆ2ˆˆˆ");
-
-  loadedMoreData = data || {};
-  const [loadedData, setloadedData] = useState(loadedMoreData);
-
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
-
-  if (!data[0]) return <div>not found</div>;
-  return "sss";
-};
 
 export default function Blogs({ menus , firstBlogs }) {
   
@@ -58,21 +31,9 @@ export default function Blogs({ menus , firstBlogs }) {
 
   const loadPerPage = 6;
 
-  const [startFetching, setStartFetching] = useState(false);
-  const [indexValue, setIndexValue] = useState(0);
-  const [loadedData, setloadedData] = useState(loadedMoreData);
+  const { mutate } = useSWRConfig()
+  const { data } = useSWR('https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=6&offset=6&orderby=date&order=desc', fetcher)
 
-  const handleClick = () => {
-    setStartFetching(true);
-    setIndexValue(indexValue+loadPerPage);
-    setloadedData(loadedMoreData);
-
-    // console.log('increment like count');
-    // console.log(indexValue+" = "+loadPerPage);
-  };
-
-  console.log("ˆˆˆ***ˆˆˆˆ");
-  console.log(loadedData);
   
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
@@ -93,14 +54,23 @@ export default function Blogs({ menus , firstBlogs }) {
       </Container>
       <button
             className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
-            onClick={handleClick}
+            
             type="button"
             >
             Load More 
-            ({indexValue})
-            {startFetching && <MoreLoader value={indexValue} perPage={loadPerPage} />}
-            {console.log(loadedData)}
+            
         </button>
+
+        <button 
+        className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
+        onClick={async () => {
+        //const newName = data.name.toUpperCase()
+        // send a request to the API to update the data
+        await requestUpdateUsername(newName)
+        // update the local data immediately and revalidate (refetch)
+        // NOTE: key is not required when using useSWR's mutate as it's pre-bound
+        mutate({ ...data, name: newName })
+      }}>Uppercase my name!</button>
 
       <Footer footer={mainFooter}/>
     </Layout>
