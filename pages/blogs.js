@@ -13,44 +13,7 @@ import axios from "axios";
 
 import { getFirstBlogs, getMenus } from '../lib/wp/api'
 
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 const loadedMoreData = {};
-
-// const MoreLoader = ({ value, perPage }) => {
-//   const url = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${perPage}&offset=${value}&orderby=date&order=desc`
-//   const { data, error } = useSWR(
-//     url,
-//     fetcher
-//   );
-  
-
-
-//   const loadedMoreData = { ...loadedMoreData, ...data } 
-  
-//   const [loadedData, setloadedData] = useState(loadedMoreData);
-  
-
-//   console.log(">>>>1");
-//   console.log(loadedData);
-//   console.log(">>>>2");
-  
-    
-//   if (error) return <div>failed to load</div>;
-//   if (!data) return <div>loading...</div>;
-
-//   if (!data[0]) return <div>not found</div>;
-//   const html = <ul>
-//             {data.map((tag, index) => (
-//               <li key={index} className="ml-4 font-normal">
-//                 <p>{tag.title.rendered}</p>
-//               </li>
-//             ))}
-//               </ul>;
-
-//   return html;
-// };
 
 export default function Blogs({ menus , firstBlogs }) {
   
@@ -117,28 +80,23 @@ export default function Blogs({ menus , firstBlogs }) {
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
 
-                  {(startFetching) ?   
-                    (data && data.length > 0) ? (data.map((post,index) => (
-                      <li key={index}><p>{post.title.rendered}</p></li>
-                      ))) : (<p>Loading  </p>)
-                      : <p>No data found ...</p> } 
-                      
-
+          {(startFetching) ?   
+            (data && data.length > 0) ? (data.map((post,index) => (
+              <li key={index}><p>{post.title.rendered}</p></li>
+              ))) : (<p>Loading  </p>)
+              : <p>No data found ...</p> } 
 
       </Container>
       {/* {startFetching && <MoreLoader value={indexValue} perPage={loadPerPage} />} */}
     
       <button
-            className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
-            onClick={handleClick}
-            type="button"
-            >
-            Load More 
-            ({indexValue})
-            {/* {console.log(loadedMoreData2)} */}
-            {/* {console.log(loadedData)} */}
-            
-        </button>
+        className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
+        onClick={handleClick}
+        type="button"
+        >
+        Load More 
+        ({indexValue})    
+      </button>
 
       <Footer footer={mainFooter}/>
     </Layout>
