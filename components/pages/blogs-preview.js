@@ -12,11 +12,16 @@ export default function BlogsPreview({
   slug,
   
 }) {
+
+  const imageSrc = (coverImage.node) ? coverImage.node.sourceUrl : coverImage
+  const imageTitle = (coverImage.node) ? coverImage.node.title : "Blog image"
+  const imageSrcSet = (coverImage.node) ? coverImage.node.srcSet : ""
+
   return (
     <div>
       <div className="mb-5">
         {coverImage && (
-          <FeaturedImage title={coverImage.node.title} source={coverImage.node.sourceUrl} sourceSet={coverImage.node.srcSet} slug={slug} />
+          <FeaturedImage title={imageTitle} source={imageSrc} sourceSet={imageSrcSet} slug={slug} />
         )}
       </div>
       <h3 className="text-3xl mb-3 leading-snug">
@@ -28,13 +33,18 @@ export default function BlogsPreview({
         </Link>
       </h3>
       <div className="text-lg mb-4">
-        <Date dateString={date} />
-      </div>
+        {(date)&&(date.lenght>0) ?  
+          <Date dateString={date} />
+          : <p> No Date</p> 
+        }      </div>
       <div
         className="text-lg leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
-      <Avatar author={author} />
-    </div>
+        {(author)&&(author.lenght>0) ?  
+          <Avatar author={author} />
+          : <p> No Author Info</p> 
+        }    
+      </div>
   )
 }

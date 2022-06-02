@@ -6,9 +6,10 @@ import Layout from '../components/layout/layout'
 import Header from '../components/layout/header'
 import Footer from '../components/layout/footer'
 import MoreBlogs from '../components/pages/more-posts'
+import LoadMoreBlogs from '../components/blogs/load-more'
 
 import useSWR from "swr";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from "axios";
 
 import { getFirstBlogs, getMenus } from '../lib/wp/api'
@@ -82,26 +83,26 @@ export default function Blogs({ menus , firstBlogs }) {
       
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
-          {console.log("ˆˆˆ*WWW*ˆˆˆˆ")}
+          
+{/* {console.log("Loaded: ")}
+{console.log(dataLoaded)}
+{console.log("More: ")}
+{console.log(morePosts)} */}
 
-
-{/* {console.log(dataLoaded)}
-{console.log("ˆˆˆ*WWW2*ˆˆˆˆ")} */}
-<ul>
           {(startFetching) ?  
           
-            (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((post,index) => (
-              
-              post.map((blogInfo,i) => (
-                //console.log(blogInfo.title.rendered)
-                  <li key={blogInfo.id}><p>{blogInfo.title.rendered}</p></li>
-              ))
+            (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs,index) => (
+              <LoadMoreBlogs posts={blogs} />
+              // post.map((blogInfo,i) => (
+                
+                
+              //   //console.log(blogInfo.title.rendered)
+              //     // <li key={blogInfo.id}><p>{blogInfo.title.rendered}</p></li>
+              // ))
 
               ))) : (<p>Loading  </p>)
               : <p>No data found ...</p> 
-            
             } 
-</ul>
       </Container>
       {/* {startFetching && <MoreLoader value={indexValue} perPage={loadPerPage} />} */}
     
