@@ -17,7 +17,6 @@ export default function MoreBlogs({ posts }) {
             author={node.author}
             slug={node.slug}
             excerpt={node.excerpt}
-    
           />
         ))}
       </div>
