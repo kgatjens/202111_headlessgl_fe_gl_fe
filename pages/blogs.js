@@ -29,7 +29,7 @@ export default function Blogs({ menus , firstBlogs }) {
   const metaDesc      = '';
   const canonical     = '';
 
-  const loadPerPage = 6;
+  const loadPerPage = 3;
 
   const [startFetching, setStartFetching] = useState(false);
   const [indexValue, setIndexValue] = useState(0);
@@ -56,9 +56,8 @@ export default function Blogs({ menus , firstBlogs }) {
   // console.log(apiPost);
   // console.log(data);
   // console.log("ˆˆˆ*WWW2*ˆˆˆˆ");
-  const initialData = {}
+  const initialData = []
   const [dataLoaded, setData] = useState(initialData);
-
 
   const handleClick = () => {
     setStartFetching(true);
@@ -68,7 +67,7 @@ export default function Blogs({ menus , firstBlogs }) {
     setDataCount(dataCount + 3)
     setPageIndex(pageIndex + 1)
 
-    setData((initialData) => [...data,initialData])
+    setData((initialData) => [...initialData,data])
     
   };
 
@@ -85,21 +84,24 @@ export default function Blogs({ menus , firstBlogs }) {
         <MoreBlogs posts={morePosts} />}
           {console.log("ˆˆˆ*WWW*ˆˆˆˆ")}
 
-{console.log(data)}
-{console.log(initialData)}
-{console.log(dataLoaded)}
-{console.log("ˆˆˆ*WWW2*ˆˆˆˆ")}
-          {(startFetching) ?   
+
+{/* {console.log(dataLoaded)}
+{console.log("ˆˆˆ*WWW2*ˆˆˆˆ")} */}
+<ul>
+          {(startFetching) ?  
+          
             (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((post,index) => (
               
-              console.log(dataLoaded[6])
+              post.map((blogInfo,i) => (
+                //console.log(blogInfo.title.rendered)
+                  <li key={blogInfo.id}><p>{blogInfo.title.rendered}</p></li>
+              ))
 
-              // (index==6)&&dataLoaded[index].length>0 ? dataLoaded[{index}].map((post2,index2) => ( 
-              // <li key={index2}><p>{post2.title.rendered}</p></li> )) :
-              // <li key={index}><p>{post.title.rendered}</p></li>
               ))) : (<p>Loading  </p>)
-              : <p>No data found ...</p> } 
-
+              : <p>No data found ...</p> 
+            
+            } 
+</ul>
       </Container>
       {/* {startFetching && <MoreLoader value={indexValue} perPage={loadPerPage} />} */}
     
