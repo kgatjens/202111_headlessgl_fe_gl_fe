@@ -11,6 +11,8 @@ export default function PostPreview({
   author,
   slug,
 }) {
+
+  console.log(author);
   return (
     <div>
       <div className="mb-5">
@@ -27,13 +29,20 @@ export default function PostPreview({
         </Link>
       </h3>
       <div className="text-lg mb-4">
+      {({date})&&({date}.lenght>0) ?  
         <Date dateString={date} />
+        : <p> No Date</p> 
+      }
       </div>
       <div
         className="text-lg leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
-      <Avatar author={author} />
+        {({author})&&({author}.lenght>0) ?  
+        <Avatar author={author} />
+
+        : <p> No Author Info</p> 
+      }
     </div>
   )
 }
