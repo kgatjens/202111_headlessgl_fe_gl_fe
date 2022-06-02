@@ -1,6 +1,3 @@
-import Image from 'next/image'
-import Router from 'next/router';
-
 import Container from '../components/layout/container'
 import Layout from '../components/layout/layout'
 import Header from '../components/layout/header'
@@ -35,15 +32,13 @@ export default function Blogs({ menus , firstBlogs }) {
   const [startFetching, setStartFetching] = useState(false);
   const [indexValue, setIndexValue] = useState(0);
   
-  //888
   const [loading,setLoading] = useState(true)
-  const [dataCount, setDataCount] = useState(3);
+  const [dataCount, setDataCount] = useState(6);
   const [pageIndex, setPageIndex] = useState(1)  
 
- const fetcher = async (url) => await axios.get(url).then((res) => res.data);
-
+  const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   
-  const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${indexValue}&orderby=date&order=desc`
+  const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc`
    const {data, error} = useSWR(apiPost, fetcher,{
     onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
         if (error.status === 404) return
@@ -53,10 +48,6 @@ export default function Blogs({ menus , firstBlogs }) {
     }
 })
 
-  // console.log("ˆˆˆ*WWW*ˆˆˆˆ");
-  // console.log(apiPost);
-  // console.log(data);
-  // console.log("ˆˆˆ*WWW2*ˆˆˆˆ");
   const initialData = []
   const [dataLoaded, setData] = useState(initialData);
 
@@ -64,7 +55,7 @@ export default function Blogs({ menus , firstBlogs }) {
     setStartFetching(true);
     setIndexValue(indexValue+loadPerPage);
 
-    console.log("count " + dataCount +  " pageIndex " + pageIndex)
+    //console.log("count " + dataCount +  " pageIndex " + pageIndex)
     setDataCount(dataCount + 3)
     setPageIndex(pageIndex + 1)
 
@@ -84,36 +75,26 @@ export default function Blogs({ menus , firstBlogs }) {
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
           
-{/* {console.log("Loaded: ")}
-{console.log(dataLoaded)}
-{console.log("More: ")}
-{console.log(morePosts)} */}
-
-          {(startFetching) ?  
+        {(startFetching) ?  
+        (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs) => (
           
-            (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs,index) => (
-              <LoadMoreBlogs posts={blogs} />
-              // post.map((blogInfo,i) => (
-                
-                
-              //   //console.log(blogInfo.title.rendered)
-              //     // <li key={blogInfo.id}><p>{blogInfo.title.rendered}</p></li>
-              // ))
+          <LoadMoreBlogs posts={blogs} />
+          
+          ))) :  <p>Loading  </p>
+          : <p></p>
+        } 
 
-              ))) : (<p>Loading  </p>)
-              : <p>No data found ...</p> 
-            } 
+        <button
+          className=' mx-auto flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-6 py-6'
+          onClick={handleClick}
+          type="button"
+          >
+          Load More 
+          ({indexValue})    
+        </button>
       </Container>
-      {/* {startFetching && <MoreLoader value={indexValue} perPage={loadPerPage} />} */}
     
-      <button
-        className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
-        onClick={handleClick}
-        type="button"
-        >
-        Load More 
-        ({indexValue})    
-      </button>
+      
 
       <Footer footer={mainFooter}/>
     </Layout>

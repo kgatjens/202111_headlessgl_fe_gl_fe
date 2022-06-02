@@ -13,18 +13,22 @@ export default function BlogsPreview({
   
 }) {
 
-  const imageSrc = (coverImage.node) ? coverImage.node.sourceUrl : coverImage
-  const imageTitle = (coverImage.node) ? coverImage.node.title : "Blog image"
-  const imageSrcSet = (coverImage.node) ? coverImage.node.srcSet : ""
-
+  
+  const imageSrc = (coverImage?.node) ? coverImage.node?.sourceUrl : coverImage
+  const imageTitle = (coverImage?.node) ? coverImage.node?.title : "Blog image"
+  const imageSrcSet = (coverImage?.node) ? coverImage.node?.srcSet : ""
+  
+  //Backup image
+  const backImage = (imageSrc===null) ? "https://headlessgl22.wpengine.com/wp-content/uploads/2022/04/gl_blue.png" : imageSrc
+  
   return (
     <div>
-      <div className="mb-5">
-        {coverImage && (
-          <FeaturedImage title={imageTitle} source={imageSrc} sourceSet={imageSrcSet} slug={slug} />
+      <div className="mb-5" key={slug}>
+        {backImage && (
+          <FeaturedImage title={imageTitle} source={backImage} sourceSet={imageSrcSet} slug={slug} />
         )}
       </div>
-      <h3 className="text-3xl mb-3 leading-snug">
+      <h3 className="text-2xl mb-3 leading-snug">
         <Link href={`/blogs/${slug}`}>
           <a
             className="hover:underline"
@@ -38,7 +42,7 @@ export default function BlogsPreview({
           : <p> No Date</p> 
         }      </div>
       <div
-        className="text-lg leading-relaxed mb-4"
+        className="text-md leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
         {(author)&&(author.lenght>0) ?  
