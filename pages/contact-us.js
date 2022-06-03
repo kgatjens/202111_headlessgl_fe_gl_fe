@@ -16,11 +16,21 @@ export default function ContactUs({ menus }) {
   
   const pageTitle = "GL - Contact Us";
   const { mainNav, mainFooter } = menus || {};
+
+  const metaTitle     = "Contact Us"
+  const featuredImage = ""
+  const metaKeywords  = "contact"
+  const metaDesc      = "Contact us page Description"
+  const canonical     = ""
+
+  //const headerData = {pageTitle, menuItems}
+  const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   
   return (
     <>
       <Layout>
-      <Header header={mainNav} />
+      
+      <Header header={mainNav} metaData={metaData}  />
     
       <Container>
         <h1>Contact Us</h1>
