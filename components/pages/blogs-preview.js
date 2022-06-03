@@ -23,7 +23,7 @@ export default function BlogsPreview({
   
   return (
     <div>
-      <div className="mb-5" key={slug}>
+      <div className="mb-5" >
         {backImage && (
           <FeaturedImage title={imageTitle} source={backImage} sourceSet={imageSrcSet} slug={slug} />
         )}
