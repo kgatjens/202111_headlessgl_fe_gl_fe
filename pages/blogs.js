@@ -76,9 +76,9 @@ export default function Blogs({ menus , firstBlogs }) {
         <MoreBlogs posts={morePosts} />}
           
         {(startFetching) ?  
-        (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs) => (
+        (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs, index) => (
           
-          <LoadMoreBlogs posts={blogs} />
+          <LoadMoreBlogs key={index} posts={blogs} />
           
           ))) :  <p>Loading  </p>
           : <p></p>

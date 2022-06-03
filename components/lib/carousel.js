@@ -18,8 +18,8 @@ export default class NextJsCarousel extends Component {
               {/*those are some available properties */}
               <Carousel axis={'vertical'} showArrows={true} _onChange={''} _onClickItem={''} _onClickThumb={''}>
               {slider.map((fields,index)  => (
-                  <div key={index} >
-                      {console.log(sliderFields[fields])}
+                  <div key={`car_${index}`} >
+                      {console.log(index)}
                       {console.log(sliderFields[fields].title)}
                       <img  src={ sliderFields[fields].sourceUrl } alt={ sliderFields[fields].altText }/>
                       <p className="legend">{ sliderFields[fields].title }</p>
