@@ -28,11 +28,11 @@ export default function Blogs({ post, posts, menus }) {
   const { mainNav, mainFooter } = menus || {};
 
   //Metas
-  const metaTitle     = post.seo.title;
-  const featuredImage = post.featuredImage.node.sourceUrl;
-  const metaKeywords  = post.seo.metaKeywords;
-  const metaDesc      = post.seo.metaDesc;
-  const canonical     = post.seo.canonical;
+  const metaTitle     = post?.seo.title;
+  const featuredImage = post?.featuredImage.node.sourceUrl;
+  const metaKeywords  = post?.seo.metaKeywords;
+  const metaDesc      = post?.seo.metaDesc;
+  const canonical     = post?.seo.canonical;
 
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
