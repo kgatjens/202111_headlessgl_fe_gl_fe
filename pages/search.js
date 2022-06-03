@@ -38,6 +38,8 @@ export default function Search({ menus }) {
   const metaDesc      = "Search Desc"
   const canonical     = ""
 
+  const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
+
   return (
     <>
       <Layout>
