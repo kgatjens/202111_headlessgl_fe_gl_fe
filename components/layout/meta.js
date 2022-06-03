@@ -8,10 +8,10 @@ export default function Meta(metaData) {
 
    if (metaData.headerData.metaDesc === '') console.log(metaData.headerData.metaDesc);
   
-  const metaTitle      = typeof metaData.headerData !== 'undefined' ||  metaData.headerData.metaTitle !== '' ? metaData.headerData.metaTitle : SITE_NAME;
-  const featuredImage  = typeof metaData.headerData !== 'undefined' ||  metaData.headerData.featuredImage !== '' ? metaData.headerData.featuredImage : '';
-  const metaDesc       = typeof metaData.headerData !== 'undefined' ||  metaData.headerData.metaDesc !== '' ? metaData.headerData.metaDesc : SITE_NAME;
-  const metaKeywords   = typeof metaData.headerData !== 'undefined' ||  metaData.headerData.metaKeywords !=='' ? metaData.headerData.metaKeywords : SITE_NAME;
+  const metaTitle      = typeof metaData?.headerData !== 'undefined' ||  metaData.headerData?.metaTitle !== '' ? metaData.headerData.metaTitle : SITE_NAME;
+  const featuredImage  = typeof metaData?.headerData !== 'undefined' ||  metaData.headerData?.featuredImage !== '' ? metaData.headerData.featuredImage : '';
+  const metaDesc       = typeof metaData?.headerData !== 'undefined' ||  metaData.headerData?.metaDesc !== '' ? metaData.headerData.metaDesc : SITE_NAME;
+  const metaKeywords   = typeof metaData?.headerData !== 'undefined' ||  metaData.headerData?.metaKeywords !=='' ? metaData.headerData.metaKeywords : SITE_NAME;
 
   return (
     <>

@@ -11,6 +11,8 @@ export default function PostHeader({
   author,
   categories,
 }) {
+console.log(coverImage);
+ const coverImageValidated = (coverImage) ? coverImage : {}
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -18,7 +20,8 @@ export default function PostHeader({
         <Avatar author={author} />
       </div>
       <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} coverImage={coverImage} />
+        
+        <CoverImage title={title} coverImage={coverImageValidated} />
       </div>
       <div className="max-w-2xl mx-auto">
         <div className="block md:hidden mb-6">
