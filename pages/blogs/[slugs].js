@@ -57,13 +57,13 @@ export default function Blogs({ post, posts, menus }) {
               </title>
               { <meta
                 property="og:image"
-                content={post.featuredImage?.sourceUrl}
+                content={post?.featuredImage?.sourceUrl}
               /> }
             </Head>
             
             <BlogHeader
               title={post.title}
-              coverImage={post.featuredImage}
+              coverImage={post?.featuredImage}
               date={post.date}
               author={post.author}
               categories={post.categories}

@@ -32,10 +32,17 @@ export default function Search({ menus }) {
   if (error) <p>Loading failed...</p>;
   if (!data) <h1>Loading...</h1>;
 
+  const metaTitle     = "Search Page"
+  const featuredImage = ""
+  const metaKeywords  = "Search Key"
+  const metaDesc      = "Search Desc"
+  const canonical     = ""
+
   return (
     <>
       <Layout>
-      <Header header={mainNav} />
+      
+      <Header header={mainNav} metaData={metaData}  />
       
       
       <Container>

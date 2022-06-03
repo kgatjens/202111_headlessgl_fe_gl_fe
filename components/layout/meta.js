@@ -6,7 +6,7 @@ export default function Meta(metaData) {
   //  console.log(">>>>");
   //  console.log(metaData.headerData);
 
-   if (metaData.headerData.metaDesc === '') console.log(metaData.headerData.metaDesc);
+   if (metaData.headerData.metaDesc === '') console.log(metaData);
   
   const metaTitle      = typeof metaData?.headerData !== 'undefined' ||  metaData.headerData?.metaTitle !== '' ? metaData.headerData.metaTitle : SITE_NAME;
   const featuredImage  = typeof metaData?.headerData !== 'undefined' ||  metaData.headerData?.featuredImage !== '' ? metaData.headerData.featuredImage : '';
