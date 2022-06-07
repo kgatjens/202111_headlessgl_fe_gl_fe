@@ -9,11 +9,11 @@ import useSWR from "swr";
 import { useState } from 'react';
 import axios from "axios";
 
-import { getFirstBlogs, getMenus } from '../lib/wp/api'
+import { getFirstBlogs, getMenus, blogAuthors } from '../lib/wp/api'
 
 const loadedMoreData = {};
 
-export default function Blogs({ menus , firstBlogs }) {
+export default function Blogs({ menus , firstBlogs, authors }) {
   
   const pageTitle = "GL - Blogs";
   const { mainNav, mainFooter } = menus || {};
@@ -54,7 +54,6 @@ export default function Blogs({ menus , firstBlogs }) {
   const handleClick = () => {
     setStartFetching(true);
     setIndexValue(indexValue+loadPerPage);
-
     //console.log("count " + dataCount +  " pageIndex " + pageIndex)
     setDataCount(dataCount + 3)
     setPageIndex(pageIndex + 1)
@@ -63,6 +62,8 @@ export default function Blogs({ menus , firstBlogs }) {
     
   };
 
+  console.log("Authors:");
+  console.log(authors);
   
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
@@ -71,6 +72,8 @@ export default function Blogs({ menus , firstBlogs }) {
       <Header header={mainNav} metaData={metaData} />
     
       <Container>
+
+
       
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
@@ -94,8 +97,6 @@ export default function Blogs({ menus , firstBlogs }) {
         </button>
       </Container>
     
-      
-
       <Footer footer={mainFooter}/>
     </Layout>
     </>
@@ -106,7 +107,9 @@ export async function getStaticProps() {
     
   const firstBlogs = await getFirstBlogs()
   const menus = await getMenus()
+  const authors = await blogAuthors()
+  
   return {
-    props: { menus , firstBlogs },
+    props: { menus , firstBlogs, authors },
   }
 }
