@@ -76,8 +76,6 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
       <Container>
         <BlogFilter authors={authors} categories={categories}/>
 
-
-      
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
           
