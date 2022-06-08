@@ -2,6 +2,8 @@ import Container from '../components/layout/container'
 import Layout from '../components/layout/layout'
 import Header from '../components/layout/header'
 import Footer from '../components/layout/footer'
+import BlogFilter from '../components/layout/blog-filter'
+
 import MoreBlogs from '../components/pages/more-posts'
 import LoadMoreBlogs from '../components/blogs/load-more'
 
@@ -9,11 +11,11 @@ import useSWR from "swr";
 import { useState } from 'react';
 import axios from "axios";
 
-import { getFirstBlogs, getMenus, blogAuthors } from '../lib/wp/api'
+import { getFirstBlogs, getMenus, blogAuthors, blogCategories } from '../lib/wp/api'
 
 const loadedMoreData = {};
 
-export default function Blogs({ menus , firstBlogs, authors }) {
+export default function Blogs({ menus , firstBlogs, authors, categories }) {
   
   const pageTitle = "GL - Blogs";
   const { mainNav, mainFooter } = menus || {};
@@ -62,8 +64,8 @@ export default function Blogs({ menus , firstBlogs, authors }) {
     
   };
 
-  console.log("Authors:");
-  console.log(authors);
+  console.log("categories:");
+  console.log(categories);
   
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
@@ -72,9 +74,8 @@ export default function Blogs({ menus , firstBlogs, authors }) {
       <Header header={mainNav} metaData={metaData} />
     
       <Container>
+        <BlogFilter authors={authors} categories={categories}/>
 
-
-      
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
           
@@ -108,8 +109,9 @@ export async function getStaticProps() {
   const firstBlogs = await getFirstBlogs()
   const menus = await getMenus()
   const authors = await blogAuthors()
+  const categories = await blogCategories()
   
   return {
-    props: { menus , firstBlogs, authors },
+    props: { menus , firstBlogs, authors, categories },
   }
 }
