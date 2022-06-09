@@ -50,6 +50,10 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
     }
 })
 
+//functional URL for filter author & caegories:
+//handleBlogFilterFormSubmit
+//https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=10&offset=0&orderby=date&order=desc&author=72&categories=15
+
   const initialData = []
   const [dataLoaded, setData] = useState(initialData);
 
