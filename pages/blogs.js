@@ -38,6 +38,11 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
   const [dataCount, setDataCount] = useState(6);
   const [pageIndex, setPageIndex] = useState(1)  
 
+  //Filters shared state
+  const [ categoryId, setCategoryId ] = useState( 0 );
+  //https://stackoverflow.com/questions/67544477/next-js-how-to-change-parent-state-from-child-component-without-triggering-a-but
+//https://stackoverflow.com/questions/70882388/next-js-send-form-data-to-parent-page
+
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   
   const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc`
@@ -69,7 +74,7 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
   };
 
   console.log("categories:");
-  console.log(categories);
+  console.log(categoryId);
   
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
@@ -78,7 +83,7 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
       <Header header={mainNav} metaData={metaData} />
     
       <Container>
-        <BlogFilter authors={authors} categories={categories}/>
+        <BlogFilter authors={authors} categories={categories} onSubmit={setCategoryId}/>
 
         {morePosts.length > 0 && 
         <MoreBlogs posts={morePosts} />}
