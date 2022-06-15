@@ -14,7 +14,7 @@ const BlogFilter = ({ authors, categories, onSubmit }) => {
     onSubmit(selectedCategory);
   };
 
-  console.log("categories2:");
+  //console.log("categories2:");
   //console.log(selectedCategories);
 
   return (
