@@ -5,6 +5,7 @@ import Footer from '../components/layout/footer'
 import BlogFilter from '../components/layout/blog-filter'
 
 import MoreBlogs from '../components/pages/more-posts'
+import FilteredBlogs from '../components/blogs/filtered-posts'
 import LoadMoreBlogs from '../components/blogs/load-more'
 
 import useSWR from "swr";
@@ -45,36 +46,67 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
 
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   
-  const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc`
-   const {data, error} = useSWR(apiPost, fetcher,{
+  const filteredFetch = categoryId>0 ? true : false;
+
+  const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc`;
+  const  filteredPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=6&offset=0&orderby=date&order=desc&categories=${categoryId}`;
+   
+  const {data, error} = useSWR(filteredFetch ? filteredPost : apiPost, fetcher,{
     onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
         if (error.status === 404) return
         if (retryCount >= 10) return
         setLoading(false)
-        setTimeout(() => revalidate({ retryCount }), 5000)
+        setTimeout(() => revalidate({ retryCount }), 1000)
     }
 })
 
+const initialData = []
+const [dataLoaded, setData] = useState(initialData);
+
+const handleClick = () => {
+  setStartFetching(true);
+  setIndexValue(indexValue+loadPerPage);
+  //console.log("count " + dataCount +  " pageIndex " + pageIndex)
+  setDataCount(dataCount + 3)
+  setPageIndex(pageIndex + 1)
+
+  setData((initialData) => [...initialData,data])
+  
+};
+
+
 //functional URL for filter author & caegories:
 //handleBlogFilterFormSubmit
+//`https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc&categories=${categoryId}`
 //https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=10&offset=0&orderby=date&order=desc&author=72&categories=15
 
-  const initialData = []
-  const [dataLoaded, setData] = useState(initialData);
-
-  const handleClick = () => {
-    setStartFetching(true);
-    setIndexValue(indexValue+loadPerPage);
-    //console.log("count " + dataCount +  " pageIndex " + pageIndex)
-    setDataCount(dataCount + 3)
-    setPageIndex(pageIndex + 1)
-
-    setData((initialData) => [...initialData,data])
-    
-  };
-
+//console.log(morePosts);
+//console.log(data);
   console.log("categories:");
   console.log(categoryId);
+//   if(categoryId>0){
+//   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
+//   const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=6&offset=0&orderby=date&order=desc&categories=${categoryId}`;
+   
+//   const {data, error} = useSWR(apiPost, fetcher,{
+//     onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+//         if (error.status === 404) return
+//         if (retryCount >= 10) return
+//         setLoading(false)
+//         setTimeout(() => revalidate({ retryCount }), 1000)
+//     }
+// })
+//   // morePosts =  data;
+//    console.log(data);
+// }
+
+const filteredData = (categoryId>0) ? data : morePosts;
+console.log("categories:");
+console.log(categoryId);
+  console.log(data);
+  console.log(morePosts);
+  console.log("-----:");
+  morePosts
   
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
@@ -85,8 +117,18 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
       <Container>
         <BlogFilter authors={authors} categories={categories} onSubmit={setCategoryId}/>
 
-        {morePosts.length > 0 && 
-        <MoreBlogs posts={morePosts} />}
+        {(categoryId> 0 && data?.length>0) ?
+          
+          <FilteredBlogs posts={data} />
+          
+          : (morePosts.length > 0) ?
+            <MoreBlogs posts={morePosts} />
+          : <p></p>
+        }
+        
+
+        {/* {morePosts.length > 0 && 
+        <MoreBlogs posts={morePosts} />} */}
           
         {(startFetching) ?  
         (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs, index) => (
