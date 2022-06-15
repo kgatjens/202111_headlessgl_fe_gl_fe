@@ -41,8 +41,6 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
 
   //Filters shared state
   const [ categoryId, setCategoryId ] = useState( 0 );
-  //https://stackoverflow.com/questions/67544477/next-js-how-to-change-parent-state-from-child-component-without-triggering-a-but
-//https://stackoverflow.com/questions/70882388/next-js-send-form-data-to-parent-page
 
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   
@@ -71,7 +69,6 @@ const handleClick = () => {
   setPageIndex(pageIndex + 1)
 
   setData((initialData) => [...initialData,data])
-  
 };
 
 
@@ -80,33 +77,10 @@ const handleClick = () => {
 //`https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc&categories=${categoryId}`
 //https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=10&offset=0&orderby=date&order=desc&author=72&categories=15
 
-//console.log(morePosts);
-//console.log(data);
   console.log("categories:");
   console.log(categoryId);
-//   if(categoryId>0){
-//   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
-//   const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=6&offset=0&orderby=date&order=desc&categories=${categoryId}`;
-   
-//   const {data, error} = useSWR(apiPost, fetcher,{
-//     onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
-//         if (error.status === 404) return
-//         if (retryCount >= 10) return
-//         setLoading(false)
-//         setTimeout(() => revalidate({ retryCount }), 1000)
-//     }
-// })
-//   // morePosts =  data;
-//    console.log(data);
-// }
+//need to add the author now
 
-const filteredData = (categoryId>0) ? data : morePosts;
-console.log("categories:");
-console.log(categoryId);
-  console.log(data);
-  console.log(morePosts);
-  console.log("-----:");
-  morePosts
   
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
@@ -118,23 +92,15 @@ console.log(categoryId);
         <BlogFilter authors={authors} categories={categories} onSubmit={setCategoryId}/>
 
         {(categoryId> 0 && data?.length>0) ?
-          
           <FilteredBlogs posts={data} />
-          
           : (morePosts.length > 0) ?
             <MoreBlogs posts={morePosts} />
           : <p></p>
         }
         
-
-        {/* {morePosts.length > 0 && 
-        <MoreBlogs posts={morePosts} />} */}
-          
         {(startFetching) ?  
         (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs, index) => (
-          
           <LoadMoreBlogs key={index} posts={blogs} />
-          
           ))) :  <p>Loading  </p>
           : <p></p>
         } 
