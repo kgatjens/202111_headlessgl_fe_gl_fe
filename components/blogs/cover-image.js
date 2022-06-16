@@ -3,8 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default function CoverImage({ title, coverImage, slug }) {
-  console.log(coverImage);
-  console.log("asadsd");
+
   const backImage = (coverImage?.node?.sourceUrl===undefined||coverImage===null) ? "https://headlessgl22.wpengine.com/wp-content/uploads/2022/04/gl_blue.png" : coverImage.node?.sourceUrl
   const image = (
     <Image

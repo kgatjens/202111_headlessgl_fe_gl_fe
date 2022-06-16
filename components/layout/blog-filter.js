@@ -1,34 +1,34 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const BlogFilter = ({ authors, categories, onSubmit }) => {
+const BlogFilter = ({ authors, categories, onSubmit, onSubmit2 }) => {
   const [ categoryId, setCategoryId ] = useState( 0 );
+  const [ authorId, setAuthorId ]     = useState( 0 );
 
-  const [selectedCategory, setValue] = useState(0);
+  const [selectedCategory, setCatValue] = useState(0);
+  const [selectedAuthor, setAutValue] = useState(0);
 
 
   const handleBlogFilterFormSubmit = ( event ) => {
     event.preventDefault();
-    //Router.push( `/search?s=${searchQuery}` );
-    //return null;
+    
     onSubmit(selectedCategory);
+    onSubmit2(selectedAuthor);
   };
-
-  //console.log("categories2:");
-  //console.log(selectedCategories);
 
   return (
     <div className="flex px-2 py-2 ">
       
         <form className="flex content-center inline-block relative w-full float-left"  onSubmit={handleBlogFilterFormSubmit}>
-                <select id="authors" name="selectedAuthors" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
+                <select id="authors" name="selectedAuthor" value={selectedAuthor} onChange={(e) => {setAutValue(e.target.value);}} class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
                 <option key="author" value="">Authors </option>
                 {authors.edges?.map((author, index) => (
-                    <option key={index} value={author.node.authorId}>{author.node.name} </option>
+                  
+                     <option key={index} value={author.node.userId}>{author.node.name} </option>
                 ))
                 } 
                 </select>
-                <select id="categories" name="selectedCategory" value={selectedCategory} onChange={(e) => {setValue(e.target.value);}} class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
+                <select id="categories" name="selectedCategory" value={selectedCategory} onChange={(e) => {setCatValue(e.target.value);}} class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
                 <option key="category" value="">Categories </option>
                 {categories.edges?.map((category, index) => (
                     <option key={index} value={category.node.categoryId}>{category.node.name} </option>
