@@ -41,13 +41,17 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
 
   //Filters shared state
   const [ categoryId, setCategoryId ] = useState( 0 );
+  const [ authorId, setAuthorId ]     = useState( 0 );
 
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   
-  const filteredFetch = categoryId>0 ? true : false;
+  const filteredFetch = (categoryId>0 || authorId>0) ? true : false;
 
   const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc`;
-  const  filteredPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=6&offset=0&orderby=date&order=desc&categories=${categoryId}`;
+
+  const categoryApi = categoryId>0 ? `&categories=${categoryId}` : ""
+  const authorApi   = authorId>0 ? `&author=${authorId}` : ""
+  const  filteredPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=6&offset=0&orderby=date&order=desc${categoryApi}${authorApi}`;
    
   const {data, error} = useSWR(filteredFetch ? filteredPost : apiPost, fetcher,{
     onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
@@ -79,9 +83,9 @@ const handleClick = () => {
 
   console.log("categories:");
   console.log(categoryId);
-//need to add the author now
+  console.log("API:");
+  console.log(filteredPost);
 
-  
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
     <>
@@ -89,9 +93,9 @@ const handleClick = () => {
       <Header header={mainNav} metaData={metaData} />
     
       <Container>
-        <BlogFilter authors={authors} categories={categories} onSubmit={setCategoryId}/>
+        <BlogFilter authors={authors} categories={categories} onSubmit={setCategoryId} onSubmit2={setAuthorId}/>
 
-        {(categoryId> 0 && data?.length>0) ?
+        {(( categoryId> 0 || authorId>0 ) && data?.length>0) ?
           <FilteredBlogs posts={data} />
           : (morePosts.length > 0) ?
             <MoreBlogs posts={morePosts} />
