@@ -11,9 +11,15 @@ const BlogFilter = ({ authors, categories, onSubmit, onSubmit2 }) => {
 
   const handleBlogFilterFormSubmit = ( event ) => {
     event.preventDefault();
-    
     onSubmit(selectedCategory);
     onSubmit2(selectedAuthor);
+  };
+
+  const handleBlogClearFormSubmit = ( event ) => {
+    event.preventDefault();
+    onSubmit(0);
+    onSubmit2(0);
+    
   };
 
   return (
@@ -23,7 +29,6 @@ const BlogFilter = ({ authors, categories, onSubmit, onSubmit2 }) => {
                 <select id="authors" name="selectedAuthor" value={selectedAuthor} onChange={(e) => {setAutValue(e.target.value);}} class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
                 <option key="author" value="">Authors </option>
                 {authors.edges?.map((author, index) => (
-                  
                      <option key={index} value={author.node.userId}>{author.node.name} </option>
                 ))
                 } 
@@ -40,18 +45,16 @@ const BlogFilter = ({ authors, categories, onSubmit, onSubmit2 }) => {
                 value="Filter"
                 onClick={handleBlogFilterFormSubmit}
                 className="cursor-pointer	text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded"/>
+            <input
+                type="submit"
+                value="Clear"
+                onClick={handleBlogClearFormSubmit}
+                className="cursor-pointer	text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded"/>
         </form>
       
     </div>
   );
 };
 
-BlogFilter.propTypes = {
-//handleBlogFilterFormSubmit: PropTypes.func
-};
-  
-BlogFilter.defaultProps = {
-//handleBlogFilterFormSubmit: () => null
-};
 
 export default BlogFilter;
