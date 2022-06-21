@@ -2,6 +2,8 @@ import Container from '../components/layout/container'
 import Layout from '../components/layout/layout'
 import Header from '../components/layout/header'
 import Footer from '../components/layout/footer'
+import SkeletonCard from '../components/layout/skeletonCard'
+
 import BlogFilter from '../components/layout/blog-filter'
 
 import MoreBlogs from '../components/pages/more-posts'
@@ -9,8 +11,10 @@ import FilteredBlogs from '../components/blogs/filtered-posts'
 import LoadMoreBlogs from '../components/blogs/load-more'
 
 import useSWR from "swr";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
+
+
 
 import { getFirstBlogs, getMenus, blogAuthors, blogCategories } from '../lib/wp/api'
 
@@ -94,6 +98,17 @@ const handleClick = () => {
   const filteredMessage = (filteredFetch && data?.length===0) ? "No results for this filter." : (filteredFetch) ? `Total results: ${data?.length}` : "";
   const filteredLoadButton = (data?.length>=loadPerPage) ? true : false;
 
+  
+
+  const [loading2, setLoading2] = useState(true);
+
+  useEffect(() => {
+    if (data) {
+      setTimeout(() => {
+        setLoading2(false);
+      }, 1000);
+    }
+  }, [data]);
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   return (
     <>
@@ -103,20 +118,29 @@ const handleClick = () => {
       <Container>
         <BlogFilter authors={authors} categories={categories} onSubmit={setCategoryId} onSubmit2={setAuthorId}/>
 
-        <h6>{filteredMessage}</h6>
-        {(filteredFetch && data?.length>0) ?
-          <FilteredBlogs posts={data} />
-          : (morePosts.length > 0) ?
-            <MoreBlogs posts={morePosts} />
-          : <p>No filtered info</p>
-        }
+        {loading2 ? (
+            <SkeletonCard />
+          ) : (
+            <>
+              <h6 className='animate-pulse'>{filteredMessage}</h6> 
+              { (filteredFetch && data?.length>0) ?
+                <FilteredBlogs className='animate-pulse' posts={data} />
+                : (morePosts.length > 0) ?
+                  <MoreBlogs className='animate-pulse' posts={morePosts} />
+                : <p>No filtered info</p>
+              }
 
-        {(startFetching) ?  
-        (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs, index) => (
-          <LoadMoreBlogs key={index} posts={blogs} />
-          ))) :  <p>Loading  </p>
-          : <p></p>
-        } 
+              {(startFetching) ?  
+              (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs, index) => (
+                <LoadMoreBlogs className='animate-pulse' key={index} posts={blogs} />
+                ))) :  <p>Loading  </p>
+                : <p></p>
+              } 
+          </>
+      )}
+        
+        
+
 
         {(filteredLoadButton) ? 
         <button
