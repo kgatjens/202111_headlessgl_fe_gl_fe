@@ -25,7 +25,7 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
   const pageTitle = "GL - Blogs";
   const { mainNav, mainFooter } = menus || {};
   const blogs = firstBlogs.edges
-  const morePosts = blogs.slice(0)
+  
   const loadedPost = {};
 
   const metaTitle     = 'Blog Landing - Gorilla Logic';
@@ -50,6 +50,8 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   
   const filteredFetch = (categoryId>0 || authorId>0) ? true : false;
+
+  const morePosts = filteredFetch ? [] : blogs.slice(0);
 
   const  apiPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc`;
 
