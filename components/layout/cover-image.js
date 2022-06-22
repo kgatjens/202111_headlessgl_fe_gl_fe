@@ -4,10 +4,16 @@ import Link from 'next/link'
 
 export default function CoverImage({ title, coverImage }) {
   const image = (
-    <img
+    <Image
+    layout="fixed"
+      width={1440}
+      height={330}
+      sizes="(max-width: 1440px) 200px, 50vw"
       src={coverImage}
       className={'object-cover h-full w-full'}
       alt={title}
+      
+      
     />
   )
   return (

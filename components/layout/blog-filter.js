@@ -27,14 +27,14 @@ const BlogFilter = ({ authors, categories, onSubmit, onSubmit2 }) => {
     <div className="flex px-2 py-2 ">
       
         <form className="flex content-center inline-block relative w-full float-left"  onSubmit={handleBlogFilterFormSubmit}>
-                <select id="authors" name="selectedAuthor" value={selectedAuthor} onChange={(e) => {setAutValue(e.target.value);}} class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
+                <select id="authors" name="selectedAuthor" value={selectedAuthor} onChange={(e) => {setAutValue(e.target.value);}} className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
                 <option key="author" value="0">Authors </option>
                 {authors.edges?.map((author, index) => (
                      <option key={index} value={author.node.userId}>{author.node.name} </option>
                 ))
                 } 
                 </select>
-                <select id="categories" name="selectedCategory" value={selectedCategory} onChange={(e) => {setCatValue(e.target.value);}} class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
+                <select id="categories" name="selectedCategory" value={selectedCategory} onChange={(e) => {setCatValue(e.target.value);}} className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "> 
                 <option key="category" value="0">Categories </option>
                 {categories.edges?.map((category, index) => (
                     <option key={index} value={category.node.categoryId}>{category.node.name} </option>
