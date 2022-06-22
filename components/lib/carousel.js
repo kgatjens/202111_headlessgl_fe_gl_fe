@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Image from 'next/image'
   
 export default class NextJsCarousel extends Component {
    render() {
@@ -21,7 +22,7 @@ export default class NextJsCarousel extends Component {
                   <div key={`car_${index}`} >
                       {console.log(index)}
                       {console.log(sliderFields[fields].title)}
-                      <img  src={ sliderFields[fields].sourceUrl } alt={ sliderFields[fields].altText }/>
+                      <Image  src={ sliderFields[fields].sourceUrl } alt={ sliderFields[fields].altText }/>
                       <p className="legend">{ sliderFields[fields].title }</p>
                   </div>
                  ))} 

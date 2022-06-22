@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function CoverImage({ title, coverImage }) {
   const image = (
-    <img
+    <Image
       src={coverImage}
       className={'object-cover h-full w-full'}
       alt={title}
