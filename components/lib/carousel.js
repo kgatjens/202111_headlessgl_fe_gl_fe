@@ -22,7 +22,7 @@ export default class NextJsCarousel extends Component {
                   <div key={`car_${index}`} >
                       {console.log(index)}
                       {console.log(sliderFields[fields].title)}
-                      <Image  src={ sliderFields[fields].sourceUrl } alt={ sliderFields[fields].altText }/>
+                      <img  src={ sliderFields[fields].sourceUrl } alt={ sliderFields[fields].altText }/>
                       <p className="legend">{ sliderFields[fields].title }</p>
                   </div>
                  ))} 

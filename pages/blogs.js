@@ -74,18 +74,11 @@ const [dataLoaded, setData] = useState(initialData);
 const handleClick = () => {
   setStartFetching(true);
   setIndexValue(indexValue+loadPerPage);
-  //console.log("count " + dataCount +  " pageIndex " + pageIndex)
   setDataCount(dataCount + 3)
   setPageIndex(pageIndex + 1)
 
   setData((initialData) => [...initialData,data])
 };
-
-
-//functional URL for filter author & caegories:
-//handleBlogFilterFormSubmit
-//`https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=${dataCount}&orderby=date&order=desc&categories=${categoryId}`
-//https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=10&offset=0&orderby=date&order=desc&author=72&categories=15
 
   console.log("_______:");  
   console.log("category:");

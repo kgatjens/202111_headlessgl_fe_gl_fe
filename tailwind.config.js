@@ -19,6 +19,7 @@ module.exports = {
         lightblue2:'#1293CD',
         gray: '#4A4A4A',
         gray2: '#979797',
+        gray3: '#ccc',
       },
     },
     
