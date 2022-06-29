@@ -38,13 +38,10 @@ export default function Header(headerData) {
                     <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
                     { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
                             
-                            <li className="hover:text-darkblue px-4" key={ menuItem.id }><Link  href={ menuItem.url ?? '/' }>
+                            <li className="hover:text-darkblue px-4" key={ menuItem.id }><Link  href={ menuItem.path ?? '/' }>
                                 <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                             </Link></li>
                         ) ) : null }
-                        {/* <li className="hover:text-darkblue px-4" key="Blogs"><Link  href="/blogs">
-                                <a dangerouslySetInnerHTML={ { __html: "Blogs" } }/>
-                            </Link></li> */}
                     </ul>
                 </div>
                    
