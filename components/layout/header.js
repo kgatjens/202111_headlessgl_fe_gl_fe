@@ -42,9 +42,9 @@ export default function Header(headerData) {
                                 <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                             </Link></li>
                         ) ) : null }
-                        <li className="hover:text-darkblue px-4" key="Blogs"><Link  href="/blogs">
+                        {/* <li className="hover:text-darkblue px-4" key="Blogs"><Link  href="/blogs">
                                 <a dangerouslySetInnerHTML={ { __html: "Blogs" } }/>
-                            </Link></li>
+                            </Link></li> */}
                     </ul>
                 </div>
                    
