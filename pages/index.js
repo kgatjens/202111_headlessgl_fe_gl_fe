@@ -18,9 +18,8 @@ export default function Home({ data, homepage, carouselHomepage  }) {
   const { carousel }  = carouselHomepage || {};
   const { mainNav, mainFooter } = data || {};
 
-  // const cleanCarousel = Object.values(carousel);
-  // console.log(cleanCarousel);
-  // console.log(Array.isArray(cleanCarousel))
+  
+  // console.log(data)
   // console.log("🧐");
 
   //Metas
