@@ -16,10 +16,10 @@ export default function Home({ data, homepage, carouselHomepage  }) {
   
   const { allHomepage } = homepage || {};
   const { carousel }  = carouselHomepage || {};
-  const { mainNav, mainFooter, capabilities } = data || {};
+  const { mainNav, mainFooter } = data || {};
 
   
-  console.log(capabilities)
+  console.log(mainNav)
   console.log("🧐");
 
   //Metas

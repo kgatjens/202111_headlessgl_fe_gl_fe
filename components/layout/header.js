@@ -37,10 +37,19 @@ export default function Header(headerData) {
                 <div className="hidden md:flex w-3/4 pt-2 content-center justify-between md:justify-end ">
                     <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
                     { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
-                            
-                            <li className="hover:text-darkblue px-4" key={ menuItem.id }><Link  href={ menuItem.path ?? '/' }>
-                                <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
-                            </Link></li>
+                             (menuItem.parentDatabaseId > 0 ) ? null : 
+                             (menuItem.childItems.length > 0) ? 
+                             <li className="hover:text-darkblue px-4 child" key={ menuItem.id }>
+                                <Link  href={ menuItem.path ?? '/' }>
+                                    <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
+                                </Link>
+                            </li> : 
+                            <li className="hover:text-darkblue px-4" key={ menuItem.id }>
+                                <Link  href={ menuItem.path ?? '/' }>
+                                    <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
+                                </Link>
+                            </li>
+                            //console.log(menuItem)
                         ) ) : null }
                     </ul>
                 </div>
