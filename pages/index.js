@@ -56,6 +56,8 @@ export default function Home({ data, homepage, carouselHomepage  }) {
         />
 
       )}
+
+      
       </Container>
     
       <Footer footer={mainFooter}/>
