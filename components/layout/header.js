@@ -37,39 +37,32 @@ export default function Header(headerData) {
                 <div className="hidden md:flex w-3/4 pt-2 content-center justify-between md:justify-end ">
                     <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
                     { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
-                            
-                            (menuItem.parentId === null) ?  
-                            (
-                            <li className="hover:text-darkblue px-4" key={ menuItem.id }>
+   
+                        (menuItem.childItems.nodes.length > 0 && menuItem.parentId === null) ? 
+                        <>
+                            <li className="hover:text-darkblue px-4 parent" key={ menuItem.id }>
                                 <Link  href={ menuItem.path ?? '/' }>
                                     <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                                 </Link>
                             </li>
-                            
-                            
-                            )
-                             
-                             :
-                             (menuItem.childItems.nodes.length > 0) ? 
-                        
-                             (menuItem.childItems.nodes.map( childItem => (
+                            {(menuItem.childItems.nodes.map( childItem => (
                                 <li className="hover:text-darkblue px-4 child hidden" key={ childItem.id }>
-                                <Link  href={ childItem.path ?? '/' }>
-                                    <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
-                                    
-                                </Link>
+                                    <Link  href={ childItem.path ?? '/' }>
+                                        <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
+                                        
+                                    </Link>
                                 </li>
-                             ))) 
-                              
-                             :null
-                            
-                            
+                            ))) }
+                        </> : 
+                        (menuItem.parentId === null) ? 
+                        <li className="hover:text-darkblue px-4 no-parent" key={ menuItem.id }>
+                            <Link  href={ menuItem.path ?? '/' }>
+                                <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
+                            </Link>
+                        </li>
+                        :null
                         ) ) : null 
-                        }
-
-
-
-
+                    }
                     </ul>
                 </div>
                    
