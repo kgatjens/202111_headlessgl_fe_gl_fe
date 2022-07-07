@@ -2,11 +2,12 @@ import Head from 'next/head';
 import Meta from '../layout/meta'
 
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState, useRef } from 'react';
+
 
 import NavSearch from '../search/search-nav';
 
-export default function Header(headerData) {
+export default function Header(headerData, ref) {
     // const { headerData } = menuItems || {};
     //const { pageTitle, menuItems } = headerData || {};
 
@@ -19,6 +20,24 @@ export default function Header(headerData) {
     // console.log("@@@");
     // console.log(headerData.metaData);
     // console.log("@@@");
+    const childItem = useRef(0);
+   // const childItem = useRef(0);
+
+
+    const handleHover = () => {
+        //child-item-main-nav block
+        console.log(" in in in ")
+        console.log(childItem.current)
+        
+        childItem.current.style.backgroundColor = 'red';
+    }
+
+    const handleHoverExit = () => {
+        //child-item-main-nav hidden
+        console.log(" out out out ")
+        //childItem.current.style.display = "none";
+        childItem.current.style.backgroundColor = 'blue';
+    }
     
     return (
         <> 
@@ -40,23 +59,32 @@ export default function Header(headerData) {
    
                         (menuItem.childItems.nodes.length > 0 && menuItem.parentId === null) ? 
                         <>
-                            <li className="hover:text-darkblue px-4 parent" key={ menuItem.id }>
-                                <Link  href={ menuItem.path ?? '/' }>
+                            <li  key={ menuItem.id } className="hover:text-darkblue px-4 parent-main-nav" 
+                                onMouseMove={(e) => handleHover(e)}
+                                onMouseOut={(e) => handleHoverExit(e)}
+                            >
+                                <Link key={ menuItem.id }  href={ menuItem.path ?? '/' }>
                                     <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                                 </Link>
                             </li>
-                            {(menuItem.childItems.nodes.map( childItem => (
-                                <li className="hover:text-darkblue px-4 child hidden" key={ childItem.id }>
-                                    <Link  href={ childItem.path ?? '/' }>
-                                        <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
-                                        
+                            
+                            <li ref={childItem} style={{ backgroundColor: 'blue' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
+                            <Link key="sadsad"  href="sdasdasd" >
+                                        <a dangerouslySetInnerHTML={ { __html: "childItem.label" } }/>
                                     </Link>
                                 </li>
-                            ))) }
+
+                            {/* {(menuItem.childItems.nodes.map( childItem => (
+                                <li ref={childItem} style={{ backgroundColor: 'blue' }} className="hover:text-darkblue px-4 child-item-main-nav"  key={ childItem.id }>
+                                    <Link key={ childItem.id }  href={ childItem.path ?? '/' }>
+                                        <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
+                                    </Link>
+                                </li>
+                            ))) } */}
                         </> : 
                         (menuItem.parentId === null) ? 
-                        <li className="hover:text-darkblue px-4 no-parent" key={ menuItem.id }>
-                            <Link  href={ menuItem.path ?? '/' }>
+                        <li className="hover:text-darkblue px-4 no-parent" >
+                            <Link key={ menuItem.id }  href={ menuItem.path ?? '/' }>
                                 <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                             </Link>
                         </li>
