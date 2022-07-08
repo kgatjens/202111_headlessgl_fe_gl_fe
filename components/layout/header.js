@@ -20,23 +20,31 @@ export default function Header(headerData, ref) {
     // console.log("@@@");
     // console.log(headerData.metaData);
     // console.log("@@@");
-    const childItem = useRef(0);
+    //const childItem = useRef([]);
+    
    // const childItem = useRef(0);
+const self = useRef({}).current
+const childItem = key => r => { self[key] = r }
+
 
 
     const handleHover = () => {
         //child-item-main-nav block
         console.log(" in in in ")
-        console.log(childItem.current)
+        //console.log(childItem)
+        //childItem.forEach(element => element.current.style.display = 'block');
         
-        childItem.current.style.backgroundColor = 'red';
+        console.log(childItem)
+        console.log(self)
+        //childItem
+        //childItem.current.style.display = 'block';
     }
 
     const handleHoverExit = () => {
         //child-item-main-nav hidden
         console.log(" out out out ")
         //childItem.current.style.display = "none";
-        childItem.current.style.backgroundColor = 'blue';
+        //childItem.current.style.display = 'none';
     }
     
     return (
@@ -68,19 +76,19 @@ export default function Header(headerData, ref) {
                                 </Link>
                             </li>
                             
-                            <li ref={childItem} style={{ backgroundColor: 'blue' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
-                            <Link key="sadsad"  href="sdasdasd" >
+                            {/* <li ref={childItem} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
+                                    <Link key="sadsad"  href="sdasdasd" >
                                         <a dangerouslySetInnerHTML={ { __html: "childItem.label" } }/>
                                     </Link>
-                                </li>
+                            </li> */}
 
-                            {/* {(menuItem.childItems.nodes.map( childItem => (
-                                <li ref={childItem} style={{ backgroundColor: 'blue' }} className="hover:text-darkblue px-4 child-item-main-nav"  key={ childItem.id }>
+                            {(menuItem.childItems.nodes.map( (childItem, index) => (
+                                <li ref={childItem[index]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key={ childItem.id }>
                                     <Link key={ childItem.id }  href={ childItem.path ?? '/' }>
                                         <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
                                     </Link>
                                 </li>
-                            ))) } */}
+                            ))) }
                         </> : 
                         (menuItem.parentId === null) ? 
                         <li className="hover:text-darkblue px-4 no-parent" >
