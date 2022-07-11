@@ -12,6 +12,7 @@ export default function Header(headerData, ref) {
     //const { pageTitle, menuItems } = headerData || {};
 
     const [active, setActive] = useState(false);
+    let childItemsTotal = 0;
 
     const handleClick = () => {
         setActive(!active);
@@ -20,31 +21,30 @@ export default function Header(headerData, ref) {
     // console.log("@@@");
     // console.log(headerData.metaData);
     // console.log("@@@");
-    //const childItem = useRef([]);
-    
-   // const childItem = useRef(0);
-const self = useRef({}).current
-const childItem = key => r => { self[key] = r }
 
-
+    const childItemRef = React.useRef([React.createRef(), React.createRef()]);
+    //const refsList = useRef([]);
 
     const handleHover = () => {
         //child-item-main-nav block
         console.log(" in in in ")
-        //console.log(childItem)
-        //childItem.forEach(element => element.current.style.display = 'block');
+        console.log(childItemsTotal)
         
-        console.log(childItem)
-        console.log(self)
-        //childItem
-        //childItem.current.style.display = 'block';
+         for(let i=0; i<childItemsTotal ; i++){
+            childItemRef.current[i].current.style.display = "block";
+         }
+        //childItem.current.style.display = "block";
+       
     }
 
     const handleHoverExit = () => {
-        //child-item-main-nav hidden
+        
         console.log(" out out out ")
+        for(let i=0; i<childItemsTotal ; i++){
+            childItemRef.current[i].current.style.display = "none";
+         }
         //childItem.current.style.display = "none";
-        //childItem.current.style.display = 'none';
+        
     }
     
     return (
@@ -76,19 +76,23 @@ const childItem = key => r => { self[key] = r }
                                 </Link>
                             </li>
                             
-                            {/* <li ref={childItem} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
+                            {/* <li ref={childItemRef.current[0]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
                                     <Link key="sadsad"  href="sdasdasd" >
                                         <a dangerouslySetInnerHTML={ { __html: "childItem.label" } }/>
                                     </Link>
                             </li> */}
 
                             {(menuItem.childItems.nodes.map( (childItem, index) => (
-                                <li ref={childItem[index]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key={ childItem.id }>
+                                <>
+                                
+                                { childItemsTotal++ }
+                                <li ref={childItemRef.current[index]} style={{ display: 'none' }} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 hover:text-darkblue px-4 child-item-main-nav"  key={ childItem.id }>
                                     <Link key={ childItem.id }  href={ childItem.path ?? '/' }>
                                         <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
                                     </Link>
                                 </li>
-                            ))) }
+                                </>
+                            ))) } 
                         </> : 
                         (menuItem.parentId === null) ? 
                         <li className="hover:text-darkblue px-4 no-parent" >
