@@ -75,25 +75,30 @@ export default function Header(headerData, ref) {
                                     <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                                 </Link>
                             </li>
-                            
-                            {/* <li ref={childItemRef.current[0]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
-                                    <Link key="sadsad"  href="sdasdasd" >
-                                        <a dangerouslySetInnerHTML={ { __html: "childItem.label" } }/>
-                                    </Link>
-                            </li> */}
+                            <div id="dropdownNavbar" class="z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 block" style={{ position: 'absolute', inset: '0px auto auto 0px', margin: '0px', transform: 'translate(893px, 3149px)'}} data-popper-placement="bottom">
+                                <ul className='py-1 text-sm text-gray-700 dark:text-gray-400' aria-labelledby='dropdownLargeButton'>
+                                {/* <li ref={childItemRef.current[0]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
+                                        <Link key="sadsad"  href="sdasdasd" >
+                                            <a dangerouslySetInnerHTML={ { __html: "childItem.label" } }/>
+                                        </Link>
+                                </li> */}
 
-                            {(menuItem.childItems.nodes.map( (childItem, index) => (
-                                <>
-                                
-                                { childItemsTotal++ }
-                                <li ref={childItemRef.current[index]} style={{ display: 'none' }} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 hover:text-darkblue px-4 child-item-main-nav"  key={ childItem.id }>
-                                    <Link key={ childItem.id }  href={ childItem.path ?? '/' }>
-                                        <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
-                                    </Link>
-                                </li>
-                                </>
-                            ))) } 
-                        </> : 
+                                {(menuItem.childItems.nodes.map( (childItem, index) => (
+                                    <>
+                                    
+                                    { childItemsTotal++ }
+                                    <li ref={childItemRef.current[index]} style={{ display: 'none' }} className=""  key={ childItem.id }>
+                                        <Link className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' key={ childItem.id }  href={ childItem.path ?? '/' }>
+                                            <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
+                                        </Link>
+                                    </li>
+                                    </>
+                                ))) } 
+                                </ul>
+                            </div>
+                        </> 
+                        
+                        : 
                         (menuItem.parentId === null) ? 
                         <li className="hover:text-darkblue px-4 no-parent" >
                             <Link key={ menuItem.id }  href={ menuItem.path ?? '/' }>
