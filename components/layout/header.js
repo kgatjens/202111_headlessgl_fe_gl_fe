@@ -22,29 +22,19 @@ export default function Header(headerData, ref) {
     // console.log(headerData.metaData);
     // console.log("@@@");
 
-    const childItemRef = React.useRef([React.createRef(), React.createRef()]);
-    //const refsList = useRef([]);
+    //const childItemRef = React.useRef([React.createRef(), React.createRef()]);
+    const childItemRef = React.useRef(null)
 
     const handleHover = () => {
-        //child-item-main-nav block
-        console.log(" in in in ")
-        console.log(childItemsTotal)
-        
-         for(let i=0; i<childItemsTotal ; i++){
-            childItemRef.current[i].current.style.display = "block";
-         }
-        //childItem.current.style.display = "block";
-       
+        // Commented: the case if need to work with an array of ref - useful
+        //  for(let i=0; i<childItemsTotal ; i++){
+        //     childItemRef.current[i].current.style.display = "block";
+        //  }
+        childItemRef.current.style.display = "block"; 
     }
 
     const handleHoverExit = () => {
-        
-        console.log(" out out out ")
-        for(let i=0; i<childItemsTotal ; i++){
-            childItemRef.current[i].current.style.display = "none";
-         }
-        //childItem.current.style.display = "none";
-        
+        childItemRef.current.style.display = "none";  
     }
     
     return (
@@ -68,36 +58,34 @@ export default function Header(headerData, ref) {
                         (menuItem.childItems.nodes.length > 0 && menuItem.parentId === null) ? 
                         <>
                             <li  key={ menuItem.id } className="hover:text-darkblue px-4 parent-main-nav" 
-                                onMouseMove={(e) => handleHover(e)}
-                                onMouseOut={(e) => handleHoverExit(e)}
-                            >
+                                onMouseMove={(e) => handleHover(e)}>
                                 <Link key={ menuItem.id }  href={ menuItem.path ?? '/' }>
                                     <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                                 </Link>
                             </li>
-                            <div id="dropdownNavbar" class="z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 block" style={{ position: 'absolute', inset: '0px auto auto 0px', margin: '0px', transform: 'translate(893px, 3149px)'}} data-popper-placement="bottom">
-                                <ul className='py-1 text-sm text-gray-700 dark:text-gray-400' aria-labelledby='dropdownLargeButton'>
-                                {/* <li ref={childItemRef.current[0]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
-                                        <Link key="sadsad"  href="sdasdasd" >
-                                            <a dangerouslySetInnerHTML={ { __html: "childItem.label" } }/>
-                                        </Link>
-                                </li> */}
 
+                            <div ref={childItemRef} 
+                            id="dropdownNavbar" 
+                            class="z-10 bg-darkblue divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 block" 
+                            style={{ position: 'absolute', margin: '0px', transform: 'translate(85px, 80px)', display: 'none'}} 
+                            onMouseMove={(e) => handleHover(e)}
+                            onMouseOut={(e) => handleHoverExit(e)}>
+                                <ul className='py-1 text-sm text-gray-700 dark:text-gray-400' aria-labelledby='dropdownLargeButton'>
+                                {/* <li ref={childItemRef.current[index]} ref={childItemRef.current[0]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
+                                </li> */}
                                 {(menuItem.childItems.nodes.map( (childItem, index) => (
                                     <>
-                                    
-                                    { childItemsTotal++ }
-                                    <li ref={childItemRef.current[index]} style={{ display: 'none' }} className=""  key={ childItem.id }>
-                                        <Link className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' key={ childItem.id }  href={ childItem.path ?? '/' }>
-                                            <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
-                                        </Link>
-                                    </li>
+                                    {/* { childItemsTotal++ } */}
+                                        <li  className="px-5 py-2 hover:text-gray2"  key={ childItem.id }>
+                                            <Link  key={ childItem.id }  href={ childItem.path ?? '/' }>
+                                                <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
+                                            </Link>
+                                        </li>
                                     </>
                                 ))) } 
                                 </ul>
                             </div>
                         </> 
-                        
                         : 
                         (menuItem.parentId === null) ? 
                         <li className="hover:text-darkblue px-4 no-parent" >
@@ -109,10 +97,8 @@ export default function Header(headerData, ref) {
                         ) ) : null 
                     }
                     </ul>
-                </div>
-                   
+                </div> 
             </div>
-            
         
             <a className="navbar-burger self-center mr-12 md:hidden" onClick={handleClick} href="#">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -129,7 +115,6 @@ export default function Header(headerData, ref) {
                         <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ' dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                     </Link>
                 ) ) : null }
-            
             </div>
             </div>
             <div className="bg-gradient-to-t from-orange to-darkorange hover:text-darkblue px-4 py-6" >
@@ -140,7 +125,6 @@ export default function Header(headerData, ref) {
         </nav>
 
         <h1>{headerData.pageTitle}</h1>
-
         </header>
         </>
     )
