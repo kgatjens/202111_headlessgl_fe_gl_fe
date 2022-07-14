@@ -12,7 +12,7 @@ export default function Header(headerData, ref) {
     //const { pageTitle, menuItems } = headerData || {};
 
     const [active, setActive] = useState(false);
-    let childItemsTotal = 0;
+    //let childItemsTotal = 0;
 
     const handleClick = () => {
         setActive(!active);
@@ -45,7 +45,7 @@ export default function Header(headerData, ref) {
             
         <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen">
             <div className="px-5 xl:px-12 py-6 flex w-full ">
-                <Link key="Main Logo" className="text-3xl font-heading w-1/4" href="/">
+                <Link key="Main_Logo" className="text-3xl font-heading w-1/4" href="/">
                 <a>Logo</a>
                 </Link>
                 <NavSearch/>
@@ -57,7 +57,8 @@ export default function Header(headerData, ref) {
    
                         (menuItem.childItems.nodes.length > 0 && menuItem.parentId === null) ? 
                         <>
-                            <li  key={ menuItem.id } className="hover:text-darkblue px-4 parent-main-nav" 
+
+                            <li  key={ menuItem.databaseId } className="hover:text-darkblue px-4 parent-main-nav" 
                                 onMouseMove={(e) => handleHover(e)}>
                                 <Link key={ menuItem.id }  href={ menuItem.path ?? '/' }>
                                     <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
@@ -66,7 +67,7 @@ export default function Header(headerData, ref) {
 
                             <div ref={childItemRef} 
                             id="dropdownNavbar" 
-                            class="z-10 bg-darkblue divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 block" 
+                            className="z-10 bg-darkblue divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 block" 
                             style={{ position: 'absolute', margin: '0px', transform: 'translate(85px, 80px)', display: 'none'}} 
                             onMouseMove={(e) => handleHover(e)}
                             onMouseOut={(e) => handleHoverExit(e)}>
@@ -76,7 +77,7 @@ export default function Header(headerData, ref) {
                                 {(menuItem.childItems.nodes.map( (childItem, index) => (
                                     <>
                                     {/* { childItemsTotal++ } */}
-                                        <li  className="px-5 py-2 hover:text-gray2"  key={ childItem.id }>
+                                        <li  className="px-5 py-2 hover:text-gray2"  key={ childItem.databaseId }>
                                             <Link  key={ childItem.id }  href={ childItem.path ?? '/' }>
                                                 <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
                                             </Link>
@@ -118,9 +119,9 @@ export default function Header(headerData, ref) {
             </div>
             </div>
             <div className="bg-gradient-to-t from-orange to-darkorange hover:text-darkblue px-4 py-6" >
-                    <Link key="Contact-us"  href='/contact-us'>
-                            <a dangerouslySetInnerHTML={ { __html: "Contact" } }/>
-                    </Link>
+                <Link key="Contact-us"  href='/contact-us'>
+                        <a dangerouslySetInnerHTML={ { __html: "Contact" } }/>
+                </Link>
             </div>
         </nav>
 
