@@ -15,28 +15,28 @@ import BlogBody from '../../components/blogs/blog-body'
 
 import {  getCapabilities, getAllCapabilitiesWithSlug, getMenus } from '../../lib/wp/api'
 
-export default function Capabilities({ capability, menus }) {
+export default function Capabilities({ capabilities, menus }) {
   const router = useRouter()
   
   const slug  = router.query.slugs;
   
   console.log("Capabilities info");
   console.log(slug);
-  console.log(capability);
+  console.log(capabilities);
   
   const { mainNav, mainFooter } = menus || {};
 
   //Metas
-  const metaTitle     = capability?.seo.title;
-  const featuredImage = capability?.featuredImage?.node.sourceUrl;
-  const metaKeywords  = capability?.seo.metaKeywords;
-  const metaDesc      = capability?.seo.metaDesc;
-  const canonical     = capability?.seo.canonical;
+  const metaTitle     = capabilities?.seo.title;
+  const featuredImage = capabilities?.featuredImage?.node.sourceUrl;
+  const metaKeywords  = capabilities?.seo.metaKeywords;
+  const metaDesc      = capabilities?.seo.metaDesc;
+  const canonical     = capabilities?.seo.canonical;
 
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
 
-  if (!capability?.slug  ) {//&& !router.isFallback &
+  if (!capabilities?.slug  ) {//&& !router.isFallback &
     return <ErrorPage statusCode={404} />
   }
 
@@ -52,22 +52,15 @@ export default function Capabilities({ capability, menus }) {
             <article>
             <Head>
               <title>
-              {capability.title}
+              {capabilities.title}
               </title>
               { <meta
                 property="og:image"
-                content={capability?.featuredImage?.sourceUrl}
+                content={capabilities?.featuredImage?.sourceUrl}
               /> }
             </Head>
-            
-            <BlogHeader
-              title={capability.title}
-              coverImage={capability?.featuredImage}
-              date={capability.date}
-              
-              
-            />
-            <BlogBody content={capability.content} />
+                <h1>{capabilities.title}</h1>
+            <BlogBody content={capabilities.content} />
      
           </article>
           </>
@@ -92,7 +85,7 @@ export async function getStaticProps({ params }) {
   console.log("XXXXX@@@")
   return {
     props: {
-      capabilities: data,
+      capabilities: data.capabilities,
        menus
     },
   } 
