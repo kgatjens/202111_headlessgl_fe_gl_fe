@@ -6,38 +6,37 @@ import Container from '../../components/layout/container'
 import Layout from '../../components/layout/layout'
 import Header from '../../components/layout/header'
 import Footer from '../../components/layout/footer'
-import Tags from '../../components/layout/tags'
+
 import SectionSeparator from '../../components/layout/section-separator'
 
 //import PostBody from '../../components/post-body'
-import MoreStories from '../../components/blogs/more-stories'
 import BlogHeader from '../../components/blogs/blog-header'
 import BlogBody from '../../components/blogs/blog-body'
 
-import {  getPostAndMorePosts, getAllPostsWithSlug, getMenus } from '../../lib/wp/api'
+import {  getCapabilities, getAllCapabilitiesWithSlug, getMenus } from '../../lib/wp/api'
 
-export default function Blogs({ post, posts, menus }) {
+export default function Capabilities({ capability, menus }) {
   const router = useRouter()
-  const morePosts = posts?.edges
+  
   const slug  = router.query.slugs;
   
-  console.log("Blogs info");
+  console.log("Capabilities info");
   console.log(slug);
-  console.log(post);
-  console.log(posts);
+  console.log(capability);
+  
   const { mainNav, mainFooter } = menus || {};
 
   //Metas
-  const metaTitle     = post?.seo.title;
-  const featuredImage = post?.featuredImage?.node.sourceUrl;
-  const metaKeywords  = post?.seo.metaKeywords;
-  const metaDesc      = post?.seo.metaDesc;
-  const canonical     = post?.seo.canonical;
+  const metaTitle     = capability?.seo.title;
+  const featuredImage = capability?.featuredImage?.node.sourceUrl;
+  const metaKeywords  = capability?.seo.metaKeywords;
+  const metaDesc      = capability?.seo.metaDesc;
+  const canonical     = capability?.seo.canonical;
 
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
 
-  if (!post?.slug  ) {//&& !router.isFallback &
+  if (!capability?.slug  ) {//&& !router.isFallback &
     return <ErrorPage statusCode={404} />
   }
 
@@ -53,29 +52,28 @@ export default function Blogs({ post, posts, menus }) {
             <article>
             <Head>
               <title>
-              {post.title}
+              {capability.title}
               </title>
               { <meta
                 property="og:image"
-                content={post?.featuredImage?.sourceUrl}
+                content={capability?.featuredImage?.sourceUrl}
               /> }
             </Head>
             
             <BlogHeader
-              title={post.title}
-              coverImage={post?.featuredImage}
-              date={post.date}
-              author={post.author}
-              categories={post.categories}
+              title={capability.title}
+              coverImage={capability?.featuredImage}
+              date={capability.date}
+              
+              
             />
-            <BlogBody content={post.content} />
-            {post.tags.edges.length > 0 && 
-            <Tags tags={post.tags} />}
+            <BlogBody content={capability.content} />
+     
           </article>
           </>
          )} 
             <SectionSeparator />
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+            
     </Container>
 
     <Footer footer={mainFooter}/>
@@ -88,21 +86,24 @@ export async function getStaticProps({ params }) {
   
   const data = await getCapabilities(params.slugs)
   const menus = await getMenus()
-  
+  console.log("XXXXX")
+  console.log(params.slugs)
+  console.log(data)
+  console.log("XXXXX@@@")
   return {
     props: {
-      post: data.post,
-      posts: data.posts,
+      capabilities: data,
        menus
     },
   } 
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllCapabilitiesWithSlug()
-
+  const allCaps = await getAllCapabilitiesWithSlug()
+  console.log("$$$")
+  console.log(allCaps)
   return {
-    paths: allPosts.edges.map(({ node }) => `/capabilities/${node.slug}`) || [],
+    paths: allCaps.edges.map(({ node }) => `/capabilities/${node.slug}`) || [],
     fallback: true,
   }
   return { paths: [], fallback: 'blocking' };
