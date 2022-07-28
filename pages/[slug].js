@@ -1,3 +1,5 @@
+import {  getPagesSlugs } from '../lib/wp/api'
+
 export default function DynamicPage() {
     return (
       <div>
@@ -11,10 +13,22 @@ export default function DynamicPage() {
     };
   }
   export async function getStaticPaths() {
-    const posts = ["a", "b"];
-    const paths = posts.map((post) => ({
-      params: { slug: post },
-    }));
+
+    const allPages = await getPagesSlugs()
+    console.log(allPages);
+    console.log("55555");
+    allPages.edges.map(({ node }) => {console.log(node);})
+
+    return {
+        
+        paths: allPages.edges.map(({ node }) => `/${node.slug}`) || [],
+        fallback: false,
+           
+      }
+    // const pages = ["a", "b"];
+    // const paths = pages.map((post) => ({
+    //   params: { slug: post },
+    // }));
   
     // { fallback: false } means other routes should 404.
     return { paths, fallback: false };
