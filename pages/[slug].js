@@ -1,22 +1,37 @@
-import {  getPagesSlugs } from '../lib/wp/api'
+import {  getPagesSlugs, getPageContent, getMenus } from '../lib/wp/api'
 
-export default function DynamicPage() {
+export default function Page({ page, menus}) {
+    console.log(page);
     return (
       <div>
-        <p>dynamic page</p>
+        <h1>{page.title} </h1>
       </div>
     );
   }
-  export async function getStaticProps(context) {
+//   export async function getStaticProps(context) {
+//     return {
+//       props: { message: "dynamic page part 2" }, // will be passed to the page component as props
+//     };
+//   }
+
+  export async function getStaticProps({ params }) {
+    
+    const data = await getPageContent(params.slug)
+    const menus = await getMenus()
+    
     return {
-      props: { message: "dynamic page part 2" }, // will be passed to the page component as props
-    };
+      props: {
+        page: data,
+        menus
+      },
+    } 
   }
+
+
+
   export async function getStaticPaths() {
 
     const allPages = await getPagesSlugs()
-    console.log(allPages);
-    console.log("55555");
     allPages.edges.map(({ node }) => {console.log(node);})
 
     return {
@@ -29,7 +44,8 @@ export default function DynamicPage() {
     // const paths = pages.map((post) => ({
     //   params: { slug: post },
     // }));
-  
+
     // { fallback: false } means other routes should 404.
-    return { paths, fallback: false };
+    //return { paths, fallback: false };
+    return { paths: [], fallback: 'blocking' };
   }
