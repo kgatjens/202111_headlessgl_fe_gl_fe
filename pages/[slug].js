@@ -1,11 +1,40 @@
+import Container from '../components/layout/container'
+import Layout from '../components/layout/layout'
+import Header from '../components/layout/header'
+import Footer from '../components/layout/footer'
+
 import {  getPagesSlugs, getPageContent, getMenus } from '../lib/wp/api'
 
 export default function Page({ page, menus}) {
     console.log(page);
+
+    const { mainNav, mainFooter } = menus || {};
+
+    const metaTitle     = ""
+    const featuredImage = ""
+    const metaKeywords  = ""
+    const metaDesc      = ""
+    const canonical     = ""
+  
+    //const headerData = {pageTitle, menuItems}
+    const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
+
     return (
-      <div>
-        <h1>{page.title} </h1>
-      </div>
+      
+      <>
+      <Layout>
+      
+      <Header header={mainNav} metaData={metaData}  />
+    
+      <Container>
+        <h1>{page.title}</h1>
+        
+
+      </Container>
+
+      <Footer footer={mainFooter}/>
+    </Layout>
+    </>
     );
   }
 //   export async function getStaticProps(context) {
