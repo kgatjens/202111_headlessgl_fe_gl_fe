@@ -10,11 +10,11 @@ export default function Page({ page, menus}) {
 
     const { mainNav, mainFooter } = menus || {};
 
-    const metaTitle     = ""
-    const featuredImage = ""
-    const metaKeywords  = ""
-    const metaDesc      = ""
-    const canonical     = ""
+    const metaTitle     = page.seo.title
+    const featuredImage = page.featuredImage?.node.sourceUrl
+    const metaKeywords  = page.seo.metaKeywords
+    const metaDesc      = page.seo.metaDesc
+    const canonical     = page.seo.canonical
   
     //const headerData = {pageTitle, menuItems}
     const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
