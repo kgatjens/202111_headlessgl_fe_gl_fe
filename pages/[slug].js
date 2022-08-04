@@ -19,7 +19,7 @@ export default function Page({ page, menus}) {
     const canonical     = page.seo.canonical
 
     const template = page.pagesFields.templateType
-    console.log(template);
+   // console.log(page);
 
     // switch (template) {
     //   case 'template 1':
@@ -47,8 +47,8 @@ export default function Page({ page, menus}) {
         
         {
           {
-            'template 1': <Template1 /> ,
-            'template 2': <Template2 />
+            'template 1': <Template1 content={page} /> ,
+            'template 2': <Template2 content={page} />
           }[template]
         }
 
