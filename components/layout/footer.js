@@ -21,19 +21,22 @@ export default function Footer(headerData) {
           </div>
         </div>
        
-          <Script id="hs-legacy-general-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="beforeInteractive" />
-          <Script id="hs-footer-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="beforeInteractive"  onLoad={() =>
+       <div>
+      <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="beforeInteractive" />
+    
+      <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="beforeInteractive"  onLoad={() =>hbspt.forms.create({})}/>   
+      
+      <Script id="hbspt-footer" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
+        hbspt.forms.create({
+          region: "na1",
+          portalId: "2059590",
+          formId: "5190425c-61e6-4ff3-bc6e-1d12786f903d",
+          target: '#footer-form'
+        });
+      `}} />
             
-            hbspt.forms.create({
-              region: "na1",
-              portalId: "2059590",
-              formId: "5190425c-61e6-4ff3-bc6e-1d12786f903d",
-              target: '#footer-form'
-          })}
-          />   
-
-        <div id="footer-form">
-        </div>
+      <div id="footer-form"></div>
+      </div>
 
       
         <div className="hidden md:flex w-3/4 pt-2 content-center justify-between md:justify-end ">
