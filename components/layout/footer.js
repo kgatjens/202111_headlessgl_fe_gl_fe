@@ -23,10 +23,10 @@ export default function Footer(headerData) {
             });
           `}} />
 
-          <div class="col-span-2 ...">
+          <div clclassNameass="col-span-2 ...">
             <div id="footer-form"></div>
           </div>
-          <div class="...">
+          <div className="...">
             <h3 className="text-1xl lg:text-1s  tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
               WP example with graphql
             </h3>
@@ -34,7 +34,7 @@ export default function Footer(headerData) {
               <a href="">Item 1</a> | <a href="">Item 1</a>
             </div>
           </div>
-          <div class="col-span-3 md:flex pt-4 content-center">
+          <div className="col-span-3 md:flex pt-4 content-center">
             <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
               { headerData.footer.menuItems.nodes.length ? headerData.footer.menuItems.nodes.map( menuItem => (
                       
