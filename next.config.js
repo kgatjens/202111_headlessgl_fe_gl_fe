@@ -6,5 +6,8 @@ module.exports = {
    },
    publicRuntimeConfig: {
       NEXT_PUBLIC_GTML: process.env.NEXT_PUBLIC_GTM,
-   }
+   },
+   sassOptions: {
+      includePaths: [path.join(__dirname, 'styles/sass')],
+    },
 }
