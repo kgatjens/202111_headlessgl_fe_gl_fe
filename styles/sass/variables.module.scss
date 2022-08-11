@@ -1,5 +1,10 @@
-$primary-color: #64ff00;
+
+$lightblue:#3966ad;
+$darkblue:#233c77;
+$orange:#ECBC36;
+
 
 :export {
-  primaryColor: $primary-color;
+  
+  lightBlue: $lightblue;
 }

@@ -1,6 +1,7 @@
 import Script from 'next/script'
 import Container from '../layout/container'
 import Link from 'next/link';
+import styles from '../../styles/sass/footer.module.scss'
 
 
 export default function Footer(headerData) {
@@ -19,12 +20,12 @@ export default function Footer(headerData) {
               region: "na1",
               portalId: "2059590",
               formId: "5190425c-61e6-4ff3-bc6e-1d12786f903d",
-              target: '#footer-form'
+              target: '#footer_form'
             });
           `}} />
 
           <div clclassNameass="col-span-2 ...">
-            <div id="footer-form"></div>
+            <div id="footer_form" className={styles.footer_form}></div>
           </div>
           <div className="...">
             <h3 className="text-1xl lg:text-1s  tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
