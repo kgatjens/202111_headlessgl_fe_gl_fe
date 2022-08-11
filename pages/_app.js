@@ -1,4 +1,5 @@
-import '../styles/globals.css'
+import '../styles/sass/global.scss'
+//import "../styles/globals.scss";
 import Head from 'next/head'
 
 //import 'tailwindcss/tailwind.css'
