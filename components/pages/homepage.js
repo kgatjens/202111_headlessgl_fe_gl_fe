@@ -27,15 +27,18 @@ export default function Homepage({
             <h1 className="mb-4 text-4xl lg:text-6xl leading-tight" 
                 dangerouslySetInnerHTML={{ __html: title }}>
             </h1>
+            <Carousel carouselSlider={carouselComponent}/>
+
           </div>
+          
           <div>
             <div
               className="text-lg leading-relaxed mb-4"
                dangerouslySetInnerHTML={{ __html: descriptionText }}
             />
+
           </div>
         </div>
-        <Carousel carouselSlider={carouselComponent}/>
         
 
         {/* <div className={`top-[117px] flex justify-between   bg-[#${sectionColor}]`} > */}
