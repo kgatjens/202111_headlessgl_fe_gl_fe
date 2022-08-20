@@ -48,7 +48,7 @@ export default class MyDocument extends Document {
 
         </Head>
 
-        <body className="dark:bg-gray2">
+        <body className="dark:bg-black">
           <TopTracking />
           <Main />
           <NextScript />

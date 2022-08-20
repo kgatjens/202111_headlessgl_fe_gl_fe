@@ -43,7 +43,7 @@ export default function Header(headerData, ref) {
 
         <header>
             
-        <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen">
+        <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen dark:from-black to-gray2">
             <div className="px-5 xl:px-12 py-6 flex w-full ">
                 <Link key="Main_Logo" className="text-3xl font-heading w-1/4" href="/">
                 <a>Logo</a>
