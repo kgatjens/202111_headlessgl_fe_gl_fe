@@ -9,7 +9,7 @@ export default function Footer(headerData) {
     // console.log(headerData.footer.menuItems.nodes);
     // console.log("###");
   return (
-    <footer className="bg-accent-1 border-t border-accent-2 bg-gradient-to-t from-lightblue to-white text-darkblue w-screen py-5">
+    <footer className="bg-accent-1 border-t border-accent-2 bg-gradient-to-t from-lightblue to-white text-darkblue w-screen py-5 dark:from-gray2 dark:to-black dark:text-white">
 
       <Container>
         <div className="grid grid-cols-3 gap-4">
