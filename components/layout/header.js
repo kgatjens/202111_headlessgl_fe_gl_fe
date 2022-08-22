@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Meta from '../layout/meta'
+import {useTheme} from 'next-themes'
+
 
 import Link from 'next/link';
 import React, { useState, useRef } from 'react';
@@ -13,6 +15,7 @@ export default function Header(headerData, ref) {
 
     const [active, setActive] = useState(false);
     //let childItemsTotal = 0;
+    const {theme, setTheme} = useTheme()
 
     const handleClick = () => {
         setActive(!active);
@@ -50,6 +53,12 @@ export default function Header(headerData, ref) {
                 </Link>
                 <NavSearch/>
 
+                 <button 
+                    className='px-6 py-2 rounded-md border-slate-50  text-white dark:text-white border'
+                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                    {theme === 'light' ? ' Dark ' : ' Light '}
+                </button>  
+                
             {/* //Desktop menu */}
                 <div className="hidden md:flex w-3/4 pt-2 content-center justify-between md:justify-end ">
                     <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">

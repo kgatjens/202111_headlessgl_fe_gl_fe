@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import {useTheme} from 'next-themes'
 
 import Container from '../components/layout/container'
 import Layout from '../components/layout/layout'
@@ -17,9 +16,6 @@ export default function Home({ data, homepage, carouselHomepage  }) {
   const { allHomepage } = homepage || {};
   const { carousel }  = carouselHomepage || {};
   const { mainNav, mainFooter } = data || {};
-
-  const {theme, setTheme} = useTheme()
-
   
   console.log(mainNav)
   console.log("🧐");
@@ -42,9 +38,7 @@ export default function Home({ data, homepage, carouselHomepage  }) {
               metaData={metaData} />
       <Container>
 
-      <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-        Dark Mode
-      </button>
+     
       {allHomepage && (
 
         <Homepage 
