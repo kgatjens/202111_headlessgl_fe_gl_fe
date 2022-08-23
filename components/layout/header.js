@@ -57,12 +57,12 @@ export default function Header(headerData, ref) {
                     alt-text="Dark/Light Mode"
                     className='px-6 py-2 rounded-md border-slate-10  text-white dark:text-white border'
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-                    {theme === 'dark' ? '☼' : '☾'}
+                    {theme === 'dark' ? 'Light' : 'Dark'}
                 </button>  
                 
             {/* //Desktop menu */}
                 <div className="hidden md:flex w-3/4 pt-2 content-center justify-between md:justify-end ">
-                    <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
+                    <ul role="list" className="list-reset flex justify-between flex-1 md:flex-none items-center">
                     { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
    
                         (menuItem.childItems.nodes.length > 0 && menuItem.parentId === null) ? 
@@ -81,7 +81,7 @@ export default function Header(headerData, ref) {
                             style={{ position: 'absolute', margin: '0px', transform: 'translate(85px, 80px)', display: 'none'}} 
                             onMouseMove={(e) => handleHover(e)}
                             onMouseOut={(e) => handleHoverExit(e)}>
-                                <ul className='py-1 text-sm text-gray-700 dark:text-gray-400' aria-labelledby='dropdownLargeButton'>
+                                <ul role="list" className='py-1 text-sm text-gray-700 dark:text-gray-400' aria-labelledby='dropdownLargeButton'>
                                 {/* <li ref={childItemRef.current[index]} ref={childItemRef.current[0]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
                                 </li> */}
                                 {(menuItem.childItems.nodes.map( (childItem, index) => (

@@ -7,5 +7,9 @@ module.exports = {
    publicRuntimeConfig: {
       NEXT_PUBLIC_GTML: process.env.NEXT_PUBLIC_GTM,
    },
+   i18n: {
+      locales: ['en'],
+      defaultLocale: 'en',
+    },
 
 }
