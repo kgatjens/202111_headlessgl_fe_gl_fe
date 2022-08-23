@@ -53,10 +53,11 @@ export default function Header(headerData, ref) {
                 </Link>
                 <NavSearch/>
 
-                 <button 
-                    className='px-6 py-2 rounded-md border-slate-50  text-white dark:text-white border'
+                 <button
+                    alt-text="Dark/Light Mode"
+                    className='px-6 py-2 rounded-md border-slate-10  text-white dark:text-white border'
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-                    {theme === 'light' ? ' Dark ' : ' Light '}
+                    {theme === 'dark' ? '☼' : '☾'}
                 </button>  
                 
             {/* //Desktop menu */}
