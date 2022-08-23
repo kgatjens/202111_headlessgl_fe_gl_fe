@@ -4,3 +4,57 @@
 
 /* @import "custom/footer.css" */
 
+
+/*Accesibility IMPORTANT*/
+*:focus { 
+	/* some exciting button focus styles */ 
+  outline: 0.1em #AA2B2B solid;
+  outline-offset: 0.1rem;
+}
+
+*:focus:not(:focus-visible) {
+ /* undo all the above focused button styles */
+  outline: 0;
+  outline-offset: 0.25rem;
+}
+
+*:focus-visible { 
+ /* some even *more* exciting button focus styles */
+  outline: 0.25em #AA2B2B dashed;
+  outline-offset: 0.25rem;
+}
+
+ul[role="list"], ol[role="list"] {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.visually-hidden, .sr-only {
+  /* hides content except when viewed by screen readers */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+p {
+  max-width: 60ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    /* turns off smooth-scrolling behavior (if turned on) when prefers reduced motion */
+    scroll-behavior: auto;
+  }
+
+  *:not(.animates-without-motion),
+  *:not(.animates-without-motion)::before,
+  *:not(.animates-without-motion)::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

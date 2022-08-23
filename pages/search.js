@@ -52,7 +52,7 @@ export default function Search({ menus }) {
 
       <div className="container mb-2 flex mx-auto w-full items-center justify-center">
 
-      <ul className="flex flex-col p-4">
+      <ul role="list" className="flex flex-col p-4">
         {data &&
           data.map((item) => (
             <li className="border-gray-400 flex flex-row mb-2" key={item.id} >

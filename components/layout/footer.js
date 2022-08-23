@@ -56,7 +56,7 @@ export default function Footer(headerData) {
           
         </div>
         <div className="col-span-3 md:flex pt-4 content-center">
-            <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
+            <ul role="list" className="list-reset flex justify-between flex-1 md:flex-none items-center">
               { headerData.footer.menuItems.nodes.length ? headerData.footer.menuItems.nodes.map( menuItem => (
                       
                   <li className="hover:text-darkblue px-3" key={ menuItem.id }>
