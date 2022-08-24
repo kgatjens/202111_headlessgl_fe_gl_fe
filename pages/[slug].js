@@ -43,18 +43,13 @@ export default function Page({ page, menus}) {
       <Header header={mainNav} metaData={metaData}  />
     
       <Container>
-        <h1>{page.title} - {template}</h1>
-        
+        <h1>{page.title} - {template}</h1> 
         {
           {
             'template 1': <Template1 content={page} /> ,
             'template 2': <Template2 content={page} />
           }[template]
         }
-
-
-           
-           
 
       </Container>
 
@@ -81,8 +76,6 @@ export default function Page({ page, menus}) {
       },
     } 
   }
-
-
 
   export async function getStaticPaths() {
 
