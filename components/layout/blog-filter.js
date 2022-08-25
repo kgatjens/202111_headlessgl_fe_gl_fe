@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const BlogFilter = ({ authors, categories, onSubmit, onSubmit2 }) => {
-  const [ categoryId, setCategoryId ] = useState( 0 );
-  const [ authorId, setAuthorId ]     = useState( 0 );
+const BlogFilter = ({ authors, categories, onSubmit, onSubmit2, onSubmitSearch }) => {
+  const [ categoryId, setCategoryId ]     = useState( 0 );
+  const [ authorId, setAuthorId ]         = useState( 0 );
 
+  const [ searchPhrase, setSearchString ] = useState( "" );
   const [selectedCategory, setCatValue] = useState(0);
-  const [selectedAuthor, setAutValue] = useState(0);
-
+  const [selectedAuthor, setAutValue]  = useState(0);
 
   const handleBlogFilterFormSubmit = ( event ) => {
     event.preventDefault();
     onSubmit(selectedCategory);
     onSubmit2(selectedAuthor);
+    onSubmitSearch(searchPhrase)
   };
 
   const handleBlogClearFormSubmit = ( event ) => {
@@ -21,6 +22,7 @@ const BlogFilter = ({ authors, categories, onSubmit, onSubmit2 }) => {
     onSubmit2(0);
     setAutValue(0)
     setCatValue(0)
+    onSubmitSearch("")
   };
 
   return (
@@ -44,7 +46,9 @@ const BlogFilter = ({ authors, categories, onSubmit, onSubmit2 }) => {
                 <input 
                 size={15}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block  px-4 py-2 pr-8 rounded "
-                type="text" id="searchString" name="searchString" minLength="10" maxLength="40" pattern="[a-z0-9]{1,15}" title="Password should be digits (0 to 9) or alphabets (a to z)." placeholder='Search..'   />
+                type="text" id="searchPhrase"  
+                value={searchPhrase} onChange={(e) => {setSearchString(e.target.value);}}
+                name="searchPhrase" minLength="10" maxLength="40" pattern="[a-z0-9]{1,15}" title="Search phrase should be digits (0 to 9) or alphabets (a to z)." placeholder='Search..'   />
 
             <input
                 type="submit"

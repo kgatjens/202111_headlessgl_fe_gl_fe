@@ -39,17 +39,18 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
   const [startFetching, setStartFetching] = useState(false);
   const [indexValue, setIndexValue] = useState(0);
   
-  const [loading,setLoading] = useState(true)
+  const [loading,setLoading]      = useState(true)
   const [dataCount, setDataCount] = useState(loadPerPage);
   const [pageIndex, setPageIndex] = useState(1)  
 
   //Filters shared state
-  const [ categoryId, setCategoryId ] = useState( 0 );
-  const [ authorId, setAuthorId ]     = useState( 0 );
+  const [ categoryId, setCategoryId ]     = useState( 0 );
+  const [ authorId, setAuthorId ]         = useState( 0 );
+  const [ searchPhrase, setSearchString ] = useState( "" );
 
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   
-  const filteredFetch = (categoryId>0 || authorId>0) ? true : false;
+  const filteredFetch = (categoryId>0 || authorId>0 || searchPhrase!="") ? true : false;
 
   const morePosts = filteredFetch ? [] : blogs.slice(0);
 
@@ -57,7 +58,8 @@ export default function Blogs({ menus , firstBlogs, authors, categories }) {
 
   const categoryApi = categoryId>0 ? `&categories=${categoryId}` : ""
   const authorApi   = authorId>0 ? `&author=${authorId}` : ""
-  const  filteredPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=0&orderby=date&order=desc${categoryApi}${authorApi}`;
+  const searchApi   = searchPhrase!="" ? `&search=${searchPhrase}` : ""
+  const filteredPost = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${loadPerPage}&offset=0&orderby=date&order=desc${categoryApi}${authorApi}${searchApi}`;
    
   const {data, error} = useSWR(filteredFetch ? filteredPost : apiPost, fetcher,{
     onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
@@ -85,6 +87,8 @@ const handleClick = () => {
   console.log(categoryId);
   console.log("author:");
   console.log(authorId);
+  console.log("search:");
+  console.log(searchPhrase);
   console.log("API:");
   console.log(filteredPost);
   console.log("filter:");
@@ -111,7 +115,7 @@ const handleClick = () => {
       <Header header={mainNav} metaData={metaData} />
     
       <Container>
-        <BlogFilter authors={authors} categories={categories} onSubmit={setCategoryId} onSubmit2={setAuthorId}/>
+        <BlogFilter authors={authors} categories={categories} onSubmit={setCategoryId} onSubmit2={setAuthorId} onSubmitSearch={setSearchString}/>
 
         {loading2 ? (
             <SkeletonCard />
