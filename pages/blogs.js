@@ -143,7 +143,7 @@ const handleClick = () => {
 
         {(filteredLoadButton) ? 
         <button
-          className=' mx-auto flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-6 py-6'
+          className=' mx-auto flex items-center cursor-pointer text-white	bg-gradient-to-t from-orange to-darkorange hover:text-darkblues duration-500  px-6 py-6'
           onClick={handleClick}
           type="button"
           >

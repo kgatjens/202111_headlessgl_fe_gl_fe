@@ -9,12 +9,11 @@ export default function Footer(headerData) {
     // console.log(headerData.footer.menuItems.nodes);
     // console.log("###");
   return (
-    <footer className="bg-accent-1 border-t border-accent-2 bg-gradient-to-t from-lightblue to-white text-darkblue w-screen py-5 dark:from-gray2 dark:to-black dark:text-white">
+    <footer className="bg-accent-1 border-accent-2 bg-gradient-to-t from-lightblue to-white text-darkblue w-screen py-5 dark:from-gray2 dark:to-black dark:text-white">
 
       <Container>
         <div className="grid grid-cols-3 gap-4">
           
-
           <div className="col-span-2 ...">
             <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="beforeInteractive" />
             <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="beforeInteractive"  onLoad={() =>hbspt.forms.create({})}/>   

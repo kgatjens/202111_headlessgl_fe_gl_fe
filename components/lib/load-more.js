@@ -10,7 +10,7 @@ export default function LoadMore({posts}){
 
     return (
         <button
-            className='className="flex items-center cursor-pointer	bg-gray-100 hover:bg-gray-600 hover:text-white transition-colors duration-500 border border-gray-500 px-4 py-3"'
+            className='className="flex items-center cursor-pointer bg-gradient-to-t from-orange to-darkorange hover:text-darkblue	 duration-500 border border-gray-500 px-4 py-3"'
             onClick={async () => {
                 const newPosts = await getNewPostsFromApi();
                 setPosts(...posts, ...newPosts);
