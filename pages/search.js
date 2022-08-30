@@ -10,7 +10,7 @@ import axios from "axios";
 import Container from '../components/layout/container'
 import Layout from '../components/layout/layout'
 import Header from '../components/layout/header'
-import NavSearch from '../components/search/search-nav';
+import NavSearch from '../components/search/search-form-page';
 import Footer from '../components/layout/footer'
 
 
