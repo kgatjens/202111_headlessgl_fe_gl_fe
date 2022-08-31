@@ -26,14 +26,21 @@ module.exports = {
       fontFamily: {
         sans: ['Oxygen', ...defaultTheme.fontFamily.sans],
 
-      }
+      },
+      inset: {
+        '5.5rem': '5.5rem',
+      },
+      spacing: {
+        '55': '5.5rem',
+        
+      },
     }
     
 
   },
   variants: {
     extend: {
-      display: ["group-hover"],
+      
     },
   },
   plugins: [],
