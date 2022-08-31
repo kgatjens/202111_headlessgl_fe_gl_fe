@@ -23,7 +23,7 @@ const SearchForm = ( {searchQuery, setSearchQuery, handleSearchFormSubmit} ) => 
           //className="peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-lime-300 focus:pl-16 focus:pr-4"
           />
           <b x-show="search.trim() != '''"
-                class="text-white hover:text-darkblue cursor-pointer text-lg absolute top-16 right-2" title="clear" />
+                className="text-white hover:text-darkblue cursor-pointer text-lg absolute top-16 right-2" title="clear" />
                 <span>&times;</span>
       
       <svg onClick={handleSearchFormSubmit} onMouseMove={(e) => handleSearchHover(e)} className="  block w-10 p-2 group-hover:block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
