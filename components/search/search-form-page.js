@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const SearchForm = ( {searchQuery, setSearchQuery, handleSearchFormSubmit} ) => {
   return (
-    <form className="flex w-full justify-center" onSubmit={handleSearchFormSubmit}>
+    <form className="w-8/12 flex justify-center items-center m-auto " onSubmit={handleSearchFormSubmit}>
       <div className="block relative w-4/5">
            
         <input
@@ -12,7 +12,7 @@ const SearchForm = ( {searchQuery, setSearchQuery, handleSearchFormSubmit} ) => 
           value={searchQuery}
           aria-label="Search" aria-describedby="button-addon2"
           onChange={( event ) => setSearchQuery( event.target.value )}
-          className="form-control text-gray relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"/>
+          className="form-control text-gray relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white  focus:outline-none border-2 p-6 hover:shadow-2xl border-green"/>
       </div>
       <input
         type="submit"

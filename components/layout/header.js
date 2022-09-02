@@ -47,20 +47,18 @@ export default function Header(headerData, ref) {
         <header>
             
         <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen dark:from-black to-gray2">
-            <div className="px-5 xl:px-12 py-6 flex w-full ">
-                <Link key="Main_Logo" className="text-3xl font-heading w-1/4" href="/">
-                <a>Logo</a>
-                </Link>
-                
+            <div className="px-5 xl:px-12 py-6 flex w-full cursor-pointer">
+                <Link key="Main_Logo" className="text-3xl font-heading w-1/4 cursor-pointer" href="/">
+                <img src='../gl_logo_g.png' width="50px" height="auto" />
+                </Link>    
                 
             {/* //Desktop menu */}
-                <div className="hidden md:flex w-3/4 pt-2 content-center justify-between md:justify-end ">
+                <div className="hidden md:flex w-full pt-2  md:justify-end ">
                     <ul role="list" className="list-reset flex justify-between flex-1 md:flex-none items-center">
                     { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
    
                         (menuItem.childItems.nodes.length > 0 && menuItem.parentId === null) ? 
                         <>
-
                             <li  key={ menuItem.databaseId } className="hover:text-darkblue px-4 parent-main-nav" 
                                 onMouseMove={(e) => handleHover(e)}>
                                 <Link key={ menuItem.id }  href={ menuItem.path ?? '/' }>
@@ -70,7 +68,7 @@ export default function Header(headerData, ref) {
 
                             <div ref={childItemRef} 
                             id="dropdownNavbar" 
-                            className="z-10 bg-darkblue divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 block" 
+                            className="z-10 bg-darkblue divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 block z-20" 
                             style={{ position: 'absolute', margin: '0px', transform: 'translate(85px, 80px)', display: 'none'}} 
                             onMouseMove={(e) => handleHover(e)}
                             onMouseOut={(e) => handleHoverExit(e)}>
@@ -101,14 +99,16 @@ export default function Header(headerData, ref) {
                         ) ) : null 
                     }
                     </ul>
+                    <NavSearch/>
+                    <button
+                        alt-text="Dark/Light Mode"
+                        className='px-6 py-2  text-white dark:text-white cursor-pointer hover:opacity-50'
+                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                        {theme === 'dark' ? '☀' : '☽'}
+                    </button> 
                 </div>
-                <NavSearch/>
-                <button
-                alt-text="Dark/Light Mode"
-                className='px-6 py-2 rounded-md border-slate-10  text-white dark:text-white border'
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-                {theme === 'dark' ? 'Light' : 'Dark'}
-            </button> 
+                
+               
 
             </div>
 
