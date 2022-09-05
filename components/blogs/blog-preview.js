@@ -29,7 +29,7 @@ export default function PostPreview({
         </Link>
       </h3>
       <div className="text-lg mb-4">
-      {({date})&&({date}.lenght>0) ?  
+      {(date) ?  
         <Date dateString={date} />
         : <p> No Date</p> 
       }
