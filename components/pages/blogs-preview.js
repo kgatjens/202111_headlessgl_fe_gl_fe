@@ -37,15 +37,16 @@ export default function BlogsPreview({
         </Link>
       </h3>
       <div className="text-lg mb-4">
-        {(date)&&(date.lenght>0) ?  
+        {(date) ?  
           <Date dateString={date} />
-          : <p> No Date</p> 
-        }      </div>
+          : <p> No date!</p> 
+        }                
+        </div>
       <div
         className="text-md leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
-        {(author)&&(author.lenght>0) ?  
+        {(author) ?  
           <Avatar author={author} />
           : <p> No Author Info</p> 
         }    
