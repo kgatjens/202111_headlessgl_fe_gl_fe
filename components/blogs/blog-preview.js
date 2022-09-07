@@ -38,9 +38,8 @@ export default function PostPreview({
         className="text-lg leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
-        {({author})&&({author}.lenght>0) ?  
+        {({author}) ?  
         <Avatar author={author} />
-
         : <p> No Author Info</p> 
       }
     </div>

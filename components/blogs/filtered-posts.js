@@ -1,6 +1,7 @@
 import BlogPreview from '../blogs/blog-preview'
 
 export default function MoreStories({ posts }) {
+  console.log(posts);
   return (
     <section>
       <h2 className="mb-4 text-3xl md:text-3xl font-bold tracking-tighter leading-tight">
@@ -13,7 +14,7 @@ export default function MoreStories({ posts }) {
             title={key.title.rendered}
             coverImage={key.featured_image_src}
             date={key.date}
-            author={key.author}
+            author={key.author_info.display_name}
             slug={key.slug}
             excerpt={key.excerpt.rendered}
           />

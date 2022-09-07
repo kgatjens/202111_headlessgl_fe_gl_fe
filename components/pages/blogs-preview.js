@@ -48,7 +48,7 @@ export default function BlogsPreview({
       />
         {(author) ?  
           <Avatar author={author} />
-          : <p> No Author Info</p> 
+          : <p> No Author Info!</p> 
         }    
       </div>
   )
