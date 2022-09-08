@@ -129,12 +129,14 @@ const handleClick = () => {
                 : <p>No filtered info</p>
               }
 
-              {(startFetching) ?  
-              (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs, index) => (
-                <LoadMoreBlogs className='animate-pulse' key={index} posts={blogs} />
-                ))) :  <p>Loading  </p>
-                : <p></p>
-              } 
+              {(filteredFetch)? "" :
+                (startFetching) ?  
+                (dataLoaded && dataLoaded.length > 0) ? (dataLoaded.map((blogs, index) => (
+                  <LoadMoreBlogs className='animate-pulse' key={index} posts={blogs} />
+                  ))) :  <p>Loading  </p>
+                  : <p></p>
+                
+              }
           </>
       )}
         
