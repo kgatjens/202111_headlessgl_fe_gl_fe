@@ -33,7 +33,7 @@ export default function ContactUs({ menus }) {
       <Header header={mainNav} metaData={metaData}  />
     
       <Container>
-        <h1>Contact Us</h1>
+        <h1 class="mb-8 text-3xl md:text-3xl font-bold tracking-tighter leading-tight">Contact Us</h1>
         <ContactUsForm />
 
       </Container>

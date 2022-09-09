@@ -14,7 +14,8 @@ const SearchForm = ( {searchQuery, setSearchQuery, handleSearchFormSubmit} ) => 
   }
 
   return (
-    <form className="flex w-full justify-center py-2.5" onSubmit={handleSearchFormSubmit}>
+    //<form className="flex w-full justify-center py-2.5" onSubmit={handleSearchFormSubmit}>
+    <form className="flex w-full justify-center py-4" onSubmit={handleSearchFormSubmit}>
       <div className="block  w-4/5 group">
            
         <input
