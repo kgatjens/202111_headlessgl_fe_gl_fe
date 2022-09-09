@@ -130,7 +130,7 @@ export default function Header(headerData, ref) {
                 ) ) : null }
             </div>
             </div>
-            <div className="bg-gradient-to-t from-orange to-darkorange hover:text-darkblue px-4 py-6" >
+            <div className="bg-gradient-to-t from-orange to-darkorange hover:text-darkblue px-4 pt-10" >
                 <Link key="Contact-us"  href='/contact-us'>
                         <a dangerouslySetInnerHTML={ { __html: "Contact" } }/>
                 </Link>

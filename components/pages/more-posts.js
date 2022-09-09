@@ -4,9 +4,9 @@ export default function MoreBlogs({ posts }) {
 
   return (
     <section className="will-change-transform">
-      <h2 className=" mb-8 text-3xl md:text-3xl font-bold tracking-tighter leading-tight">
+      <h1 className=" mb-8 text-3xl md:text-3xl font-bold tracking-tighter leading-tight">
         More Blogs
-      </h2>
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
         {posts.map(({ node }) => (
           <BlogsPreview
