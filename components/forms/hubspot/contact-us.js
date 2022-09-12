@@ -6,9 +6,9 @@ export default function ContactUsForm() {
   return (
     <>
       <div className="sm:mx-0">
-        <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="beforeInteractive" />
-        <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="beforeInteractive"  onLoad={() =>hbspt.forms.create({})}/>   
-        <Script id="hbspt-footer" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
+        {/* <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="beforeInteractive" />
+        <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="beforeInteractive"  onLoad={() =>hbspt.forms.create({})}/>    */}
+        <Script id="hbspt-contactus" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
           hbspt.forms.create({
             region: "na1",
             portalId: "2059590",

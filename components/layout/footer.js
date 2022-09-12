@@ -15,9 +15,9 @@ export default function Footer(headerData) {
         <div className="grid grid-cols-3 gap-4">
           
           <div className="col-span-2 ...">
-            <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="beforeInteractive" />
-            <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="beforeInteractive"  onLoad={() =>hbspt.forms.create({})}/>   
-            <Script id="hbspt-footer" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
+            <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="afterInteractive" />
+            <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="afterInteractive"  onLoad={() =>hbspt.forms.create({})}/>   
+            <Script id="hbspt-footer" strategy="lazyOnload" dangerouslySetInnerHTML={{ __html: `
               hbspt.forms.create({
                 region: "na1",
                 portalId: "2059590",
