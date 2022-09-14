@@ -2,6 +2,8 @@ import Script from 'next/script'
 import Container from '../layout/container'
 import Link from 'next/link';
 import styles from '../../styles/sass/footer.module.scss'
+import HubspotForm from 'react-hubspot-form'
+
 
 
 export default function Footer(headerData) {
@@ -15,8 +17,8 @@ export default function Footer(headerData) {
         <div className="grid grid-cols-3 gap-4">
           
           <div className="col-span-2 ...">
-            <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="afterInteractive" />
-            <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="afterInteractive"  onLoad={() =>hbspt.forms.create({})}/>   
+            {/* <Script id="hs-legacy-forms-js" src="//js.hsforms.net/forms/v2-legacy.js" strategy="beforeInteractive" />
+            <Script id="hs-forms-js" src="//js.hsforms.net/forms/v2.js"  strategy="beforeInteractive"  onLoad={() =>hbspt.forms.create({})}/>   
             <Script id="hbspt-footer" strategy="lazyOnload" dangerouslySetInnerHTML={{ __html: `
               hbspt.forms.create({
                 region: "na1",
@@ -24,8 +26,16 @@ export default function Footer(headerData) {
                 formId: "5190425c-61e6-4ff3-bc6e-1d12786f903d",
                 target: '#footer_form'
               });
-            `}} />
-            <div id="footer_form" className={styles.footer_form}></div>
+            `}} /> */}
+
+            <HubspotForm id="footer-hs-form"
+              portalId='2059590'
+              formId='5190425c-61e6-4ff3-bc6e-1d12786f903d'
+              onSubmit={() => console.log('Submit!')}
+              onReady={(form) => console.log('Form ready!')}
+              loading={<div>Loading...</div>}
+              />
+            {/* <div id="footer_form" className={styles.footer_form}></div> */}
 
             <div className="flex flex-wrap gap-2">
               <button className="bg-blue-500 p-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
