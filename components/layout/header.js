@@ -39,6 +39,10 @@ export default function Header(headerData, ref) {
     const handleHoverExit = () => {
         childItemRef.current.style.display = "none";  
     }
+
+/* to keep utms params */
+
+/*final utm params*/ 
     
     return (
         <> 
