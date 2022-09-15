@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 export default function Avatar({ author }) {
-  console.log("ˆˆˆˆ@ˆˆˆˆ")
+  
   
   const name = author
     ? author.firstName && author.lastName
@@ -9,8 +9,7 @@ export default function Avatar({ author }) {
       : author.name
     : null
 
-    console.log(author);
-    console.log("ˆˆˆˆ2ˆˆˆˆ")
+   
 
   
 

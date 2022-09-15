@@ -1,7 +1,6 @@
 import BlogPreview from '../blogs/blog-preview'
 
 export default function MoreStories({ posts }) {
-  console.log(posts);
   return (
     <section>
       <h2 className="mb-4 text-3xl md:text-3xl font-bold tracking-tighter leading-tight">

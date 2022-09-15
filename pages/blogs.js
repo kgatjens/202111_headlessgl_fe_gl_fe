@@ -82,18 +82,18 @@ const handleClick = () => {
   setData((initialData) => [...initialData,data])
 };
 
-  console.log("_______:");  
-  console.log("category:");
-  console.log(categoryId);
-  console.log("author:");
-  console.log(authorId);
-  console.log("search:");
-  console.log(searchPhrase);
-  console.log("API:");
-  console.log(filteredPost);
-  console.log("filter:");
-  console.log(data?.length);
-  console.log(filteredFetch);
+  // console.log("_______:");  
+  // console.log("category:");
+  // console.log(categoryId);
+  // console.log("author:");
+  // console.log(authorId);
+  // console.log("search:");
+  // console.log(searchPhrase);
+  // console.log("API:");
+  // console.log(filteredPost);
+  // console.log("filter:");
+  // console.log(data?.length);
+  // console.log(filteredFetch);
   const filteredMessage = (filteredFetch && data?.length===0) ? "No results for this filter." : (filteredFetch) ? `Total results: ${data?.length}` : "";
   const filteredLoadButton = (data?.length>=loadPerPage) ? true : false;
 

@@ -16,9 +16,6 @@ export default function Home({ data, homepage, carouselHomepage  }) {
   const { allHomepage } = homepage || {};
   const { carousel }  = carouselHomepage || {};
   const { mainNav, mainFooter } = data || {};
-  
-  console.log(mainNav)
-  console.log("🧐");
 
   //Metas
   const metaTitle     = allHomepage.edges[0]?.node.seo.title;
