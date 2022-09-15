@@ -11,8 +11,8 @@ export default function PostHeader({
   author,
   categories,
 }) {
-  console.log("Author:");
-  console.log(author.node.firstName);
+  // console.log("Author:");
+  // console.log(author.node.firstName);
  const coverImageValidated = (coverImage) ? coverImage : {}
   return (
     <>

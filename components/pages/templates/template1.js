@@ -1,8 +1,8 @@
 
 
 export default function Template1( content ) {
-  console.log("11111")
-  console.log(content.content.pagesFields)
+  // console.log("11111")
+  // console.log(content.content.pagesFields)
   return (
     <div className="max-w-2xl mx-auto">
         <h3>Template1</h3>
