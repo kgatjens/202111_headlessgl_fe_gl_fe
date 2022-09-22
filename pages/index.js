@@ -7,7 +7,7 @@ import Footer from '../components/layout/footer'
 
 import Homepage from '../components/pages/homepage'
 
-import { getAllowedParams } from '../lib/utils/utm_params'
+import { generateUrlWithQueryString } from '../lib/utils/utm_params'
 import { useRouter } from "next/router";
 
 
@@ -32,7 +32,12 @@ export default function Home({ data, homepage, carouselHomepage  }) {
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   
   var router = useRouter();
-  const params =  getAllowedParams(router.query)//to work with utms
+  const params =  generateUrlWithQueryString(router.query)//to work with utms
+
+  console.log("🎉");
+  console.log(params);
+  console.log("🎉🎉");
+
 
 
 
