@@ -8,12 +8,14 @@ import Footer from '../components/layout/footer'
 import Homepage from '../components/pages/homepage'
 
 import { getAllowedParams } from '../lib/utils/utm_params'
+import { useRouter } from "next/router";
+
 
 import { getMenus,getHomepage,getHomepageCarousel } from '../lib/wp/api'
 // import { getHomepage } from '../lib/wp/api'
 // import { getHomepageCarousel } from '../lib/wp/api'
 
-export default function Home({ data, homepage, carouselHomepage, params  }) {
+export default function Home({ data, homepage, carouselHomepage  }) {
   
   const { allHomepage } = homepage || {};
   const { carousel }  = carouselHomepage || {};
@@ -28,10 +30,11 @@ export default function Home({ data, homepage, carouselHomepage, params  }) {
 
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
+  
+  var router = useRouter();
+  const params =  getAllowedParams(router.query)//to work with utms
 
-  const { params1 } = params || {};
-  console.log("👀👀👀");
-  console.log(params);
+
 
   return (
     <>
@@ -75,10 +78,10 @@ export async function getStaticProps() {
    const data = await getMenus()
    const carouselHomepage = await getHomepageCarousel()
 
-   const params = await getAllowedParams()
+   
 
 
   return {
-    props: { data,homepage,carouselHomepage, params },
+    props: { data,homepage,carouselHomepage },
   }
 }
