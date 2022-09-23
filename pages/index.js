@@ -31,16 +31,8 @@ export default function Home({ data, homepage, carouselHomepage  }) {
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
   
-  var router = useRouter();
-  const params =  generateUrlWithQueryString(router.query)//to work with utms
 
-  console.log("🎉");
-  console.log(params);
-  console.log("🎉🎉");
-
-
-
-
+  
   return (
     <>
       <Layout >
@@ -84,7 +76,6 @@ export async function getStaticProps() {
    const carouselHomepage = await getHomepageCarousel()
 
    
-
 
   return {
     props: { data,homepage,carouselHomepage },

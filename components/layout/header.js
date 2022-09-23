@@ -6,6 +6,9 @@ import {useTheme} from 'next-themes'
 import Link from 'next/link';
 import React, { useState, useRef } from 'react';
 
+import { generateUrlWithQueryString } from '../../lib/utils/utm_params'
+import { useRouter } from "next/router";
+
 
 import NavSearch from '../search/search-nav';
 
@@ -42,7 +45,12 @@ export default function Header(headerData, ref) {
 
 /* to keep utms params */
 
-/*final utm params*/ 
+var router = useRouter();
+const params =  generateUrlWithQueryString(router.query);
+
+console.log("🎉");
+console.log(params);
+console.log("🎉🎉🎉🎉");
     
     return (
         <> 
