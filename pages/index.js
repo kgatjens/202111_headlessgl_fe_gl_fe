@@ -7,10 +7,6 @@ import Footer from '../components/layout/footer'
 
 import Homepage from '../components/pages/homepage'
 
-import { generateUrlWithQueryString } from '../lib/utils/utm_params'
-import { useRouter } from "next/router";
-
-
 import { getMenus,getHomepage,getHomepageCarousel } from '../lib/wp/api'
 // import { getHomepage } from '../lib/wp/api'
 // import { getHomepageCarousel } from '../lib/wp/api'
@@ -30,9 +26,7 @@ export default function Home({ data, homepage, carouselHomepage  }) {
 
   //const headerData = {pageTitle, menuItems}
   const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
-  
-
-  
+    
   return (
     <>
       <Layout >

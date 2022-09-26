@@ -24,10 +24,6 @@ export default function Header(headerData, ref) {
         setActive(!active);
     };
 
-    // console.log("@@@");
-    // console.log(headerData.metaData);
-    // console.log("@@@");
-
     //const childItemRef = React.useRef([React.createRef(), React.createRef()]);
     const childItemRef = React.useRef(null)
 
@@ -46,11 +42,11 @@ export default function Header(headerData, ref) {
 /* to keep utms params */
 
 var router = useRouter();
-const params =  generateUrlWithQueryString(router.query);
+const params =  generateUrlWithQueryString(router.query).length>0 ? generateUrlWithQueryString(router.query) : "";
 
 console.log("🎉");
 console.log(params);
-console.log("🎉🎉🎉🎉");
+console.log("🎉🎉");
     
     return (
         <> 
@@ -73,7 +69,7 @@ console.log("🎉🎉🎉🎉");
                         <>
                             <li  key={ menuItem.databaseId } className="hover:text-darkblue px-4 parent-main-nav" 
                                 onMouseMove={(e) => handleHover(e)}>
-                                <Link key={ menuItem.id }  href={ menuItem.path ?? '/' }>
+                                <Link key={ menuItem.id }  href={ menuItem.path+params ?? '/' }>
                                     <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                                 </Link>
                             </li>
@@ -91,7 +87,7 @@ console.log("🎉🎉🎉🎉");
                                     <>
                                     {/* { childItemsTotal++ } */}
                                         <li  className="px-5 py-2 hover:text-gray2"  key={ childItem.databaseId }>
-                                            <Link  key={ childItem.id }  href={ childItem.path ?? '/' }>
+                                            <Link  key={ childItem.id }  href={ childItem.path + params ?? '/' }>
                                                 <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
                                             </Link>
                                         </li>
@@ -103,7 +99,7 @@ console.log("🎉🎉🎉🎉");
                         : 
                         (menuItem.parentId === null) ? 
                         <li className="hover:text-darkblue px-4 no-parent" >
-                            <Link key={ menuItem.id }  href={ menuItem.path ?? '/' }>
+                            <Link key={ menuItem.id }  href={ menuItem.path+params ?? '/' }>
                                 <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                             </Link>
                         </li>
@@ -136,14 +132,14 @@ console.log("🎉🎉🎉🎉");
                 <div className='lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto'>
                 { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
                             
-                    <Link key={ menuItem.id }  href={ menuItem.url ?? '/' }>
+                    <Link key={ menuItem.id }  href={ menuItem.url+params ?? '/' }>
                         <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ' dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                     </Link>
                 ) ) : null }
             </div>
             </div>
             <div className="bg-gradient-to-t from-orange to-darkorange hover:text-darkblue px-4 pt-10" >
-                <Link key="Contact-us"  href='/contact-us'>
+                <Link key="Contact-us"  href={`/contact-us${params}`}>
                         <a dangerouslySetInnerHTML={ { __html: "Contact" } }/>
                 </Link>
             </div>
