@@ -4,12 +4,17 @@ import Link from 'next/link';
 import styles from '../../styles/sass/footer.module.scss'
 import HubspotForm from 'react-hubspot-form'
 
-
+import { generateUrlWithQueryString } from '../../lib/utils/utm_params'
+import { useRouter } from "next/router";
 
 export default function Footer(headerData) {
     // console.log("##Footer##");
     // console.log(headerData.footer.menuItems.nodes);
     // console.log("###");
+
+  var router = useRouter();
+  const params =  generateUrlWithQueryString(router.query).length>0 ? generateUrlWithQueryString(router.query) : "";
+
   return (
     <footer className="bg-accent-1 border-accent-2 bg-gradient-to-t from-lightblue to-white text-darkblue w-screen py-5 dark:from-gray2 dark:to-black dark:text-white">
 
@@ -59,7 +64,7 @@ export default function Footer(headerData) {
               Locations
             </h3>
             <div className="flex flex-col lg:flex-row  items-center lg:pl-4 lg:w-1/2">
-              <a href="">Item 1</a> | <a href="">Item 2</a>
+              <a href="`/${params}`">Item 1</a> | <a href="`/${params}`">Item 2</a>
             </div>
           </div>
           
@@ -69,7 +74,7 @@ export default function Footer(headerData) {
               { headerData.footer.menuItems.nodes.length ? headerData.footer.menuItems.nodes.map( menuItem => (
                       
                   <li className="hover:text-darkblue px-3" key={ menuItem.id }>
-                    <Link  href={ menuItem.url ?? '/' }>
+                    <Link  href={ menuItem.url+params ?? '/' }>
                        <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                     </Link>   /   
                   </li>
