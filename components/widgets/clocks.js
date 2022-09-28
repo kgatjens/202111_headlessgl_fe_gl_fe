@@ -1,48 +1,56 @@
-<div class="clock-content">
-        <div class="widget clock" id="denver" data-timezone="-7"><!-- MDT, CDT -->
-            <div class="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
-            <div class="hand minutes" style="transform: rotate(192deg);"></div>
-            <div class="hand hours" style="transform: rotate(960deg);"></div>
-            <div class="hand-cap"></div>
+export default function Clocks() {
+    return (
+    <>
+    <div className="clock-content">
+        <div className="widget clock" id="denver" data-timezone="-7">
+            <div className="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
+            <div className="hand minutes" style="transform: rotate(192deg);"></div>
+            <div className="hand hours" style="transform: rotate(960deg);"></div>
+            <div className="hand-cap"></div>
             <label>Denver</label>
         </div>
-        <div class="widget clock" id="mx" data-timezone="-7">
-            <div class="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
-            <div class="hand minutes" style="transform: rotate(192deg);"></div>
-            <div class="hand hours" style="transform: rotate(450deg);"></div>
-            <div class="hand-cap"></div>
+        <div className="widget clock" id="mx" data-timezone="-7">
+            <div className="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
+            <div className="hand minutes" style="transform: rotate(192deg);"></div>
+            <div className="hand hours" style="transform: rotate(450deg);"></div>
+            <div className="hand-cap"></div>
             <label>Mexico</label>
         </div>
-        <div class="widget clock" id="crc" data-timezone="-6">
-            <div class="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
-            <div class="hand minutes" style="transform: rotate(192deg);"></div>
-            <div class="hand hours" style="transform: rotate(450deg);"></div>
-            <div class="hand-cap"></div>
+        <div className="widget clock" id="crc" data-timezone="-6">
+            <div className="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
+            <div className="hand minutes" style="transform: rotate(192deg);"></div>
+            <div className="hand hours" style="transform: rotate(450deg);"></div>
+            <div className="hand-cap"></div>
             <label>Costa Rica</label>
         </div>
-        <div class="widget clock" id="col" data-timezone="-5">
-            <div class="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
-            <div class="hand minutes" style="transform: rotate(192deg);"></div>
-            <div class="hand hours" style="transform: rotate(720deg);"></div>
-            <div class="hand-cap"></div>
+        <div className="widget clock" id="col" data-timezone="-5">
+            <div className="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
+            <div className="hand minutes" style="transform: rotate(192deg);"></div>
+            <div className="hand hours" style="transform: rotate(720deg);"></div>
+            <div className="hand-cap"></div>
             <label>Colombia</label>
         </div>
-        <div class="widget clock" id="ind" data-timezone="+17">
-            <div class="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
-            <div class="hand minutes" style="transform: rotate(192deg);"></div>
-            <div class="hand hours" style="transform: rotate(720deg);"></div>
-            <div class="hand-cap"></div>
+        <div className="widget clock" id="ind" data-timezone="+17">
+            <div className="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
+            <div className="hand minutes" style="transform: rotate(192deg);"></div>
+            <div className="hand hours" style="transform: rotate(720deg);"></div>
+            <div className="hand-cap"></div>
             <label>India</label>
         </div> 
-        <div class="widget clock" id="poland" data-timezone="+14" >
-            <div class="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
-            <div class="hand minutes" style="transform: rotate(192deg);"></div>
-            <div class="hand hours" style="transform: rotate(720deg);"></div>
-            <div class="hand-cap"></div>
+        <div className="widget clock" id="poland" data-timezone="+14" >
+            <div className="hand seconds" style="transform: rotate(168deg); transition: all 0.05s cubic-bezier(0, 0, 0.52, 2.51) 0s;"></div>
+            <div className="hand minutes" style="transform: rotate(192deg);"></div>
+            <div className="hand hours" style="transform: rotate(720deg);"></div>
+            <div className="hand-cap"></div>
             <label>Poland</label>
         </div>
     </div>
+    </>
+    )
+}
 
+
+/*
 // class Clock {
 //     constructor(id) {
 //       this.timezone = parseInt(document.getElementById(id).dataset.timezone);
@@ -152,7 +160,7 @@
 //   new Clock('ind');
 //   new Clock('poland');
   
-  
+  */
   
   
   
