@@ -17,9 +17,15 @@ export default function Clocks() {
     //     }
     // };
 
+        let currentdate = new Date();
+        let indianTime  = new Date().toLocaleString("en-Us", {timeZone: 'Asia/Kolkata'});
+
+
         let ausTime = new Date().toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
-        let date = new Date(ausTime);
+        let australia = new Date(ausTime);
+        let india = new Date(indianTime);
     
+        
         // this.setState({
         //   'options': {
         //     ...this.state.options,
@@ -29,27 +35,31 @@ export default function Clocks() {
         //   }
         // })
       
-        let options = {
+        let options1 = {
             width: "300px",
+            
             border: true,
             borderColor: "#2e2e2e",
             baseColor: "#17a2b8",
             centerColor: "#459cff",
             centerBorderColor: "#ffffff",
             handColors: {
-              second: "#d81c7a",
+              second: "black",
               minute: "#ffffff",
               hour: "#ffffff"
             },
-            "seconds": date.getSeconds(),   // set your
-            "minutes": date.getMinutes(),  // own
-            "hours": date.getHours()   
+            seconds: australia.getSeconds(),   // set your
+            minutes: australia.getMinutes(),  // own
+            hours: australia.getHours(), 
+             
         };
 
-
+        console.log("Autralia:");
+        console.log(australia.getHours());
+        console.log(options1);
     return (
         <>
-            <AnalogClock {...options} />
+            <AnalogClock {...options1} />
         </>
       )
     }
