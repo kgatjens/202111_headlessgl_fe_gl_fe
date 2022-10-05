@@ -37,7 +37,7 @@ export default function Home({ data, homepage, carouselHomepage  }) {
               metaData={metaData} />
       <Container>
 
-     
+      <Clocks/>
       {allHomepage && (
 
         <Homepage 
@@ -57,7 +57,7 @@ export default function Home({ data, homepage, carouselHomepage  }) {
 
       
       </Container>
-      <Clocks/>
+      
       <Footer footer={mainFooter}/>
     </Layout>
     </>
