@@ -37,7 +37,7 @@ export default function Home({ data, homepage, carouselHomepage  }) {
               metaData={metaData} />
       <Container>
 
-      <Clocks/>
+      {/* <Clocks/> */}
       {allHomepage && (
 
         <Homepage 
