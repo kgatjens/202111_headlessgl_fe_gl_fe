@@ -1,8 +1,35 @@
+
+.clock-elements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: "2rem";
+}
+
 .clock-content {
-    display: flex;
-    flex-wrap: wrap;
-    width: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: flex-end;
+  width: 650px;
+}
+
+@media (min-width: 780px) {
+  .clock-content {
+      flex-direction: row;
+      justify-content: space-around;
   }
+
+  .clock {
+      width: 63px;
+      height: 63px;
+  }
+}
+
+
+
+
+
   .clock-content .widget {
     padding: 24px;
     margin: 24px;

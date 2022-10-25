@@ -1,69 +1,64 @@
+import AnalogClock from "analog-clock-react";
+import { useEffect, useState } from "react";
+import styles from "../../styles/custom/clocks.module.css";
 
-import AnalogClock from 'analog-clock-react';
+export default function Clocks(props) {
+  const [minutes, setMinute] = useState();
+  const [seconds, setSeconds] = useState();
+  const [hours, setHours] = useState();
+  const [displayTime, setDisplayTime] = useState();
 
-export default function Clocks() {
-    
-    // let options = {
-    //     width: "300px",
-    //     border: true,
-    //     borderColor: "#2e2e2e",
-    //     baseColor: "#17a2b8",
-    //     centerColor: "#459cff",
-    //     centerBorderColor: "#ffffff",
-    //     handColors: {
-    //       second: "#d81c7a",
-    //       minute: "#ffffff",
-    //       hour: "#ffffff"
-    //     }
-    // };
+  function updateClock() {
+    let placeTime = new Date().toLocaleString("en-US", {
+      timeZone: props.timeZone,
+    });
+    let date = new Date(placeTime);
 
-        let currentdate = new Date();
-        let indianTime  = new Date().toLocaleString("en-Us", {timeZone: 'Asia/Kolkata'});
+    setMinute(date.getMinutes());
+    setSeconds(date.getSeconds());
+    setHours(date.getHours());
 
+    setDisplayTime(
+      date.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+    );
+  }
 
-        let ausTime = new Date().toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
-        let australia = new Date(ausTime);
-        let india = new Date(indianTime);
-    
-        
-        // this.setState({
-        //   'options': {
-        //     ...this.state.options,
-        //     seconds: date.getSeconds(),
-        //     minutes: date.getMinutes(),
-        //     hours: date.getHours()
-        //   }
-        // })
-      
-        let options1 = {
-            width: "300px",
-            
-            border: true,
-            borderColor: "#2e2e2e",
-            baseColor: "#17a2b8",
-            centerColor: "#459cff",
-            centerBorderColor: "#ffffff",
-            handColors: {
-              second: "black",
-              minute: "#ffffff",
-              hour: "#ffffff"
-            },
-            seconds: australia.getSeconds(),   // set your
-            minutes: australia.getMinutes(),  // own
-            hours: australia.getHours(), 
-             
-        };
+  useEffect(() => {
+    updateClock();
+    setInterval(updateClock, 1000);
+  }, []);
 
-        console.log("Autralia:");
-        console.log(australia.getHours());
-        console.log(options1);
-    return (
-        <>
-            <AnalogClock {...options1} />
-        </>
-      )
-    }
-  
-  
-  
-  
+  let options = {
+    useCustomTime: true,
+    width: "63px",
+    border: true,
+    borderColor: "#ffffff",
+    baseColor: props.color ?? "#243c77",
+    centerColor: "#ffffff",
+    centerBorderColor: "#ffffff",
+    handColors: {
+      second: "black",
+      minute: "#ffffff",
+      hour: "#ffffff",
+    },
+    seconds: seconds,
+    minutes: minutes,
+    hours: hours,
+  };
+
+  return (
+    <>
+      <div className={styles["clock-elements"]}>
+        <span>{props.place}</span>
+        <div style={{marginTop:"1rem", marginBottom:"1rem"}}>
+        <AnalogClock {...options} />
+        </div>
+        <span>{displayTime}</span>
+      </div>
+    </>
+  );
+}
