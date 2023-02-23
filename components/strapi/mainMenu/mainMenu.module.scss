@@ -1,0 +1,82 @@
+.desktopmenu {
+    @apply hidden md:flex w-full md:justify-end;
+  }
+  
+  .menuItems {
+    @apply flex flex-1 md:flex-none items-center;
+  }
+  
+  .menuItem {
+    @apply text-gray relative px-2 text-sm   leading-8
+  }
+  
+  .topLevelHeader {
+    &:hover {
+      @apply cursor-pointer text-white;
+    }
+  }
+  
+  .submenuContainer {
+    @apply absolute top-8 left-0 bg-black z-20 pr-8 pl-4 py-6;
+    filter: drop-shadow(0px 4px 100px rgba(0, 0, 0, 0.25));
+    width: fit-content;
+    height: fit-content;
+  }
+  
+  .submenuList {
+    min-width: 15rem;
+    @apply text-sm text-white;
+  }
+  
+  .submenuTitle {
+    @apply text-sm font-semibold leading-4 ml-5 tracking-wide;
+    letter-spacing: 0.2rem;
+  }
+  .submenuGrid {
+    display: grid;
+    grid-template-rows: repeat(8, auto);
+  
+    grid-column-gap: 4rem;
+    grid-auto-flow: column;
+  }
+  .submenuItemLink {
+  }
+  .submenuItem {
+    @apply block px-5 text-white text-sm py-2 cursor-pointer whitespace-nowrap;
+  
+    &:hover {
+      @apply text-white;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  
+  .talkToAnExpertLayer {
+    @apply hidden md:block fixed -mt-5 z-40 ml-2  lg:ml-16;
+  }
+  
+  .talkToAnAxpert {
+    @apply z-50 mx-auto flex md:justify-end w-full;
+    max-width: 200px;
+  }
+  
+  .circle {
+    @apply w-48 h-48  flex flex-col items-center  rounded-full justify-center;
+    background-color: #123ff5;
+    color: white;
+  
+    &:hover {
+      cursor: pointer;
+      background-color: #123ff5
+  
+      span {
+        color: theme('colors.black');
+      }
+    }
+  }
+  
+  .talkToExpertText {
+    @apply text-xs font-semibold text-gray;
+  }
+  

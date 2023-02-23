@@ -78,7 +78,7 @@ export default function Blogs({ post, posts, menus }) {
             {morePosts.length > 0 && <MoreStories posts={morePosts} />}
     </Container>
 
-    <Footer footer={mainFooter}/>
+    <Footer footer={mainFooter}/> 
   </Layout>
   
   )
