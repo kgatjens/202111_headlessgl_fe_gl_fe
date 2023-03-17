@@ -9,32 +9,30 @@ import { useState, useEffect } from "react";
 
 export default function StrapiImporter(){
 
-  const address = "https://gorillalogic.com/wp-json/wp/v2/posts?offset=0&per_page=1";
+  const address = "https://gorillalogic.com/wp-json/wp/v2/posts?offset=0&per_page=3";
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   const { data, error } = useSWR(address, fetcher);
 
   if (error) <p>Loading failed...</p>;
   if (!data) <h1>Loading...</h1>;
+  console.log(data);
   
   const a = (data || []).forEach(post => {
       try{
 
-        try {
-          const postAddress = "http://localhost:1337/api/articles";
-          const rest = axios.post(postAddress, 
-            {
-              "data": {
-                title: post.title.rendered,
-                description: post.title.rendered,
-                content: post.content.rendered,
-                CreatedDate: format( new Date(post.date_gmt), 'yyyy-MM-dd'),
-                slug: "post.slug",
-              }
-            });
-          console.log(rest);
-        } catch (error) {
-          setErrorRestaurants(error);
-        }
+          // const postAddress = "http://localhost:1337/api/articles";
+          // const rest = axios.post(postAddress, 
+          //   {
+          //     "data": {
+          //       title: post.title.rendered,
+          //       description: post.title.rendered,
+          //       content: post.content.rendered,
+          //       CreatedDate: format( new Date(post.date_gmt), 'yyyy-MM-dd'),
+          //       slug: post.slug,
+          //     }
+          //   });
+          // console.log(rest);
+       
        
       }catch(err){
         console.log(err.error);
