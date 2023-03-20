@@ -7,20 +7,36 @@ import Layout from '../components/layout/layout'
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-export default function StrapiImporter(){
 
+function getWPData(){
   const address = "https://gorillalogic.com/wp-json/wp/v2/posts?offset=0&per_page=1";
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
-  const { data, error } = useSWR(address, fetcher);
-
-  if (error) <p>Loading failed...</p>;
-  if (!data) <h1>Loading...</h1>;
   
-  const a = (data || []).forEach(post => {
+   return useSWR(address, fetcher,{
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false
+  });
+}
+
+function  setStrapiData(){
+
+}
+export default function StrapiImporter(){
+
+  const { data } = getWPData();
+  
+  console.log(data)
+
+  
+  if (!data) <h1>Loading...</h1>;
+  var m = 0;
+  const postAddress = "http://localhost:1337/api/articles"
+  if (Array.isArray(data)) {
+
+  const a = data.forEach((post) => {
       try{
 
-        try {
-          const postAddress = "http://localhost:1337/api/articles";
           const rest = axios.post(postAddress, 
             {
               "data": {
@@ -28,20 +44,19 @@ export default function StrapiImporter(){
                 description: post.title.rendered,
                 content: post.content.rendered,
                 CreatedDate: format( new Date(post.date_gmt), 'yyyy-MM-dd'),
-                slug: "post.slug",
+                slug: post.slug,
               }
             });
-          console.log(rest);
-        } catch (error) {
-          setErrorRestaurants(error);
-        }
+            console.log("counter: ");
+          console.log(m=m+1);
+       
        
       }catch(err){
         console.log(err.error);
       }
       
     });
-
+  }
 
     const router = useRouter();
     const [loading, setLoading] = useState(false);
