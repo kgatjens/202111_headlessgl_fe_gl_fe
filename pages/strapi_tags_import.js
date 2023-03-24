@@ -15,6 +15,8 @@ const postAddress = "http://localhost:1337/api/tags"
 const [loading2, setLoading2] = useState(false);
 const [loading1, setLoading1] = useState(false);
 
+function calculateDaysBetweenDates(begin, end) {        }   
+
 function handleClick() {
     setTimeout(() => {
         setLoading2(true);
@@ -26,13 +28,13 @@ function handleClick() {
                 console.log(tag.tagId)
                  axios.post(postAddress, 
                     {
-                    "data": {
-                        "attributes":{
+                    "data": 
+                        {
                             tag_id: tag.tagId,
                             name: tag.name,
                             slug: tag.slug,
                         }
-                    }
+                    
                     });
                 
             }catch(err){
