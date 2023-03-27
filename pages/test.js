@@ -8,6 +8,5 @@ function calculateDaysBetweenDates(begin, end) {
     return diff / (1000 * 60 * 60 * 24);
     }
 
-    function orderAnArray()
 
 

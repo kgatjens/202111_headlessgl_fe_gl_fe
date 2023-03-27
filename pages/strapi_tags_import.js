@@ -9,13 +9,12 @@ import { getTags  } from '../lib/wp/api'
 
 export default function StrapiImporter({tags}){
 
-const postTags = tags.tags.nodes
-//console.log(postTags)
+const postTags = tags.tags.edges
+console.log(postTags)
 const postAddress = "http://localhost:1337/api/tags"
 const [loading2, setLoading2] = useState(false);
 const [loading1, setLoading1] = useState(false);
 
-function calculateDaysBetweenDates(begin, end) {        }   
 
 function handleClick() {
     setTimeout(() => {
@@ -25,14 +24,17 @@ function handleClick() {
         const a = postTags.forEach((tag) => {
 
             try{
-                console.log(tag.tagId)
+                console.log(tag.node)
                  axios.post(postAddress, 
                     {
                     "data": 
                         {
-                            tag_id: tag.tagId,
-                            name: tag.name,
-                            slug: tag.slug,
+                            tag_id: tag.node.tagId,
+                            name: tag.node.name,
+                            slug: tag.node.slug,
+                            id: tag.node.tagId,
+                            cursor: tag.cursor
+                            
                         }
                     
                     });
