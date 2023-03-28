@@ -19,10 +19,16 @@ function handleClick() {
         setLoading2(true);
     }, 0);
     if (Array.isArray(blogs)) {
-        const a = blogs.forEach((post) => {
 
+
+        const a = blogs.forEach((post) => {
+            //console.log(post)
+            const tagsPerBlog = post.node.tags.nodes;
+            const blogTags=[];
+            const tags = tagsPerBlog.forEach((tag) => {
+                blogTags.push(tag.tagId);
+            });
             try{
-                console.log(post.node)
                  axios.post(postAddress, 
                     {
                     "data": {
@@ -31,6 +37,8 @@ function handleClick() {
                         content: post.node.excerpt,
                         CreatedDate: format( new Date(post.node.date), 'yyyy-MM-dd'),
                         slug: post.node.slug,
+                        tags: blogTags,
+                        id: post.node.id,
                     }
                     });
                 
