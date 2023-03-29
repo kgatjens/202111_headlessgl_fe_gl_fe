@@ -28,8 +28,24 @@ function handleClick() {
             const tags = tagsPerBlog.forEach((tag) => {
                 blogTags.push(tag.tagId);
             });
+
+            const categoriesPerBlog = post.node.categories.nodes;
+            const blogCategs=[];
+            const categories = categoriesPerBlog.forEach((cat) => {
+                blogCategs.push(cat.categoryId);
+            });
+
+            const pattern = /custom_gl_class series-/;
+            if(post.node.content.search(pattern)!=-1){
+                const startIndex = post.node.content.search(pattern) + pattern.source.length;
+                const endIndex = post.node.content.indexOf('">', startIndex);
+                const result = post.node.content.substring(startIndex,endIndex);
+                result = result.replace(" expandable", "");
+                
+            }
+            //need to get the result id to it's blog series equivalent
             try{
-                 axios.post(postAddress, 
+                axios.post(postAddress, 
                     {
                     "data": {
                         title: post.node.title,
@@ -38,9 +54,11 @@ function handleClick() {
                         CreatedDate: format( new Date(post.node.date), 'yyyy-MM-dd'),
                         slug: post.node.slug,
                         tags: blogTags,
+                        categories: blogCategs,
                         id: post.node.id,
+                        blog_series: result,
                     }
-                    });
+                });
                 
             }catch(err){
                 console.log(err.error);
