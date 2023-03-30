@@ -25,18 +25,18 @@ function handleClick() {
 
             try{
                 console.log(cat)
-                 axios.post(postAddress, 
-                    {
-                    "data": 
-                        {
-                            category_id: cat.node.categoryId,
-                            id: cat.node.categoryId,
-                            name: cat.node.name,
-                            slug: cat.node.slug,
-                            description: cat.node.description,
-                        }
+                //  axios.post(postAddress, 
+                //     {
+                //     "data": 
+                //         {
+                //             category_id: cat.node.categoryId,
+                //             id: cat.node.categoryId,
+                //             name: cat.node.name,
+                //             slug: cat.node.slug,
+                //             description: cat.node.description,
+                //         }
                     
-                    });
+                //     });
                 
             }catch(err){
                 console.log(err.error);
