@@ -13,9 +13,10 @@ import SectionSeparator from '../../components/layout/section-separator'
 import BlogHeader from '../../components/blogs/blog-header'
 import BlogBody from '../../components/blogs/blog-body'
 
-import {  getCapabilities, getAllCapabilitiesWithSlug, getMenus } from '../../lib/wp/api'
+import {  getCapabilities, getMenus } from '../../lib/wp/api'
 
-export default function Capabilities({ capabilities, menus }) {
+//export default function Capabilities({ capabilities, menus }) {
+  export default function Capabilities({ capabilities, menus }) {
   const router = useRouter()
   
   const slug  = router.query.slugs;
@@ -50,7 +51,7 @@ export default function Capabilities({ capabilities, menus }) {
         ) : (
           <>
             <article>
-            <Head>
+            {/* <Head>
               <title>
               {capabilities.title}
               </title>
@@ -61,7 +62,7 @@ export default function Capabilities({ capabilities, menus }) {
             </Head>
                 <h1>{capabilities.title}</h1>
             <BlogBody content={capabilities.content} />
-     
+      */}
           </article>
           </>
          )} 
@@ -77,29 +78,30 @@ export default function Capabilities({ capabilities, menus }) {
 
 export async function getStaticProps({ params }) {
   
-  const data = await getCapabilities(params.slugs)
-  const menus = await getMenus()
-  console.log("XXXXX")
-  console.log(params.slugs)
-  console.log(data)
-  console.log("XXXXX@@@")
+  // ///const data = await getCapabilities(params.slugs)
+  // const menus = await getMenus()
+  // console.log("XXXXX")
+  // console.log(params.slugs)
+  // console.log(data)
+  // console.log("XXXXX@@@")
   return {
     props: {
-      capabilities: data.capabilities,
-       menus
+      capabilities: {},
+       menus:{}
     },
   } 
+  
 }
 
 export async function getStaticPaths() {
-  const allCaps = await getAllCapabilitiesWithSlug()
-  console.log("$$$")
-  console.log(allCaps)
-  return {
-    paths: allCaps.edges.map(({ node }) => `/capabilities/${node.slug}`) || [],
-    fallback: true,
-  }
-  return { paths: [], fallback: 'blocking' };
+  // const allCaps = await getAllCapabilitiesWithSlug()
+  // console.log("$$$")
+  // console.log(allCaps)
+  // return {
+  //   paths: allCaps.edges.map(({ node }) => `/capabilities/${node.slug}`) || [],
+  //   fallback: true,
+  // }
+   return { paths: [], fallback: 'blocking' };
 
 }
 

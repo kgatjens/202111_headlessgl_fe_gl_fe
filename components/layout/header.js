@@ -57,7 +57,7 @@ console.log("🎉🎉");
         <nav  className="flex justify-between bg-gradient-to-t from-lightblue to-gray2  text-white w-screen dark:from-black to-gray2">
             <div className="px-5 xl:px-12 py-6 flex w-full cursor-pointer">
                 <Link key="Main_Logo" className="text-3xl font-heading w-1/4 cursor-pointer" href="/">
-                <img src='../gl_logo_g.png' width="50px" height="auto" />
+                <img src='../kgb_logo.png' width="50px" height="auto" />
                 </Link>    
                 
             {/* //Desktop menu */}
