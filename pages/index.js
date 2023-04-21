@@ -68,7 +68,8 @@ export default function Home({ data, homepage, carouselHomepage  }) {
 
 export async function getStaticProps() {
    //const homepage = await getHomepage()
-   const data = await getMenus()
+   //const data = await getMenus()
+   const data = {}
    const carouselHomepage = await getHomepageCarousel()
 
   return {
