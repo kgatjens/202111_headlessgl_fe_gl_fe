@@ -14,8 +14,6 @@ import useSWR from "swr";
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
-
-
 import { getFirstBlogs, getMenus, blogAuthors, blogCategories } from '../lib/wp/api'
 
 const loadedMoreData = {};
