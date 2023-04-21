@@ -25,19 +25,19 @@ function handleClick() {
 
             try{
                 console.log(tag.node)
-                 axios.post(postAddress, 
-                    {
-                    "data": 
-                        {
-                            tag_id: tag.node.tagId,
-                            name: tag.node.name,
-                            slug: tag.node.slug,
-                            id: tag.node.tagId,
-                            cursor: tag.cursor
+                //  axios.post(postAddress, 
+                //     {
+                //     "data": 
+                //         {
+                //             tag_id: tag.node.tagId,
+                //             name: tag.node.name,
+                //             slug: tag.node.slug,
+                //             id: tag.node.tagId,
+                //             cursor: tag.cursor
                             
-                        }
+                //         }
                     
-                    });
+                //     });
                 
             }catch(err){
                 console.log(err.error);
