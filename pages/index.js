@@ -71,8 +71,6 @@ export async function getStaticProps() {
    const data = await getMenus()
    const carouselHomepage = await getHomepageCarousel()
 
-   
-
   return {
     props: { data,homepage,carouselHomepage },
   }
