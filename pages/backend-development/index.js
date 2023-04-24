@@ -10,19 +10,20 @@ import MainMenu from '../../components/strapi/mainMenu/mainMenu'
 import Link from 'next/link'
 import style from './page-style.module.scss'
 
-//import { getMainMenu,getBackendPage } from '../../lib/strapi/api'
-//import { getMainMenu } from '../../lib/wp/api'
+import { getMainMenu,getBackendPage } from '../../lib/strapi/api'
 
-export default function Page({ data, backendData  }) {
+
+export default function Page({  backendData  }) {
 //  console.log(data);
 //  console.log(backendData);
+
 
 
   return (
     <>
       <Container >
         {/* Add content here */}
-        <MainMenu menuItems={data} />
+        {/* <MainMenu menuItems={data} /> */}
 
         {/* <Meta
         headerData={headerData.metaData}
@@ -107,10 +108,14 @@ export default function Page({ data, backendData  }) {
 }
 
 export async function getServerSideProps() {
-   //const backendData = await getBackendPage()
-   //const data = await getMainMenu()
+   const backendData = await getBackendPage()
+   //const backendData2 =  await backendData.json()
+
+
+   const data = await getMainMenu()
+   //const data2 =  await data.json()
 
   return {
-    props: { data,backendData },
+    props: { backendData },
   }
 }
