@@ -9,26 +9,28 @@ import Clocks from '../components/widgets/clocks'
 
 import Homepage from '../components/pages/homepage'
 
-import { getMenus,getHomepage,getHomepageCarousel } from '../lib/wp/api'
+import { getMainMenu } from '../lib/strapi/api'
+   
 // import { getHomepage } from '../lib/wp/api'
 // import { getHomepageCarousel } from '../lib/wp/api'
 
-export default function Home({ data, homepage, carouselHomepage  }) {
+export default function Home({ data,homepage  }) {
   
   const { allHomepage } = homepage || {};
-  const { carousel }  = carouselHomepage || {};
-  const { mainNav, mainFooter } = data || {};
+  const  mainNav  = data || {};
+  console.log(">>>")
+  console.log(mainNav.data);
 
   //Metas
-  const metaTitle     = allHomepage.edges[0]?.node.seo.title;
-  const featuredImage = allHomepage.edges[0]?.node.homepageFields.headerImage.mediaItemUrl;
-  const metaKeywords  = allHomepage.edges[0]?.node.seo.metaKeywords;
-  const metaDesc      = allHomepage.edges[0]?.node.seo.metaDesc;
-  const canonical     = allHomepage.edges[0]?.node.seo.canonical;
+  // const metaTitle     = allHomepage.edges[0]?.node.seo.title;
+  // const featuredImage = allHomepage.edges[0]?.node.homepageFields.headerImage.mediaItemUrl;
+  // const metaKeywords  = allHomepage.edges[0]?.node.seo.metaKeywords;
+  // const metaDesc      = allHomepage.edges[0]?.node.seo.metaDesc;
+  // const canonical     = allHomepage.edges[0]?.node.seo.canonical;
 
   //const headerData = {pageTitle, menuItems}
-  const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
-    
+  //const metaData = {metaTitle,featuredImage,metaKeywords,metaDesc,canonical}
+  const metaData = {}  
   return (
     <>
       <Layout >
@@ -58,7 +60,7 @@ export default function Home({ data, homepage, carouselHomepage  }) {
       
       </Container>
       
-      <Footer footer={mainFooter}/>
+      {/* <Footer footer={mainFooter}/> */}
     </Layout>
     </>
   )
@@ -67,12 +69,14 @@ export default function Home({ data, homepage, carouselHomepage  }) {
 
 
 export async function getStaticProps() {
-   //const homepage = await getHomepage()
-   //const data = await getMenus()
-   const data = {}
-   const carouselHomepage = await getHomepageCarousel()
+   const homepage = {}
+   
+   const data = await getMainMenu()
+   //const data = {}
+   //const carouselHomepage = await getHomepageCarousel()
+   //const carouselHomepage = {}
 
   return {
-    props: { data,homepage,carouselHomepage },
+    props: { data,homepage },
   }
 }
