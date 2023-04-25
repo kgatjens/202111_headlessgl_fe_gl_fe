@@ -13,7 +13,14 @@ import { useRouter } from "next/router";
 import NavSearch from '../search/search-nav';
 
 export default function Header(headerData, ref) {
-    // const { headerData } = menuItems || {};
+
+
+    const  menuItems  = headerData.header || {};
+
+
+    console.log("🎉");
+console.log(menuItems);
+console.log("🎉🎉");
     //const { pageTitle, menuItems } = headerData || {};
 
     const [active, setActive] = useState(false);
@@ -32,11 +39,11 @@ export default function Header(headerData, ref) {
         //  for(let i=0; i<childItemsTotal ; i++){
         //     childItemRef.current[i].current.style.display = "block";
         //  }
-        childItemRef.current.style.display = "block"; 
+        //childItemRef.current.style.display = "block"; 
     }
 
     const handleHoverExit = () => {
-        childItemRef.current.style.display = "none";  
+        //childItemRef.current.style.display = "none";  
     }
 
 /* to keep utms params */
@@ -44,13 +51,11 @@ export default function Header(headerData, ref) {
 var router = useRouter();
 const params =  generateUrlWithQueryString(router.query).length>0 ? generateUrlWithQueryString(router.query) : "";
 
-console.log("🎉");
-console.log(params);
-console.log("🎉🎉");
+
     
     return (
         <> 
-        <Meta headerData={headerData.metaData}/>
+        {/* <Meta headerData={headerData.metaData}/> */}
 
         <header>
             
@@ -63,48 +68,25 @@ console.log("🎉🎉");
             {/* //Desktop menu */}
                 <div className="hidden md:flex w-full pt-2  md:justify-end ">
                     <ul role="list" className="list-reset flex justify-between flex-1 md:flex-none items-center">
-                    { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
+                    { menuItems.data.length ? menuItems.data.map( menuItem => (
    
-                        (menuItem.childItems.nodes.length > 0 && menuItem.parentId === null) ? 
+   
+                        (menuItem.attributes.title != null ) ? 
+                        
                         <>
-                            <li  key={ menuItem.databaseId } className="hover:text-darkblue px-4 parent-main-nav" 
+
+                            <li  key={ menuItem.attributes.title } className="hover:text-darkblue px-4 parent-main-nav" 
                                 onMouseMove={(e) => handleHover(e)}>
-                                <Link key={ menuItem.id }  href={ menuItem.path+params ?? '/' }>
-                                    <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
+                                <Link key={ menuItem.attributes.title }  href={ menuItem.attributes.url+params ?? '/' }>
+                                    <a dangerouslySetInnerHTML={ { __html: menuItem.attributes.title } }/>
                                 </Link>
                             </li>
 
-                            <div ref={childItemRef} 
-                            id="dropdownNavbar" 
-                            className="z-10 bg-darkblue divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600 block z-20" 
-                            style={{ position: 'absolute', margin: '0px', transform: 'translate(85px, 80px)', display: 'none'}} 
-                            onMouseMove={(e) => handleHover(e)}
-                            onMouseOut={(e) => handleHoverExit(e)}>
-                                <ul role="list" className='py-1 text-sm text-gray-700 dark:text-gray-400' aria-labelledby='dropdownLargeButton'>
-                                {/* <li ref={childItemRef.current[index]} ref={childItemRef.current[0]} style={{ display: 'none' }} className="hover:text-darkblue px-4 child-item-main-nav"  key="asdasd">
-                                </li> */}
-                                {(menuItem.childItems.nodes.map( (childItem, index) => (
-                                    <>
-                                    {/* { childItemsTotal++ } */}
-                                        <li  className="px-5 py-2 hover:text-gray2"  key={ childItem.databaseId }>
-                                            <Link  key={ childItem.id }  href={ childItem.path + params ?? '/' }>
-                                                <a dangerouslySetInnerHTML={ { __html: childItem.label } }/>
-                                            </Link>
-                                        </li>
-                                    </>
-                                ))) } 
-                                </ul>
-                            </div>
+                           
                         </> 
-                        : 
-                        (menuItem.parentId === null) ? 
-                        <li className="hover:text-darkblue px-4 no-parent" >
-                            <Link key={ menuItem.id }  href={ menuItem.path+params ?? '/' }>
-                                <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
-                            </Link>
-                        </li>
+
                         :null
-                        ) ) : null 
+                         ) ) : null 
                     }
                     </ul>
                     <NavSearch/>
@@ -115,9 +97,6 @@ console.log("🎉🎉");
                         {theme === 'dark' ? '☀' : '☽'}
                     </button> 
                 </div>
-                
-               
-
             </div>
 
              
@@ -130,12 +109,12 @@ console.log("🎉🎉");
         {/* //Hamburguer menu */}
             <div className={`${active ? '' : 'hidden'} md:hidden lg:hidden w-full lg:inline-flex lg:flex-grow lg:w-auto bg-lightblue`}>
                 <div className='lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto'>
-                { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
+                {/* { headerData.header.menuItems.nodes.length ? headerData.header.menuItems.nodes.map( menuItem => (
                             
                     <Link key={ menuItem.id }  href={ menuItem.url+params ?? '/' }>
                         <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ' dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                     </Link>
-                ) ) : null }
+                ) ) : null } */}
             </div>
             </div>
             <div className="bg-gradient-to-t from-orange to-darkorange hover:text-darkblue px-4 pt-10" >

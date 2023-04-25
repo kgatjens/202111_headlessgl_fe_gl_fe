@@ -14,11 +14,12 @@ import { getMainMenu } from '../lib/strapi/api'
 // import { getHomepage } from '../lib/wp/api'
 // import { getHomepageCarousel } from '../lib/wp/api'
 
-export default function Home({ data  }) {
+export default function Home({ data,homepage  }) {
   
   const { allHomepage } = homepage || {};
-  const { carousel }  = carouselHomepage || {};
-  const { mainNav, mainFooter } = data || {};
+  const  mainNav  = data || {};
+  console.log(">>>")
+  console.log(mainNav.data);
 
   //Metas
   // const metaTitle     = allHomepage.edges[0]?.node.seo.title;
@@ -59,7 +60,7 @@ export default function Home({ data  }) {
       
       </Container>
       
-      <Footer footer={mainFooter}/>
+      {/* <Footer footer={mainFooter}/> */}
     </Layout>
     </>
   )
@@ -76,6 +77,6 @@ export async function getStaticProps() {
    //const carouselHomepage = {}
 
   return {
-    props: { data },
+    props: { data,homepage },
   }
 }
