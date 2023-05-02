@@ -74,7 +74,7 @@ export default function Footer(headerData) {
               { headerData.footer.menuItems.nodes.length ? headerData.footer.menuItems.nodes.map( menuItem => (
                       
                   <li className="hover:text-darkblue px-3" key={ menuItem.id }>
-                    <Link  href={ menuItem.url+params ?? '/' }>
+                    <Link  href={ menuItem.url+params ?? '/' } legacyBehavior>
                        <a dangerouslySetInnerHTML={ { __html: menuItem.label } }/>
                     </Link>   /   
                   </li>

@@ -19,7 +19,7 @@ export default function FeaturedImage({ title, source, sourceSet, slug }) {
   return (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={`/blogs/${slug}`}>
+        <Link href={`/blogs/${slug}`} legacyBehavior>
           <a aria-label={title}>{image}</a>
         </Link>
       ) : (

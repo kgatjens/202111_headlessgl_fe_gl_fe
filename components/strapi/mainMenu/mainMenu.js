@@ -46,7 +46,7 @@ export default function mainMenu({ menuItems }) {
           <li className={styles.menuItem}>
             <div className={styles.talkToAnExpertLayer}>
               <div className={styles.talkToAnExpert}>
-                <Link
+                <Link legacyBehavior
                   aria-label="Talk to an expert"
                   href={`/contact-us`}
                 >
