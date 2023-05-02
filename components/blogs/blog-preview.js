@@ -21,7 +21,7 @@ export default function PostPreview({
         
       </div>
       <h3 className="text-2xl mb-2 leading-snug">
-        <Link href={`/blogs/${slug}`}>
+        <Link href={`/blogs/${slug}`} legacyBehavior>
           <a
             className="hover:underline"
             dangerouslySetInnerHTML={{ __html: title }}

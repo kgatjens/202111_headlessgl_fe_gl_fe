@@ -77,7 +77,7 @@ const params =  generateUrlWithQueryString(router.query).length>0 ? generateUrlW
 
                             <li  key={ menuItem.attributes.title } className="hover:text-darkblue px-4 parent-main-nav" 
                                 onMouseMove={(e) => handleHover(e)}>
-                                <Link key={ menuItem.attributes.title }  href={ menuItem.attributes.url+params ?? '/' }>
+                                <Link legacyBehavior key={ menuItem.attributes.title }  href={ menuItem.attributes.url+params ?? '/' }>
                                     <a dangerouslySetInnerHTML={ { __html: menuItem.attributes.title } }/>
                                 </Link>
                             </li>
@@ -118,7 +118,7 @@ const params =  generateUrlWithQueryString(router.query).length>0 ? generateUrlW
             </div>
             </div>
             <div className="bg-gradient-to-t from-orange to-darkorange hover:text-darkblue px-4 pt-10" >
-                <Link key="Contact-us"  href={`/contact-us${params}`}>
+                <Link key="Contact-us"  href={`/contact-us${params}`} legacyBehavior>
                         <a dangerouslySetInnerHTML={ { __html: "Contact" } }/>
                 </Link>
             </div>
