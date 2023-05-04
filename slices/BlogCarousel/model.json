@@ -1,0 +1,36 @@
+{
+  "id": "blog_carousel",
+  "type": "SharedSlice",
+  "name": "BlogCarousel",
+  "description": "BlogCarousel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "primary": {
+        "carousel_image": {
+          "type": "Image",
+          "config": {
+            "label": "Carousel Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {
+        "carousel_link": {
+          "type": "Link",
+          "config": {
+            "label": "Carousel Link",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}
