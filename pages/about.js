@@ -5,7 +5,6 @@ import { SliceZone } from "@prismicio/react";
 import {components} from "../slices"
 
 export default function Blogs({ page  }) {
-
     return (
         <>
           <SliceZone slices={page.data.slices} components={components} />
@@ -15,7 +14,6 @@ export default function Blogs({ page  }) {
 export async function getStaticProps() {
     const client = prismic.createClient(config.repositoryName)
     const page = await client.getByUID("page","about")
-
     
     return {
       props: { page },
