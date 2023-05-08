@@ -38,6 +38,7 @@ export default function Home({ data,homepage  }) {
       <Header header={mainNav}
               metaData={metaData} />
       <Container>
+        <h1 id="welcome">Welcome to my Next.js app</h1>
 
       {/* <Clocks/> */}
       {allHomepage && (

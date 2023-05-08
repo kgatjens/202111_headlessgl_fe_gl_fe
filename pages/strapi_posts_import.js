@@ -36,7 +36,7 @@ function handleClick() {
             });
 
             const pattern = /custom_gl_class series-/;
-            const result = "";
+            var result = "";
             if(post.node.content.search(pattern)!=-1){
                 const startIndex = post.node.content.search(pattern) + pattern.source.length;
                 const endIndex = post.node.content.indexOf('">', startIndex);
