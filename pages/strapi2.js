@@ -34,7 +34,7 @@ export default function StrapiImporter(){
       }
   })
   
-  const initialData = []
+  var initialData = []
   const [dataLoaded, setData] = useState(initialData);
   
   const handleClick = () => {

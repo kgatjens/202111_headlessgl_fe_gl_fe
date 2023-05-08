@@ -16,7 +16,7 @@ import { getFirstBlogs, getMenus } from '../lib/wp/api'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const loadedMoreData = {};
+//const loadedMoreData = {};
 
 const MoreLoader = ({ value, perPage }) => {
   const url = `https://headlessgl22.wpengine.com/wp-json/wp/v2/posts/?status=publish&per_page=${perPage}&offset=${value}&orderby=date&order=desc`

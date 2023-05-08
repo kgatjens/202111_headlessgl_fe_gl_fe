@@ -48,9 +48,9 @@ console.log("🎉🎉");
 
 /* to keep utms params */
 
-var router = useRouter();
-const params =  generateUrlWithQueryString(router.query).length>0 ? generateUrlWithQueryString(router.query) : "";
-
+// var router = useRouter();
+// const params =  generateUrlWithQueryString(router.query).length>0 ? generateUrlWithQueryString(router.query) : "";
+ const params = ""
 
     
     return (
@@ -68,7 +68,7 @@ const params =  generateUrlWithQueryString(router.query).length>0 ? generateUrlW
             {/* //Desktop menu */}
                 <div className="hidden md:flex w-full pt-2  md:justify-end ">
                     <ul role="list" className="list-reset flex justify-between flex-1 md:flex-none items-center">
-                    { menuItems.data.length ? menuItems.data.map( menuItem => (
+                    { menuItems.data ? menuItems.data.map( menuItem => (
    
    
                         (menuItem.attributes.title != null ) ? 
